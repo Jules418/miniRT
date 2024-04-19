@@ -14,6 +14,7 @@
 # define MINIRT_H
 
 # include <mlx.h>
+# include <mlx_int.h>
 # include <stdlib.h>
 # include <math.h>
 # include "geometry.h"
@@ -95,5 +96,6 @@ t_minirt	init_minirt(int argc, char **argv);
 t_scene		test_scene(void);
 
 void		render_scene(t_minirt *minirt);
+int			input(int key, t_minirt *minirt);
 
 #endif
