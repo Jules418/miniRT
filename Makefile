@@ -34,34 +34,45 @@ VECTOR_L			=	-L $(VECTOR_PATH) -l vector
 VECTOR_A			=	$(VECTOR_PATH)libvector.a
 MAKE_VECTOR			=	$(MAKE) -C $(VECTOR_PATH)
 
-DIR_INCS =\
-	includes/			\
-	$(MINILIBX_INCLUDES) \
-	$(VECTOR_INCLUDES) \
+
+LIBFT_PATH			=	libft/
+LIBFT_INCLUDES		=	$(LIBFT_PATH)libft/
+LIBFT_L				=	-L	$(LIBFT_PATH) -l libft
+LIBFT_A				=	$(LIBFT_PATH)libft.a
+MAKE_LIBFT			= 	$(MAKE) -C $(LIBFT_PATH)
+
+
+
+DIR_INCS =					\
+	includes/				\
+	$(MINILIBX_INCLUDES) 	\
+	$(VECTOR_INCLUDES) 		\
 	$(GEOMETRY_INCLUDES)
 
-INCLUDES =\
+INCLUDES =					\
 	$(addprefix -I , $(DIR_INCS))
 
-LIBS = \
-	$(MINILIBX_L)	\
-	$(VECTOR_L) \
-	$(GEOMETRY_L) \
-	-lm \
-	-lXext	\
+LIBS = 						\
+	$(MINILIBX_L)			\
+	$(VECTOR_L) 			\
+	$(GEOMETRY_L) 			\
+	-lm 					\
+	-lXext					\
 	-lX11
 
-DEPENDENCIES =\
-	$(MINILIBX_A) \
-	$(GEOMETRY_A) \
-	$(VECTOR_A)
+DEPENDENCIES =				\
+	$(MINILIBX_A) 			\
+	$(GEOMETRY_A) 			\
+	$(VECTOR_A) 			\
+	$(LIBFT_A)
 
 .PHONY:		all
 all:
-			$(MAKE_MINILIBX)
-			$(MAKE_GEOMETRY)
-			$(MAKE_VECTOR)
-			$(MAKE) $(NAME)
+	$(MAKE_MINILIBX)
+	$(MAKE_GEOMETRY)
+	$(MAKE_VECTOR)
+	$(MAKE_LIBFT)
+	$(MAKE) $(NAME)
 
 test:	$(OBJS_TEST)
 	$(CC) $(FLAGS) $(INCLUDES) $(OBJS_TEST) $(LIBS) -o $(NAME)
@@ -79,9 +90,11 @@ fclean:	clean
 
 .PHONY: ffclean
 ffclean: fclean
-			$(MAKE_VECTOR) fclean
-			$(MAKE_GEOMETRY) ffclean
-			$(MAKE_MINILIBX) clean
+			$(MAKE_VECTOR) 		fclean
+			$(MAKE_GEOMETRY) 	ffclean
+			$(MAKE_MINILIBX) 	clean
+			$(MAKE_LIBFT)		fclean
+			
 .PHONY:	debug
 debug:
 			$(MAKE) -j FLAGS="$(DEBUG_CLFAGS)"
