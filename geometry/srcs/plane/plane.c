@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 23:14:34 by jules             #+#    #+#             */
-/*   Updated: 2024/04/16 11:02:56 by jules            ###   ########.fr       */
+/*   Updated: 2024/04/19 05:47:41 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,10 @@ float	plane_intersection(t_ray ray, t_plane pl)
 	if (t < 0.f)
 		return (-1.f);
 	return (t);
+}
+
+t_vec3	plane_normal(t_plane pl, t_vec3 hit)
+{
+	(void) hit;
+	return (pl.normal_vector);
 }

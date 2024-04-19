@@ -6,7 +6,7 @@
 /*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:18:03 by jbanacze          #+#    #+#             */
-/*   Updated: 2024/04/19 03:41:32 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/04/19 05:57:27 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 
 t_camera	test_cam(void)
 {
-	t_camera cam;
-	float	fov = 80.f;
+	t_camera	cam;
+	float		fov;
 
+	fov = 80.f;
 	cam.pos = (t_vec3){0.f, 0.f, 0.f};
 	cam.forward = (t_vec3){1.f, 0.f, 0.f};
 	cam.up = (t_vec3){0.f, 1.f, 0.f};
@@ -29,17 +30,17 @@ t_camera	test_cam(void)
 
 t_light	test_light(void)
 {
-	t_light l;
+	t_light	l;
 
 	l.color = (t_vec3){1.f, 1.f, 1.f};
-	l.intensity = 1.0;
+	l.brightness = 1.0f;
 	l.pos = (t_vec3){0.f, -15.f, 10.f};
 	return (l);
 }
 
-t_objects test_object(void)
+t_objects	test_object1(void)
 {
-	t_objects 	o;
+	t_objects	o;
 	t_sphere	*s;
 
 	o.obj_type = (t_type) sphere;
@@ -51,16 +52,35 @@ t_objects test_object(void)
 	return (o);
 }
 
+t_objects	test_object2(void)
+{
+	t_objects	o;
+	t_plane	*s;
+
+	o.obj_type = (t_type) plane;
+	o.color = (t_vec3){1.f, 1.f, 1.f};
+	s = malloc(sizeof(t_plane));
+	s->pos = (t_vec3){0.f, -5.f, 0.f};
+	s->normal_vector = (t_vec3){0.f, 1.f, 0.f};
+	o.obj = s;
+	return (o);
+}
+
 t_scene	test_scene(void)
 {
-	t_scene t = malloc(sizeof(struct s_scene));
+	t_scene	t;
+
+	t = malloc(sizeof(struct s_scene));
+	if (!t)
+		return (NULL);
 	t->should_render = 1;
 	t->cam = test_cam();
 	t->height = 600;
 	t->width = 800;
-	t->nb_objects = 1;
+	t->nb_objects = 2;
 	t->light = test_light();
-	t->objects[0] = test_object();
+	t->objects[0] = test_object1();
+	t->objects[1] = test_object2();
 	t->d_to_screen = 1.f / (2.f * tanf(t->cam.fov / 2.f));
 	return (t);
 }

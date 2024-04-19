@@ -6,7 +6,7 @@
 /*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 22:54:08 by jules             #+#    #+#             */
-/*   Updated: 2024/04/18 21:56:24 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/04/19 04:38:42 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ int	close_minirt(t_minirt *minirt)
 int	draw_loop(t_minirt *minirt)
 {
 	render_scene(minirt);
-	mlx_put_image_to_window(minirt->mlx, minirt->mlx_win, minirt->img.img, 0 ,0);
+	mlx_put_image_to_window(minirt->mlx, minirt->mlx_win, \
+			minirt->img.img, 0, 0);
 	return (0);
 }
 
@@ -60,6 +61,11 @@ int	main(int argc, char **argv)
 
 	minirt = init_minirt(argc, argv);
 	minirt.scene = test_scene();
+	if (!minirt.scene)
+	{
+		close_minirt(&minirt);
+		return (1);
+	}
 	mlx_hook(minirt.mlx_win, 17, 1L << 0, close_minirt, &minirt);
 	mlx_loop_hook(minirt.mlx, draw_loop, &minirt);
 	mlx_loop(minirt.mlx);

@@ -6,7 +6,7 @@
 /*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:49:40 by jules             #+#    #+#             */
-/*   Updated: 2024/04/19 03:33:12 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/04/19 05:28:04 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct s_light
 {
 	t_vec3	pos;
 	t_vec3	color;
-	float	intensity;
+	float	brightness;
 }	t_light;
 
 typedef struct s_scene

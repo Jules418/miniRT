@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   initializer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:32:22 by jules             #+#    #+#             */
-/*   Updated: 2024/04/17 17:45:48 by jules            ###   ########.fr       */
+/*   Updated: 2024/04/19 04:40:08 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
+//get the scene;
 t_minirt	init_minirt(int argc, char **argv)
 {
 	t_minirt	minirt;
 
-	//get the scene;
 	(void) argc;
 	(void) argv;
 	minirt.mlx = mlx_init();

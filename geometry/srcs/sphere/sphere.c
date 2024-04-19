@@ -6,7 +6,7 @@
 /*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 22:14:49 by jules             #+#    #+#             */
-/*   Updated: 2024/04/19 03:25:41 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/04/19 05:29:10 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ float	sphere_intersection(t_ray ray, t_sphere sp)
 	return (-1.f);
 }
 
-t_vec3	normal_sphere(t_sphere s, t_vec3 hit)
+t_vec3	sphere_normal(t_sphere s, t_vec3 hit)
 {
 	t_vec3	normal_vec;
 
