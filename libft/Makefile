@@ -1,11 +1,10 @@
 #		Sources & output variables	#
 LIBFT 			= 	Libft.a
+DIR_INCS		= 	./includes
 DIR_LIBFT 		= 	./libft
 DIR_PRINTF 		= 	./ft_printf
 DIR_GNL 		= 	./get_next_line
-INC_LIBFT 		= 	$(DIR_LIBFT)/libft.h
-INC_PRINTF 		= 	$(DIR_PRINTF)/ft_printf.h
-INC_GNL 		= 	$(DIR_GNL)/get_next_line.h
+
 
 LIBFT_SRC 		=	ft_memset.c					\
 					ft_bzero.c					\
@@ -83,24 +82,27 @@ COLOUR_END		=	\033[0m
 
 all : $(LIBFT)
 
+
 $(LIBFT) : $(LIBFT_OBJ) $(PRINTF_OBJ) $(GNL_OBJ)
 	@echo "$(COLOUR_GREEN)[LIBFT] Libft Created !$(COLOUR_END)"
-	@ar rcs $(LIBFT) $(LIBFT_OBJ) $(PRINTF_OBJ) $(GNL_OBJ)
+	ar rcs $(LIBFT) $(LIBFT_OBJ) $(PRINTF_OBJ) $(GNL_OBJ)
 
+-include $(OBJS:.o=.d)
 $(DIR_LIBFT)/%.o : $(DIR_LIBFT)/%.c $(INC_LIBFT)
-	@printf "$(COLOR_YELLOW)[LIBFT] Compiling $<$(COLOUR_END)"
-	@$(CC) $(CFLAGS) -c $< -o $@
-	@printf "\r\033[K"
+	@printf "$(COLOR_YELLOW)[LIBFT] Compiling $<$(COLOUR_END)\n"
+	@$(CC) $(CFLAGS) -I$(DIR_INCS) -MMD -MP -c $< -o $@
 
+
+-include $(OBJS:.o=.d)
 $(DIR_PRINTF)/%.o : $(DIR_PRINTF)/%.c $(INC_PRINTF)
-	@printf "$(COLOR_YELLOW)[FT_PRINTF] Compiling $<$(COLOUR_END)"
-	@$(CC) $(CFLAGS) -c $< -o $@
-	@printf "\r\033[K"
+	@printf "$(COLOR_YELLOW)[FT_PRINTF] Compiling $<$(COLOUR_END)\n"
+	@$(CC) $(CFLAGS) -I$(DIR_INCS) -MMD -MP -c $< -o $@
 
+-include $(OBJS:.o=.d)
 $(DIR_GNL)/%.o : $(DIR_GNL)/%.c $(INC_GNL)
-	@printf "$(COLOR_YELLOW)[GNL] Compiling $<$(COLOUR_END)"
-	@$(CC) $(CFLAGS) -c $< -o $@
-	@printf "\r\033[K"
+	@printf "$(COLOR_YELLOW)[GNL] Compiling $<$(COLOUR_END)\n"
+	@$(CC) $(CFLAGS) -I$(DIR_INCS) -MMD -MP -c $< -o $@
+
 
 # start :
 # 	@printf "$(COLOR_CYAN)  .____      .___  __________  ___________ ___________$(COLOUR_END)\n"

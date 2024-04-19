@@ -94,7 +94,7 @@ ffclean: fclean
 			$(MAKE_GEOMETRY) 	ffclean
 			$(MAKE_MINILIBX) 	clean
 			$(MAKE_LIBFT)		fclean
-			
+
 .PHONY:	debug
 debug:
 			$(MAKE) -j FLAGS="$(DEBUG_CLFAGS)"
