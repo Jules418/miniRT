@@ -1,5 +1,5 @@
 #		Sources & output variables	#
-LIBFT 			= 	Libft.a
+LIBFT 			= 	libft.a
 DIR_INCS		= 	./includes
 DIR_LIBFT 		= 	./libft
 DIR_PRINTF 		= 	./ft_printf

@@ -77,7 +77,7 @@ all:
 test:	$(OBJS_TEST)
 	$(CC) $(FLAGS) $(INCLUDES) $(OBJS_TEST) $(LIBS) -o $(NAME)
 
-$(NAME):	$(OBJS)
+$(NAME):	$(OBJS) $(DEPENDENCIES)
 	$(CC) $(FLAGS) $(OBJS) $(LIBS) -o $(NAME)
 
 .PHONY:	clean

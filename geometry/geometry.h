@@ -6,7 +6,7 @@
 /*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 21:40:26 by jules             #+#    #+#             */
-/*   Updated: 2024/04/18 23:55:13 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/04/20 17:45:11 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@
 # include "includes/plane.h"
 # include "includes/cylinder.h"
 
-# define EPSILON 0.0001f
+# define EPSILON 0.01f
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:18:03 by jbanacze          #+#    #+#             */
-/*   Updated: 2024/04/19 05:57:27 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/04/20 18:00:04 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_light	test_light(void)
 
 	l.color = (t_vec3){1.f, 1.f, 1.f};
 	l.brightness = 1.0f;
-	l.pos = (t_vec3){0.f, -15.f, 10.f};
+	l.pos = (t_vec3){0.f, 15.f, 10.f};
 	return (l);
 }
 
@@ -60,8 +60,8 @@ t_objects	test_object2(void)
 	o.obj_type = (t_type) plane;
 	o.color = (t_vec3){1.f, 1.f, 1.f};
 	s = malloc(sizeof(t_plane));
-	s->pos = (t_vec3){0.f, -5.f, 0.f};
-	s->normal_vector = (t_vec3){0.f, 1.f, 0.f};
+	s->pos = (t_vec3){0.f, -20.f, 0.f};
+	s->normal_vector = (t_vec3){0.f, -1.f, 0.f};
 	o.obj = s;
 	return (o);
 }
@@ -75,12 +75,13 @@ t_scene	test_scene(void)
 		return (NULL);
 	t->should_render = 1;
 	t->cam = test_cam();
-	t->height = 600;
-	t->width = 800;
+	t->height = TEMP_HEIGHT;
+	t->width = TEMP_WIDTH;
 	t->nb_objects = 2;
 	t->light = test_light();
 	t->objects[0] = test_object1();
 	t->objects[1] = test_object2();
 	t->d_to_screen = 1.f / (2.f * tanf(t->cam.fov / 2.f));
+	t->ambient_light = scale((t_vec3){1.f, 1.f, 1.f}, 0.2f);
 	return (t);
 }

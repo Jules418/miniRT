@@ -6,7 +6,7 @@
 /*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:49:40 by jules             #+#    #+#             */
-/*   Updated: 2024/04/19 05:28:04 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/04/20 18:02:41 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@
 # ifndef M_PI
 #  define M_PI 3.14159265359f
 # endif
+
+# define TEMP_WIDTH 1280
+# define TEMP_HEIGHT 1024
+
 
 typedef struct s_data
 {
@@ -69,6 +73,7 @@ typedef struct s_scene
 	int			nb_objects;
 	t_camera	cam;
 	t_light		light;
+	t_vec3		ambient_light;
 	int			height;
 	int			width;
 	int			should_render;
@@ -80,6 +85,7 @@ typedef struct s_hitpoint
 	float		d;
 	t_objects	*obj;
 	t_vec3		hitpos;
+	t_vec3		normal_vect;
 }	t_hitpoint;
 
 typedef struct s_minirt

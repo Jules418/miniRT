@@ -1,5 +1,7 @@
 {
 	"files.associations": {
-		"cylinder.h": "c"
+		"cylinder.h": "c",
+		"cmath": "cpp",
+		"geometry.h": "c"
 	}
 }

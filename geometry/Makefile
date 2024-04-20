@@ -41,7 +41,7 @@ all:
 			$(MAKE_VECTOR)
 			$(MAKE) $(NAME)
 
-$(NAME) : $(OBJS)
+$(NAME) : $(OBJS) $(DEPENDENCIES)
 	ar rcs $(NAME) $(OBJS)
 
 .PHONY:	clean
