@@ -47,6 +47,13 @@ int	close_minirt(t_minirt *minirt)
 	return (0);
 }
 
+int input(int key, t_minirt *minirt) 
+{
+	if (key == XK_Escape)
+		close_minirt(minirt);
+	return 0;
+}
+
 int	draw_loop(t_minirt *minirt)
 {
 	render_scene(minirt);
@@ -67,6 +74,8 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	mlx_hook(minirt.mlx_win, 17, 1L << 0, close_minirt, &minirt);
+	mlx_hook(minirt.mlx_win, DestroyNotify, StructureNotifyMask, close_minirt, &minirt);
+	mlx_hook(minirt.mlx_win, KeyPress, KeyPressMask, input, &minirt);
 	mlx_loop_hook(minirt.mlx, draw_loop, &minirt);
 	mlx_loop(minirt.mlx);
 	return (0);
