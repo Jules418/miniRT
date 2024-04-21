@@ -13,7 +13,7 @@ DEBUG_CLFAGS		=	$(BASE_DEBUG_CFLAGS) #-fsanitize=address
 FLAGS				=	$(BASE_CFLAGS)
 RM					=	rm -rf
 AR					=	ar rcs
-CC					=	gcc
+CC					=	cc
 
 DIR_INCS =\
 	includes/\

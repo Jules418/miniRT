@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   geometry.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 21:40:26 by jules             #+#    #+#             */
-/*   Updated: 2024/04/20 17:45:11 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/04/21 02:00:49 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@
 # include "includes/plane.h"
 # include "includes/cylinder.h"
 
-# define EPSILON 0.01f
+# define EPSILON 0.0001f
 
 #endif

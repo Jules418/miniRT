@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_intersection.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 15:25:59 by jules             #+#    #+#             */
-/*   Updated: 2024/04/19 03:10:18 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/04/21 01:45:03 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ float	filter_hit_points(t_ray ray, t_cylinder cy, float coefs[6])
 	t_vec3	hit_point;
 
 	t = coefs[4];
-	if (t < 0.f)
+	if (t > 0.f)
 	{
 		hit_point = move_ray(ray, t);
 		if (mag2(sub(hit_point, cy.pos)) < (cy.height * cy.height / 4.f \
@@ -57,7 +57,7 @@ float	filter_hit_points(t_ray ray, t_cylinder cy, float coefs[6])
 			return (t);
 	}
 	t = coefs[5];
-	if (t < 0.f)
+	if (t > 0.f)
 	{
 		hit_point = move_ray(ray, t);
 		if (mag2(sub(hit_point, cy.pos)) < (cy.height * cy.height / 4.f \
