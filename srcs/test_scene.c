@@ -6,7 +6,7 @@
 /*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:18:03 by jbanacze          #+#    #+#             */
-/*   Updated: 2024/04/21 02:15:19 by jules            ###   ########.fr       */
+/*   Updated: 2024/04/21 13:03:16 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_light	test_light(void)
 {
 	t_light	l;
 
-	l.color = (t_vec3){1.f, 1.f, 1.f};
+	l.color = (t_vec3){1.f, 0.f, 1.f};
 	l.brightness = 1.0f;
 	l.pos = (t_vec3){0.f, 15.f, 10.f};
 	return (l);
@@ -75,8 +75,8 @@ t_objects	test_object3(void)
 	o.color = (t_vec3){1.f, 0.f, 0.f};
 	s = malloc(sizeof(t_cylinder));
 	s->pos = (t_vec3){20.f, 0.f, 0.f};
-	s->width = 4;
-	s->height = 10;
+	s->width = 4.f;
+	s->height = 10.f;
 	s->dir = normalized((t_vec3){1.f, 0.f, -1.f});
 	o.obj = s;
 	return (o);
