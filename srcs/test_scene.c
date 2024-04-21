@@ -6,7 +6,7 @@
 /*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:18:03 by jbanacze          #+#    #+#             */
-/*   Updated: 2024/04/21 02:03:13 by jules            ###   ########.fr       */
+/*   Updated: 2024/04/21 02:15:19 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_objects	test_object1(void)
 t_objects	test_object2(void)
 {
 	t_objects	o;
-	t_plane	*s;
+	t_plane		*s;
 
 	o.obj_type = (t_type) plane;
 	o.color = (t_vec3){1.f, 1.f, 1.f};

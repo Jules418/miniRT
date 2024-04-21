@@ -6,7 +6,7 @@
 /*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 23:14:34 by jules             #+#    #+#             */
-/*   Updated: 2024/04/20 22:15:28 by jules            ###   ########.fr       */
+/*   Updated: 2024/04/21 02:11:54 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ float	plane_intersection(t_ray ray, t_plane pl)
 	oc = sub(pl.pos, ray.origin);
 	t = dot(oc, pl.normal_vector) / denom;
 	if (t < 0.f)
-		return (-1.f); 
-		
+		return (-1.f);
 	return (t);
 }
 

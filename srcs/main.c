@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 22:54:08 by jules             #+#    #+#             */
-/*   Updated: 2024/04/19 04:38:42 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/04/21 02:18:11 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,37 +21,11 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	free_scene(t_scene scene)
-{
-	int	i;
-
-	if (!scene)
-		return ;
-	i = 0;
-	while (i < scene->nb_objects)
-	{
-		free(scene->objects[i].obj);
-		i++;
-	}
-	free(scene);
-}
-
-int	close_minirt(t_minirt *minirt)
-{
-	mlx_destroy_image(minirt->mlx, minirt->img.img);
-	mlx_destroy_window(minirt->mlx, minirt->mlx_win);
-	mlx_destroy_display(minirt->mlx);
-	free(minirt->mlx);
-	free_scene(minirt->scene);
-	exit(EXIT_SUCCESS);
-	return (0);
-}
-
-int input(int key, t_minirt *minirt) 
+int	input(int key, t_minirt *minirt)
 {
 	if (key == XK_Escape)
 		close_minirt(minirt);
-	return 0;
+	return (0);
 }
 
 int	draw_loop(t_minirt *minirt)
@@ -74,7 +48,8 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	mlx_hook(minirt.mlx_win, 17, 1L << 0, close_minirt, &minirt);
-	mlx_hook(minirt.mlx_win, DestroyNotify, StructureNotifyMask, close_minirt, &minirt);
+	mlx_hook(minirt.mlx_win, DestroyNotify, StructureNotifyMask, \
+		close_minirt, &minirt);
 	mlx_hook(minirt.mlx_win, KeyPress, KeyPressMask, input, &minirt);
 	mlx_loop_hook(minirt.mlx, draw_loop, &minirt);
 	mlx_loop(minirt.mlx);

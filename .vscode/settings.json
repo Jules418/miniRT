@@ -2,6 +2,7 @@
 	"files.associations": {
 		"cylinder.h": "c",
 		"cmath": "cpp",
-		"geometry.h": "c"
+		"geometry.h": "c",
+		"minirt.h": "c"
 	}
 }

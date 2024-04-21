@@ -6,7 +6,7 @@
 /*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:09:59 by jbanacze          #+#    #+#             */
-/*   Updated: 2024/04/21 02:01:43 by jules            ###   ########.fr       */
+/*   Updated: 2024/04/21 02:25:15 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,80 +43,6 @@ t_ray	get_ray(t_scene scene, int x, int y)
 		((float)y * -2.f + scene->height) / scene->width));
 	ray.dir = normalized(ray.dir);
 	return (ray);
-}
-
-float	cast_ray(t_ray ray, t_objects *obj)
-{
-	if (obj->obj_type == (t_type)sphere)
-		return (sphere_intersection(ray, *(t_sphere *)obj->obj));
-	if (obj->obj_type == (t_type)plane)
-		return (plane_intersection(ray, *(t_plane *)obj->obj));
-	if (obj->obj_type == (t_type)cylinder)
-		return (cylinder_intersection(ray, *(t_cylinder *)obj->obj));
-	return (-1.f);
-}
-t_vec3	find_normal(t_objects *obj, t_vec3 hit_pos)
-{
-	if (!obj)
-		return ((t_vec3){1.f, 0.f, 0.f});
-	if (obj->obj_type == (t_type)sphere)
-		return (sphere_normal(*(t_sphere *)obj->obj, hit_pos));
-	if (obj->obj_type == (t_type)plane)
-		return (plane_normal(*(t_plane *)obj->obj, hit_pos));
-	if (obj->obj_type == (t_type)cylinder)
-		return (cylinder_normal(*(t_cylinder *)obj->obj, hit_pos));
-	return ((t_vec3){1.f, 0.f, 0.f});
-}
-
-t_hitpoint	get_hitpoint(t_scene scene, t_ray ray)
-{
-	t_hitpoint	hit;
-	float		d;
-	int			i;
-
-	i = -1;
-	hit.obj = NULL;
-	hit.d = -1.f;
-	while (++i < scene->nb_objects)
-	{
-		d = cast_ray(ray, scene->objects + i);
-		if ((d > 0.f) && ((d < hit.d) || (hit.d == -1.f)))
-		{
-			hit.d = d;
-			hit.obj = scene->objects + i;
-			hit.hitpos = move_ray(ray, d);
-		}
-	}
-	hit.normal_vect = find_normal(hit.obj, hit.hitpos);
-	if (dot(hit.normal_vect, ray.dir) > 0)
-		hit.normal_vect = sub((t_vec3){0.f, 0.f, 0.f}, hit.normal_vect);
-	return (hit);
-}
-
-t_vec3	diffuse_light(t_scene scene, t_hitpoint hit)
-{
-	t_vec3		to_light;
-
-	to_light = normalized(sub(scene->light.pos, hit.hitpos));
-	return scale(hit.obj->color, fmaxf(0.f, dot(to_light, hit.normal_vect)));
-}
-
-int	in_light(t_scene scene, t_hitpoint hit)
-{
-	t_vec3		to_light;
-	float		dist_to_light;
-	t_ray		ray;
-	t_hitpoint	new_hit;
-
-	to_light = sub(scene->light.pos, hit.hitpos);
-	dist_to_light = mag(to_light);
-	to_light = scale(to_light, 1.f / dist_to_light);
-	ray.origin = add(hit.hitpos, scale(hit.normal_vect, EPSILON));
-	ray.dir = to_light;
-	new_hit = get_hitpoint(scene, ray);
-	if ((new_hit.d < 0.f) || (new_hit.d >= dist_to_light))
-		return (1);
-	return (0);
 }
 
 t_vec3	compute_pixel(t_scene scene, int x, int y)

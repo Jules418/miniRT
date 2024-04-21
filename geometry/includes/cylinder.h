@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 23:03:35 by jules             #+#    #+#             */
-/*   Updated: 2024/04/19 05:44:09 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/04/21 02:12:08 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ typedef struct s_cylinder
 	float	width;
 	float	height;
 }	t_cylinder;
-
 
 /*
 **@brief Create a cylinder

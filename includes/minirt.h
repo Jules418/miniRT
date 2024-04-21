@@ -6,7 +6,7 @@
 /*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:49:40 by jules             #+#    #+#             */
-/*   Updated: 2024/04/21 02:06:58 by jules            ###   ########.fr       */
+/*   Updated: 2024/04/21 02:25:56 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 
 # define TEMP_WIDTH 800
 # define TEMP_HEIGHT 640
-
 
 typedef struct s_data
 {
@@ -97,9 +96,19 @@ typedef struct s_minirt
 }	t_minirt;
 
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
+
 t_minirt	init_minirt(int argc, char **argv);
+void		free_scene(t_scene scene);
+int			close_minirt(t_minirt *minirt);
 
 t_scene		test_scene(void);
+
+float		cast_ray(t_ray ray, t_objects *obj);
+t_hitpoint	get_hitpoint(t_scene scene, t_ray ray);
+
+t_vec3		find_normal(t_objects *obj, t_vec3 hit_pos);
+t_vec3		diffuse_light(t_scene scene, t_hitpoint hit);
+int			in_light(t_scene scene, t_hitpoint hit);
 
 void		render_scene(t_minirt *minirt);
 int			input(int key, t_minirt *minirt);
