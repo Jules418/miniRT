@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_scene.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:18:03 by jbanacze          #+#    #+#             */
-/*   Updated: 2024/04/21 13:03:16 by jules            ###   ########.fr       */
+/*   Updated: 2024/04/24 10:15:50 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ t_objects	test_object3(void)
 	s->pos = (t_vec3){20.f, 0.f, 0.f};
 	s->width = 4.f;
 	s->height = 10.f;
-	s->dir = normalized((t_vec3){1.f, 0.f, -1.f});
+	s->dir = normalized((t_vec3){1.f, 1.f, 1.f});
 	o.obj = s;
 	return (o);
 }

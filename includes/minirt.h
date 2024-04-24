@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:49:40 by jules             #+#    #+#             */
-/*   Updated: 2024/04/21 02:25:56 by jules            ###   ########.fr       */
+/*   Updated: 2024/04/22 14:38:57 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef struct s_scene
 	int			nb_objects;
 	t_camera	cam;
 	t_light		light;
-	t_vec3		ambient_light;
+	t_vec3		ambient_light; // color * brightness
 	int			height;
 	int			width;
 	int			should_render;

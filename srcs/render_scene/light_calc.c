@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light_calc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 02:20:43 by jules             #+#    #+#             */
-/*   Updated: 2024/04/21 02:26:18 by jules            ###   ########.fr       */
+/*   Updated: 2024/04/22 14:39:33 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,13 @@ t_vec3	find_normal(t_objects *obj, t_vec3 hit_pos)
 
 t_vec3	diffuse_light(t_scene scene, t_hitpoint hit)
 {
-	t_vec3		to_light;
+	t_vec3	to_light;
+	t_vec3	tmp_col;
 
 	to_light = normalized(sub(scene->light.pos, hit.hitpos));
-	return (scale(hit.obj->color, fmaxf(0.f, dot(to_light, hit.normal_vect))));
+	tmp_col = scale(scene->light.color, \
+		scene->light.brightness * fmaxf(0.f, dot(to_light, hit.normal_vect)));
+	return (mult(hit.obj->color, tmp_col));
 }
 
 int	in_light(t_scene scene, t_hitpoint hit)
