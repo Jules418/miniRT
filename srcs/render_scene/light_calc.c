@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light_calc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 02:20:43 by jules             #+#    #+#             */
-/*   Updated: 2024/04/22 14:39:33 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/05/04 12:02:56 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,22 @@ int	in_light(t_scene scene, t_hitpoint hit)
 	if ((new_hit.d < 0.f) || (new_hit.d >= dist_to_light))
 		return (1);
 	return (0);
+}
+
+t_vec3	specular_light(t_scene sc, t_ray ray, t_hitpoint hit)
+{
+	t_vec3	to_light;
+	t_vec3	reflected_ray;
+	t_vec3	color;
+	float	spec_light_intensity;
+
+	reflected_ray = reflect(ray.dir, hit.normal_vect);
+	to_light = normalized(sub(sc->light.pos, hit.hitpos));
+	color = sc->light.color;
+	spec_light_intensity = dot(reflected_ray, to_light);
+	if (spec_light_intensity <= EPSILON)
+		return ((t_vec3){0.f, 0.f, 0.f});
+	spec_light_intensity = powf(spec_light_intensity, 12.f);
+	color = scale(color, spec_light_intensity);
+	return (color);
 }

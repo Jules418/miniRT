@@ -6,7 +6,7 @@
 /*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:09:59 by jbanacze          #+#    #+#             */
-/*   Updated: 2024/04/21 02:25:15 by jules            ###   ########.fr       */
+/*   Updated: 2024/05/04 11:57:47 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,10 @@ t_vec3	compute_pixel(t_scene scene, int x, int y)
 		return ((t_vec3){0.f, 0.f, 0.f});
 	color = mult(hit.obj->color, scene->ambient_light);
 	if (in_light(scene, hit))
+	{
 		color = add(color, diffuse_light(scene, hit));
+		color = add(color, specular_light(scene, ray, hit));
+	}
 	return (color);
 }
 

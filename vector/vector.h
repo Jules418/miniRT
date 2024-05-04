@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 23:34:16 by jules             #+#    #+#             */
-/*   Updated: 2024/04/24 12:50:20 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/05/04 11:47:05 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ t_vec3	q_normalized(t_vec3 v);
 */
 t_vec3	q_normalize(t_vec3 *v);
 
+t_vec3	reflect(t_vec3 u, t_vec3 n);
 
 t_vec3	rotate_x(t_vec3 v, float angle);
 t_vec3	rotate_y(t_vec3 v, float angle);

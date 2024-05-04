@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:49:40 by jules             #+#    #+#             */
-/*   Updated: 2024/04/22 14:38:57 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/05/04 12:03:23 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 #  define M_PI 3.14159265359f
 # endif
 
-# define TEMP_WIDTH 800
-# define TEMP_HEIGHT 640
+# define TEMP_WIDTH 1280
+# define TEMP_HEIGHT 800
 
 typedef struct s_data
 {
@@ -109,6 +109,7 @@ t_hitpoint	get_hitpoint(t_scene scene, t_ray ray);
 t_vec3		find_normal(t_objects *obj, t_vec3 hit_pos);
 t_vec3		diffuse_light(t_scene scene, t_hitpoint hit);
 int			in_light(t_scene scene, t_hitpoint hit);
+t_vec3		specular_light(t_scene sc, t_ray ray, t_hitpoint hit);
 
 void		render_scene(t_minirt *minirt);
 int			input(int key, t_minirt *minirt);

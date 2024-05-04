@@ -3,6 +3,7 @@
 		"cylinder.h": "c",
 		"cmath": "cpp",
 		"geometry.h": "c",
-		"minirt.h": "c"
+		"minirt.h": "c",
+		"vector.h": "c"
 	}
 }
