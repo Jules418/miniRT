@@ -6,7 +6,7 @@
 /*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 22:54:08 by jules             #+#    #+#             */
-/*   Updated: 2024/04/21 02:18:11 by jules            ###   ########.fr       */
+/*   Updated: 2024/05/11 13:15:13 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ int	input(int key, t_minirt *minirt)
 
 int	draw_loop(t_minirt *minirt)
 {
+	t_sphere *s = minirt->scene->objects[0].obj;
+	s->pos.z++;
+	minirt->scene->should_render = 1;
 	render_scene(minirt);
 	mlx_put_image_to_window(minirt->mlx, minirt->mlx_win, \
 			minirt->img.img, 0, 0);

@@ -6,7 +6,7 @@
 /*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 02:23:51 by jules             #+#    #+#             */
-/*   Updated: 2024/04/21 02:24:32 by jules            ###   ########.fr       */
+/*   Updated: 2024/05/10 18:44:29 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ float	cast_ray(t_ray ray, t_objects *obj)
 		return (plane_intersection(ray, *(t_plane *)obj->obj));
 	if (obj->obj_type == (t_type)cylinder)
 		return (cylinder_intersection(ray, *(t_cylinder *)obj->obj));
+	if (obj->obj_type == (t_type)cone)
+		return (cone_intersection(ray, *(t_cone *)obj->obj));
 	return (-1.f);
 }
 

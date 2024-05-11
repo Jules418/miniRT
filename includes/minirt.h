@@ -6,7 +6,7 @@
 /*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:49:40 by jules             #+#    #+#             */
-/*   Updated: 2024/05/04 12:03:23 by jules            ###   ########.fr       */
+/*   Updated: 2024/05/10 18:39:51 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ typedef enum e_type
 {
 	sphere,
 	cylinder,
-	plane
+	plane,
+	cone
 }	t_type;
 
 typedef struct s_object

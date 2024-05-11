@@ -6,7 +6,7 @@
 /*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 15:25:59 by jules             #+#    #+#             */
-/*   Updated: 2024/04/21 01:45:03 by jules            ###   ########.fr       */
+/*   Updated: 2024/05/11 17:14:18 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,7 @@ float	caps_intersection(t_ray ray, t_cylinder cy)
 	if (t2 > 0.f)
 		if (mag2(sub(move_ray(ray, t2), p2.pos)) > (cy.width * cy.width))
 			t2 = -1.f;
-	if (t1 < 0.f)
-		return (t2);
-	if (t2 < 0.f)
-		return (t1);
-	return (fminf(t1, t2));
+	return (min_cast(t1, t2));
 }
 
 t_vec3	inter_op(t_vec3 v, t_vec3 va)
@@ -89,9 +85,5 @@ float	cylinder_intersection(t_ray ray, t_cylinder cy)
 
 	sides = sides_intersection(ray, cy);
 	caps = caps_intersection(ray, cy);
-	if (sides < 0.f)
-		return (caps);
-	if (caps < 0.f)
-		return (sides);
-	return (fminf(sides, caps));
+	return (min_cast(sides, caps));
 }

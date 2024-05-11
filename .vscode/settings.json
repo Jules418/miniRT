@@ -4,6 +4,7 @@
 		"cmath": "cpp",
 		"geometry.h": "c",
 		"minirt.h": "c",
-		"vector.h": "c"
+		"vector.h": "c",
+		"utils.h": "c"
 	}
 }

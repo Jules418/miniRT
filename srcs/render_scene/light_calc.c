@@ -6,7 +6,7 @@
 /*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 02:20:43 by jules             #+#    #+#             */
-/*   Updated: 2024/05/04 12:02:56 by jules            ###   ########.fr       */
+/*   Updated: 2024/05/10 22:38:47 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ t_vec3	find_normal(t_objects *obj, t_vec3 hit_pos)
 		return (plane_normal(*(t_plane *)obj->obj, hit_pos));
 	if (obj->obj_type == (t_type)cylinder)
 		return (cylinder_normal(*(t_cylinder *)obj->obj, hit_pos));
+	if (obj->obj_type == (t_type)cone)
+		return (cone_normal(*(t_cone *)obj->obj, hit_pos));
 	return ((t_vec3){1.f, 0.f, 0.f});
 }
 

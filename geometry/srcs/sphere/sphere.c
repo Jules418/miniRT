@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 22:14:49 by jules             #+#    #+#             */
-/*   Updated: 2024/04/19 05:29:10 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/05/11 22:30:23 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,5 @@ t_vec3	sphere_normal(t_sphere s, t_vec3 hit)
 	t_vec3	normal_vec;
 
 	normal_vec = sub(hit, s.pos);
-	return (normalized(normal_vec));
+	return (scale(normal_vec, 1.f / s.radius));
 }
