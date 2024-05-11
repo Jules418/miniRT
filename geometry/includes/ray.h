@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 00:24:38 by jules             #+#    #+#             */
-/*   Updated: 2024/04/24 11:17:25 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/05/12 00:11:21 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ typedef struct s_ray
 	t_vec3	origin;
 	t_vec3	dir;
 }	t_ray;
-
 
 /**
 **@brief Return the point t units away from ray origin in ray direction

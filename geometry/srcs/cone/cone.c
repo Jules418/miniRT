@@ -6,7 +6,7 @@
 /*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 17:57:40 by jules             #+#    #+#             */
-/*   Updated: 2024/05/11 23:43:31 by jules            ###   ########.fr       */
+/*   Updated: 2024/05/12 00:11:44 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,3 @@ t_vec3	cone_normal(t_cone co, t_vec3 hit)
 	n = sub(scale(np, cosf(co.angle)), scale(co.dir, sinf(co.angle)));
 	return (n);
 }
-

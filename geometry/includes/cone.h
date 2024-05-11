@@ -6,14 +6,14 @@
 /*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 17:22:18 by jules             #+#    #+#             */
-/*   Updated: 2024/05/11 16:54:48 by jules            ###   ########.fr       */
+/*   Updated: 2024/05/12 00:11:09 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONE_H
 # define CONE_H
 
-#	include "geometry.h"
+# include "geometry.h"
 
 typedef struct s_cone
 {

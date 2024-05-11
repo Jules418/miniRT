@@ -6,7 +6,7 @@
 /*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 16:42:58 by jules             #+#    #+#             */
-/*   Updated: 2024/05/11 23:49:18 by jules            ###   ########.fr       */
+/*   Updated: 2024/05/12 00:12:07 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ float	cone_side_intersection(t_ray ray, t_cone co)
 
 float	cone_bottom_intersection(t_ray ray, t_cone co)
 {
-	t_plane pl;
+	t_plane	pl;
 	float	t;
 	t_vec3	hit_pos;
 
