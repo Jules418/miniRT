@@ -36,7 +36,7 @@ MAKE_VECTOR			=	$(MAKE) -C $(VECTOR_PATH)
 
 
 LIBFT_PATH			=	libft/
-LIBFT_INCLUDES		=	$(LIBFT_PATH)libft/
+LIBFT_INCLUDES		=	$(LIBFT_PATH)
 LIBFT_L				=	-L	$(LIBFT_PATH) -l libft
 LIBFT_A				=	$(LIBFT_PATH)libft.a
 MAKE_LIBFT			= 	$(MAKE) -C $(LIBFT_PATH)
@@ -45,6 +45,7 @@ MAKE_LIBFT			= 	$(MAKE) -C $(LIBFT_PATH)
 
 DIR_INCS =					\
 	includes/				\
+	$(LIBFT_INCLUDES) 		\
 	$(MINILIBX_INCLUDES) 	\
 	$(VECTOR_INCLUDES) 		\
 	$(GEOMETRY_INCLUDES)
@@ -56,6 +57,7 @@ LIBS = 						\
 	$(MINILIBX_L)			\
 	$(VECTOR_L) 			\
 	$(GEOMETRY_L) 			\
+	$(LIBFT_L) 				\
 	-lm 					\
 	-lXext					\
 	-lX11

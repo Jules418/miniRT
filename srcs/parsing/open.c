@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initializer.c                                      :+:      :+:    :+:   */
+/*   open.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 16:32:22 by jules             #+#    #+#             */
-/*   Updated: 2024/05/17 14:40:09 by lcamerly         ###   ########.fr       */
+/*   Created: 2024/05/17 14:37:26 by lcamerly          #+#    #+#             */
+/*   Updated: 2024/05/17 16:05:08 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-//get the scene;
-t_minirt	init_minirt(int argc, char **argv)
+int	open_file(char *filename)
 {
-	t_minirt	minirt;
+	int	fd;
 
-	(void) argc;
-	(void) argv;
-	minirt.mlx = mlx_init();
-	minirt.mlx_win = mlx_new_window(minirt.mlx, 800, 600, "miniRT");
-	if (!minirt.mlx_win)
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+	{
+		printf("Error\nCould not open file %s\n", filename);
 		exit(EXIT_FAILURE);
-	minirt.img.img = mlx_new_image(minirt.mlx, 800, 600);
-	minirt.img.addr = mlx_get_data_addr(minirt.img.img, \
-			&minirt.img.bits_per_pixel, \
-			&minirt.img.line_length, &minirt.img.endian);
-	minirt.scene = NULL;
-	return (minirt);
+	}
+	return (fd);
 }

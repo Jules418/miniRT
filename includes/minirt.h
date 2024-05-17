@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:49:40 by jules             #+#    #+#             */
-/*   Updated: 2024/04/19 05:28:04 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:46:21 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <math.h>
 # include "geometry.h"
 # include "vector.h"
+# include "libft.h"
+# include <fcntl.h>
 
 # ifndef M_PI
 #  define M_PI 3.14159265359f
@@ -97,5 +99,12 @@ t_scene		test_scene(void);
 
 void		render_scene(t_minirt *minirt);
 int			input(int key, t_minirt *minirt);
+
+char** parsing(char **av);
+int	pre_read(int fd);
+int close_file(int fd);
+int open_file(char *filename);
+char** read_file(int fd, int nb_lines);
+int check_extension(char *filename);
 
 #endif

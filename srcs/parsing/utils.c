@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initializer.c                                      :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 16:32:22 by jules             #+#    #+#             */
-/*   Updated: 2024/05/17 14:40:09 by lcamerly         ###   ########.fr       */
+/*   Created: 2024/05/17 14:44:42 by lcamerly          #+#    #+#             */
+/*   Updated: 2024/05/17 16:10:34 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-//get the scene;
-t_minirt	init_minirt(int argc, char **argv)
+int	check_extension(char *filename)
 {
-	t_minirt	minirt;
+	size_t	i;
 
-	(void) argc;
-	(void) argv;
-	minirt.mlx = mlx_init();
-	minirt.mlx_win = mlx_new_window(minirt.mlx, 800, 600, "miniRT");
-	if (!minirt.mlx_win)
+	i = 0;
+	while (filename[i])
+		i++;
+	if ((filename[i - 1] != 't' || filename[i - 2] != 'r' || filename[i
+				- 3] != '.') && filename[i - 4])
+	{
+		printf("Error\nFile %s is not a .rt file\n", filename);
 		exit(EXIT_FAILURE);
-	minirt.img.img = mlx_new_image(minirt.mlx, 800, 600);
-	minirt.img.addr = mlx_get_data_addr(minirt.img.img, \
-			&minirt.img.bits_per_pixel, \
-			&minirt.img.line_length, &minirt.img.endian);
-	minirt.scene = NULL;
-	return (minirt);
+	}
+	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_scene.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:18:03 by jbanacze          #+#    #+#             */
-/*   Updated: 2024/04/19 05:57:27 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/05/17 14:40:42 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_objects	test_object1(void)
 	t_objects	o;
 	t_sphere	*s;
 
-	o.obj_type = (t_type) sphere;
+	o.obj_type = (t_type)sphere;
 	o.color = (t_vec3){1.f, 0.f, 0.f};
 	s = malloc(sizeof(t_sphere));
 	s->pos = (t_vec3){20.f, 0.f, 0.f};
@@ -55,9 +55,9 @@ t_objects	test_object1(void)
 t_objects	test_object2(void)
 {
 	t_objects	o;
-	t_plane	*s;
+	t_plane		*s;
 
-	o.obj_type = (t_type) plane;
+	o.obj_type = (t_type)plane;
 	o.color = (t_vec3){1.f, 1.f, 1.f};
 	s = malloc(sizeof(t_plane));
 	s->pos = (t_vec3){0.f, -5.f, 0.f};

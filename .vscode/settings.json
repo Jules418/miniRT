@@ -1,5 +1,9 @@
 {
 	"files.associations": {
-		"cylinder.h": "c"
+		"cylinder.h": "c",
+		"cstdlib": "c",
+		"minirt.h": "c",
+		"get_next_line.h": "c",
+		"vector.h": "c"
 	}
 }

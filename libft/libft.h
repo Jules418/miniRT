@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 09:20:12 by lcamerly          #+#    #+#             */
-/*   Updated: 2023/11/16 09:20:12 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:45:22 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include <stdint.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+# include "get_next_line.h"
+# include "ft_printf.h"
 
 typedef struct s_list
 {
