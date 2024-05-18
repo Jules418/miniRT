@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 14:53:22 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/05/17 16:09:53 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/18 13:43:04 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,10 @@ char	**parsing(char **av)
 
 	fd = open_file(av[1]);
 	count = pre_read(fd);
-	res = malloc(sizeof(char *) * count + 1);
-	if (!res)
-		exit(1);
 	fd = open_file(av[1]);
 	res = read_file(fd, count);
-	close_file(fd);
+	if (!res)
+		exit(1);
+	close(fd);
 	return (res);
 }

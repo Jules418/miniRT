@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 22:54:08 by jules             #+#    #+#             */
-/*   Updated: 2024/05/17 16:08:46 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/18 13:44:30 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,11 @@ int	main(int argc, char **argv)
 
 	temp = parsing(argv);
 	for (int i = 0; temp[i]; i++)
+	{
 		printf("%s\n", temp[i]);
+		free(temp[i]);
+	}
+	free(temp);
 	minirt = init_minirt(argc, argv);
 	minirt.scene = test_scene();
 	if (!minirt.scene)
