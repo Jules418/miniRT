@@ -1,6 +1,6 @@
 #		Sources & output variables	#
-LIBFT 			= 	Libft.a
-DIR_INCS		= 	./includes
+LIBFT 			= 	libft.a
+DIR_INCS		= 	.
 DIR_LIBFT 		= 	./libft
 DIR_PRINTF 		= 	./ft_printf
 DIR_GNL 		= 	./get_next_line
@@ -63,6 +63,10 @@ LIBFT_OBJ		=	$(addprefix $(DIR_LIBFT)/, $(LIBFT_SRC:.c=.o))
 PRINTF_OBJ		=	$(addprefix $(DIR_PRINTF)/, $(PRINTF_SRC:.c=.o))
 GNL_OBJ			=	$(addprefix $(DIR_GNL)/, $(GNL_SRC:.c=.o))
 
+LIBFT_DEP		=	$(addprefix $(DIR_LIBFT)/, $(LIBFT_SRC:.c=.d))
+PRINTF_DEP		=	$(addprefix $(DIR_PRINTF)/, $(PRINTF_SRC:.c=.d))
+GNL_DEP			=	$(addprefix $(DIR_GNL)/, $(GNL_SRC:.c=.d))
+
 #		Compilation variables		#
 CFLAGS			= 	-Wall -Wextra -Werror
 CC 				= 	cc
@@ -114,7 +118,7 @@ $(DIR_GNL)/%.o : $(DIR_GNL)/%.c $(INC_GNL)
 
 clean :
 	@echo "$(COLOUR_RED)[LIBFT] Cleaning object files$(COLOUR_END)"
-	@rm -f $(LIBFT_OBJ) $(PRINTF_OBJ) $(GNL_OBJ)
+	@rm -f $(LIBFT_OBJ) $(PRINTF_OBJ) $(GNL_OBJ) $(LIBFT_DEP) $(PRINTF_DEP) $(GNL_DEP)
 
 fclean : clean
 	@echo "$(COLOUR_RED)[LIBFT] Cleaning library$(COLOUR_END)"

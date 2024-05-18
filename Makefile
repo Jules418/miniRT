@@ -37,7 +37,7 @@ MAKE_VECTOR			=	$(MAKE) -C $(VECTOR_PATH)
 
 LIBFT_PATH			=	libft/
 LIBFT_INCLUDES		=	$(LIBFT_PATH)
-LIBFT_L				=	-L	$(LIBFT_PATH) -l libft
+LIBFT_L				=	-L	$(LIBFT_PATH) -l ft
 LIBFT_A				=	$(LIBFT_PATH)libft.a
 MAKE_LIBFT			= 	$(MAKE) -C $(LIBFT_PATH)
 
