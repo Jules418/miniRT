@@ -6,7 +6,7 @@
 /*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:18:03 by jbanacze          #+#    #+#             */
-/*   Updated: 2024/05/11 23:47:43 by jules            ###   ########.fr       */
+/*   Updated: 2024/05/12 22:40:14 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_objects	test_object1(void)
 	o.obj_type = (t_type) sphere;
 	o.color = (t_vec3){1.f, 0.f, 0.f};
 	s = malloc(sizeof(t_sphere));
-	s->pos = (t_vec3){20.f, 0.f, -30.f};
+	s->pos = (t_vec3){53.f, 0.f, 0.f};
 	s->radius = 5.f;
 	o.obj = s;
 	return (o);
