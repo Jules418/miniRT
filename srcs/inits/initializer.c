@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initializer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:32:22 by jules             #+#    #+#             */
-/*   Updated: 2024/05/24 16:58:31 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/05/24 20:18:46 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ t_minirt	init_minirt(int argc, char **argv)
 {
 	t_minirt	minirt;
 
-	(void) argc;
-	(void) argv;
+	(void)(argc + argv);
 	minirt.mlx = mlx_init();
 	minirt.mlx_win = mlx_new_window(minirt.mlx, TEMP_WIDTH, \
 		TEMP_HEIGHT, "miniRT");

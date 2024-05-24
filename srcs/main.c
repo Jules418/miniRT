@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 22:54:08 by jules             #+#    #+#             */
-/*   Updated: 2024/05/24 17:00:56 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/05/24 20:20:28 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	draw_loop(t_minirt *minirt)
 int	main(int argc, char **argv)
 {
 	t_minirt	minirt;
-
+	
 	minirt = init_minirt(argc, argv);
 	minirt.scene = test_scene();
 	if (!minirt.scene)
@@ -55,3 +55,13 @@ int	main(int argc, char **argv)
 	mlx_loop(minirt.mlx);
 	return (0);
 }
+
+	// char **tmp;
+
+	// tmp = parsing(argv);
+	// for (int i = 0; tmp[i]; ++i) {
+	// 	printf(tmp[i]);
+	// 	free(tmp[i]);
+	// 	printf("\n");
+	// }
+	// free(tmp);
