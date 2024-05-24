@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_intersection.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 15:25:59 by jules             #+#    #+#             */
-/*   Updated: 2024/04/19 03:10:18 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/05/11 17:14:18 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,7 @@ float	caps_intersection(t_ray ray, t_cylinder cy)
 	if (t2 > 0.f)
 		if (mag2(sub(move_ray(ray, t2), p2.pos)) > (cy.width * cy.width))
 			t2 = -1.f;
-	if (t1 < 0.f)
-		return (t2);
-	if (t2 < 0.f)
-		return (t1);
-	return (fminf(t1, t2));
+	return (min_cast(t1, t2));
 }
 
 t_vec3	inter_op(t_vec3 v, t_vec3 va)
@@ -49,7 +45,7 @@ float	filter_hit_points(t_ray ray, t_cylinder cy, float coefs[6])
 	t_vec3	hit_point;
 
 	t = coefs[4];
-	if (t < 0.f)
+	if (t > 0.f)
 	{
 		hit_point = move_ray(ray, t);
 		if (mag2(sub(hit_point, cy.pos)) < (cy.height * cy.height / 4.f \
@@ -57,7 +53,7 @@ float	filter_hit_points(t_ray ray, t_cylinder cy, float coefs[6])
 			return (t);
 	}
 	t = coefs[5];
-	if (t < 0.f)
+	if (t > 0.f)
 	{
 		hit_point = move_ray(ray, t);
 		if (mag2(sub(hit_point, cy.pos)) < (cy.height * cy.height / 4.f \
@@ -89,9 +85,5 @@ float	cylinder_intersection(t_ray ray, t_cylinder cy)
 
 	sides = sides_intersection(ray, cy);
 	caps = caps_intersection(ray, cy);
-	if (sides < 0.f)
-		return (caps);
-	if (caps < 0.f)
-		return (sides);
-	return (fminf(sides, caps));
+	return (min_cast(sides, caps));
 }

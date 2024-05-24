@@ -1,9 +1,10 @@
 {
 	"files.associations": {
 		"cylinder.h": "c",
-		"cstdlib": "c",
+		"cmath": "cpp",
+		"geometry.h": "c",
 		"minirt.h": "c",
-		"get_next_line.h": "c",
-		"vector.h": "c"
+		"vector.h": "c",
+		"utils.h": "c"
 	}
 }

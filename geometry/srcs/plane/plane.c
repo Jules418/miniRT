@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 23:14:34 by jules             #+#    #+#             */
-/*   Updated: 2024/04/19 05:47:41 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/04/21 02:11:54 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "plane.h"
 #include <math.h>
 
@@ -28,8 +29,8 @@ float	plane_intersection(t_ray ray, t_plane pl)
 	t_vec3	oc;
 	float	t;
 
-	denom = fabsf(dot(pl.normal_vector, ray.dir));
-	if (denom < EPSILON)
+	denom = dot(pl.normal_vector, ray.dir);
+	if (fabsf(denom) < EPSILON)
 		return (-1.f);
 	oc = sub(pl.pos, ray.origin);
 	t = dot(oc, pl.normal_vector) / denom;

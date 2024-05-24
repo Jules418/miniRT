@@ -13,7 +13,7 @@ DEBUG_CLFAGS		=	$(BASE_DEBUG_CFLAGS) #-fsanitize=address
 FLAGS				=	$(BASE_CFLAGS)
 RM					=	rm -rf
 AR					=	ar rcs
-CC					=	gcc
+CC					=	cc
 
 VECTOR_PATH			=	../vector/
 VECTOR_INCLUDES		=	$(VECTOR_PATH)
@@ -41,7 +41,7 @@ all:
 			$(MAKE_VECTOR)
 			$(MAKE) $(NAME)
 
-$(NAME) : $(OBJS)
+$(NAME) : $(OBJS) $(DEPENDENCIES)
 	ar rcs $(NAME) $(OBJS)
 
 .PHONY:	clean

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:49:40 by jules             #+#    #+#             */
-/*   Updated: 2024/05/17 15:46:21 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/24 17:02:05 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@
 #  define M_PI 3.14159265359f
 # endif
 
+# define TEMP_WIDTH 1920
+# define TEMP_HEIGHT 1080
+
 typedef struct s_data
 {
 	void		*img;
@@ -39,7 +42,8 @@ typedef enum e_type
 {
 	sphere,
 	cylinder,
-	plane
+	plane,
+	cone
 }	t_type;
 
 typedef struct s_object
@@ -71,6 +75,7 @@ typedef struct s_scene
 	int			nb_objects;
 	t_camera	cam;
 	t_light		light;
+	t_vec3		ambient_light; // color * brightness
 	int			height;
 	int			width;
 	int			should_render;
@@ -82,6 +87,7 @@ typedef struct s_hitpoint
 	float		d;
 	t_objects	*obj;
 	t_vec3		hitpos;
+	t_vec3		normal_vect;
 }	t_hitpoint;
 
 typedef struct s_minirt
@@ -93,18 +99,29 @@ typedef struct s_minirt
 }	t_minirt;
 
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
+
 t_minirt	init_minirt(int argc, char **argv);
+void		free_scene(t_scene scene);
+int			close_minirt(t_minirt *minirt);
 
 t_scene		test_scene(void);
+
+float		cast_ray(t_ray ray, t_objects *obj);
+t_hitpoint	get_hitpoint(t_scene scene, t_ray ray);
+
+t_vec3		find_normal(t_objects *obj, t_vec3 hit_pos);
+t_vec3		diffuse_light(t_scene scene, t_hitpoint hit);
+int			in_light(t_scene scene, t_hitpoint hit);
+t_vec3		specular_light(t_scene sc, t_ray ray, t_hitpoint hit);
 
 void		render_scene(t_minirt *minirt);
 int			input(int key, t_minirt *minirt);
 
-char** parsing(char **av);
-int	pre_read(int fd);
-int close_file(int fd);
-int open_file(char *filename);
-char** read_file(int fd, int nb_lines);
-int check_extension(char *filename);
+char		**parsing(char **av);
+int			pre_read(int fd);
+int			close_file(int fd);
+int			open_file(char *filename);
+char		**read_file(int fd, int nb_lines);
+int			check_extension(char *filename);
 
 #endif
