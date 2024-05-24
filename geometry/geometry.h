@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   geometry.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/15 21:40:26 by jules             #+#    #+#             */
-/*   Updated: 2024/05/10 17:22:02 by jules            ###   ########.fr       */
+/*   Updated: 2024/05/24 12:17:44 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@
 # include "includes/cylinder.h"
 # include "includes/cone.h"
 
-# define EPSILON 0.0001f
+# define EPSILON 0.001f
 
 #endif

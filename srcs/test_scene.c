@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_scene.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:18:03 by jbanacze          #+#    #+#             */
-/*   Updated: 2024/05/12 22:40:14 by jules            ###   ########.fr       */
+/*   Updated: 2024/05/24 12:12:33 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,11 +110,11 @@ t_scene	test_scene(void)
 	t->cam = test_cam();
 	t->height = TEMP_HEIGHT;
 	t->width = TEMP_WIDTH;
-	t->nb_objects = 3;
+	t->nb_objects = 2;
 	t->light = test_light();
-	t->objects[0] = test_object1();
+	t->objects[0] = test_object4();
 	t->objects[1] = test_object2();
-	t->objects[2] = test_object4();
+	// t->objects[2] = test_object4();
 	t->d_to_screen = 1.f / (2.f * tanf(t->cam.fov / 2.f));
 	t->ambient_light = scale((t_vec3){1.f, 1.f, 1.f}, 0.2f);
 	return (t);
