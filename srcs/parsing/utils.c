@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 14:44:42 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/05/18 13:44:56 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/26 20:40:01 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,40 @@ int	check_extension(char *filename)
 		exit(EXIT_FAILURE);
 	}
 	return (1);
+}
+
+float parse_decimal(char *s, int *index)
+{
+	float dec = 1;
+	float res = 0;
+	while (s[*index])
+	{
+		dec /= 10;
+		res += dec * (s[*index] - '0');
+		(*index)++;
+	}
+	return res;
+}
+
+float ft_atof(char *s)
+{
+	float res = 0;
+	int i = 0;
+	int sign = 1;
+	if (s[i] == '-')
+	{
+		sign = -1;
+		i++;
+	}
+	while (s[i] && s[i] != '.')
+	{
+		res = res * 10 + s[i] - '0';
+		i++;
+	}
+	if (s[i] == '.')
+	{
+		i++;
+		res += parse_decimal(s, &i);
+	}
+	return (res * sign);
 }
