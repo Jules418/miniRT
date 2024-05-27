@@ -4,5 +4,6 @@
 *.out
 .build/
 .vscode/
+./.vscode/
 miniRT
 mlx-test
