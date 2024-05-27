@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 14:48:54 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/05/24 19:16:38 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/27 18:05:46 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ char	**read_file(int fd, int nb_lines)
 	int		i;
 
 	i = 0;
-	res = malloc(sizeof(char *) * (nb_lines + 1));
+	res = f_malloc(sizeof(char *) * (nb_lines + 1));
 	if (!res)
-		exit(1);
+		exit_error("Error\nMalloc failed (read.c:40)\n");
 	while (i < nb_lines)
 	{
 		line = get_next_line(fd);

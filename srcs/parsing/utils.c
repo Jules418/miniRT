@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 14:44:42 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/05/26 20:40:01 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/27 18:13:06 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,30 +22,36 @@ int	check_extension(char *filename)
 	if ((filename[i - 1] != 't' || filename[i - 2] != 'r' || filename[i
 				- 3] != '.') && filename[i - 4])
 	{
-		printf("Error\nFile %s is not a .rt file\n", filename);
-		exit(EXIT_FAILURE);
+		exit_error("Error\nWrong file extension\n");
 	}
 	return (1);
 }
 
-float parse_decimal(char *s, int *index)
+float	parse_decimal(char *s, int *index)
 {
-	float dec = 1;
-	float res = 0;
+	float	dec;
+	float	res;
+
+	dec = 1;
+	res = 0;
 	while (s[*index])
 	{
 		dec /= 10;
 		res += dec * (s[*index] - '0');
 		(*index)++;
 	}
-	return res;
+	return (res);
 }
 
-float ft_atof(char *s)
+float	ft_atof(char *s)
 {
-	float res = 0;
-	int i = 0;
-	int sign = 1;
+	float	res;
+	int		i;
+	int		sign;
+
+	res = 0;
+	i = 0;
+	sign = 1;
 	if (s[i] == '-')
 	{
 		sign = -1;
@@ -62,4 +68,10 @@ float ft_atof(char *s)
 		res += parse_decimal(s, &i);
 	}
 	return (res * sign);
+}
+
+void	exit_error(char *s)
+{
+	printf("%s\n", s);
+	free_exit(42);
 }

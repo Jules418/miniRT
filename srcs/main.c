@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 22:54:08 by jules             #+#    #+#             */
-/*   Updated: 2024/05/26 20:08:50 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/27 18:14:03 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	draw_loop(t_minirt *minirt)
 int	main(int argc, char **argv)
 {
 	t_minirt	minirt;
-	
+
 	minirt = init_minirt(argc, argv);
 	minirt.scene = test_scene();
 	if (!minirt.scene)
@@ -56,12 +56,14 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
-	// char **tmp;
-
-	// tmp = parsing(argv);
-	// for (int i = 0; tmp[i]; ++i) {
-	// 	printf(tmp[i]);
-	// 	free(tmp[i]);
-	// 	printf("\n");
+	// if (argc == 2)
+	// {
+	// 	char **tmp;
+	// 	tmp = parsing(argv);
+	// 	for (int i = 0; tmp[i]; ++i) {
+	// 		printf("%s", tmp[i]);
+	// 		f_free(tmp[i]);
+	// 		printf("\n");
+	// 	}
+	// 	f_free(tmp);
 	// }
-	// free(tmp);

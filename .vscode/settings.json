@@ -5,6 +5,7 @@
 		"geometry.h": "c",
 		"minirt.h": "c",
 		"vector.h": "c",
-		"utils.h": "c"
+		"utils.h": "c",
+		"ray.h": "c"
 	}
 }

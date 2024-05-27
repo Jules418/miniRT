@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:32:22 by jules             #+#    #+#             */
-/*   Updated: 2024/05/26 20:31:57 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/27 18:08:13 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@ int	close_minirt(t_minirt *minirt)
 	mlx_destroy_display(minirt->mlx);
 	free(minirt->mlx);
 	free_scene(minirt->scene);
-	exit(EXIT_SUCCESS);
+	free_exit(0);
 	return (0);
 }

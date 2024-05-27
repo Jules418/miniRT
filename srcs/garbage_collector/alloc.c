@@ -1,20 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   close.c                                            :+:      :+:    :+:   */
+/*   alloc.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/17 14:45:13 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/05/27 17:38:46 by lcamerly         ###   ########.fr       */
+/*   Created: 2024/05/27 16:58:29 by lcamerly          #+#    #+#             */
+/*   Updated: 2024/05/27 18:12:16 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	close_file(int fd)
+t_alloc	*new_alloc(void *alloc)
 {
-	if (close(fd) == -1)
-		exit_error("Error\nCould not close file\n");
-	return (0);
+	t_alloc	*temp;
+
+	temp = malloc(sizeof(t_alloc));
+	if (!temp)
+		return (NULL);
+	temp->alloc = alloc;
+	temp->next = NULL;
+	return (temp);
+}
+
+void	*f_malloc(size_t len)
+{
+	void	*alloc;
+
+	alloc = malloc(len);
+	alloc_handler(alloc, NONE);
+	return (alloc);
 }
