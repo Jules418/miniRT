@@ -6,11 +6,30 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 14:53:22 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/05/28 15:04:10 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/28 16:29:14 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+void check_chars(char **s)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (s[i])
+	{
+		j = 2;
+		while (s[i][j])
+		{
+			if (s[i][j] != ' ' && s[i][j] != ',' && s[i][j] != '.' && s[i][j] != '-' && s[i][j] != '\n' && !ft_isdigit(s[i][j]))
+				exit_error("Error\nInvalid character in file\n");
+			j++;
+		}
+		i++;
+	}
+}
 
 char	**parsing(char **av)
 {
@@ -23,6 +42,7 @@ char	**parsing(char **av)
 	fd = open_file(av[1]);
 	res = read_file(fd, count);
 	close(fd);
+	check_chars(res);
 	return (res);
 }
 // int check_line(char **s)
@@ -68,7 +88,7 @@ void	check_ambientlight(char *s)
 	tmp = gc_split(s, ' ');
 	if (!tmp)
 		exit_error("Error in a malloc (parsing.c:64)");
-	if (ft_atof(tmp[1]) < 0 || ft_atof(tmp[1]) > 1)
+	if (ft_atof(tmp[1]) < 0.0 || ft_atof(tmp[1]) > 1.0)
 		exit_error("Ambiant light ratio must in range [0.0,1.0] !\
 		\nExiting...\n");
 	tmp = gc_split(tmp[2], ',');

@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 14:44:42 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/05/28 15:04:47 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/28 16:37:49 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ double	ft_atof(const char *str)
 	}
 	if (*str == '.')
 	{
+		if (!ft_isdigit(*(str + 1)))
+			exit_error("Error\nInvalid character in file (ft_atof)\n");
 		str++;
 		has_fraction = true;
 		while (ft_isdigit(*str))
@@ -70,6 +72,8 @@ double	ft_atof(const char *str)
 			str++;
 		}
 	}
+	else if (*str && *str != '\n')
+		exit_error("Error\nInvalid character in file (ft_atof)\n");
 	if (has_fraction)
 		result += fraction / divisor;
 	return (sign * result);
@@ -77,6 +81,6 @@ double	ft_atof(const char *str)
 
 void	exit_error(char *s)
 {
-	printf("%s\n", s);
+	printf("%s", s);
 	free_exit(42);
 }

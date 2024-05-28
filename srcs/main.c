@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 22:54:08 by jules             #+#    #+#             */
-/*   Updated: 2024/05/28 15:04:19 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/28 16:29:09 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,19 @@ int	main(int argc, char **argv)
 {
 	t_minirt	minirt;
 
+	char **tmp = NULL;
+
+	if (argc == 2)
+	{
+		tmp = parsing(argv);
+		for (int i = 0; tmp[i]; ++i) {
+			printf("%s" ,tmp[i]);
+			printf("\n");
+		}
+	}
 	minirt = init_minirt(argc, argv);
 	minirt.scene = test_scene();
+	check_ambientlight(tmp[0]) ,init_ambiantlight(tmp[0], &minirt);
 	if (!minirt.scene)
 	{
 		close_minirt(&minirt);
@@ -55,14 +66,3 @@ int	main(int argc, char **argv)
 	mlx_loop(minirt.mlx);
 	return (0);
 }
-	// char **tmp = NULL;
-
-	// if (argc == 2)
-	// {
-	// 	tmp = parsing(argv);
-	// 	for (int i = 0; tmp[i]; ++i) {
-	// 		printf("%s" ,tmp[i]);
-	// 		printf("\n");
-	// 	}
-	// }
-	// init_ambiantlight(tmp[0], &minirt);
