@@ -33,8 +33,8 @@ t_vec3	diffuse_light(t_scene scene, t_hitpoint hit)
 	t_vec3	tmp_col;
 
 	to_light = normalized(sub(scene->light.pos, hit.hitpos));
-	tmp_col = scale(scene->light.color, \
-		scene->light.brightness * fmaxf(0.f, dot(to_light, hit.normal_vect)));
+	tmp_col = scale(scene->light.color, scene->light.brightness * fmaxf(0.f,
+				dot(to_light, hit.normal_vect)));
 	return (mult(hit.obj->color, tmp_col));
 }
 

@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 14:44:42 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/05/27 18:13:06 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/28 15:04:47 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,47 +27,52 @@ int	check_extension(char *filename)
 	return (1);
 }
 
-float	parse_decimal(char *s, int *index)
+static bool	is_space(char c)
 {
-	float	dec;
-	float	res;
-
-	dec = 1;
-	res = 0;
-	while (s[*index])
-	{
-		dec /= 10;
-		res += dec * (s[*index] - '0');
-		(*index)++;
-	}
-	return (res);
+	return (c == ' ' || c == '\n' || c == '\t' || c == '\v' || c == '\f'
+		|| c == '\r');
 }
 
-float	ft_atof(char *s)
+double	ft_atof(const char *str)
 {
-	float	res;
-	int		i;
+	double	result;
+	double	fraction;
+	double	divisor;
 	int		sign;
+	bool	has_fraction;
 
-	res = 0;
-	i = 0;
+	result = 0.0;
+	fraction = 0.0;
+	divisor = 1.0;
 	sign = 1;
-	if (s[i] == '-')
+	has_fraction = false;
+	while (is_space(*str))
+		str++;
+	if (*str == '-' || *str == '+')
 	{
-		sign = -1;
-		i++;
+		if (*str == '-')
+			sign = -1;
+		str++;
 	}
-	while (s[i] && s[i] != '.')
+	while (ft_isdigit(*str))
 	{
-		res = res * 10 + s[i] - '0';
-		i++;
+		result = result * 10.0 + (*str - '0');
+		str++;
 	}
-	if (s[i] == '.')
+	if (*str == '.')
 	{
-		i++;
-		res += parse_decimal(s, &i);
+		str++;
+		has_fraction = true;
+		while (ft_isdigit(*str))
+		{
+			fraction = fraction * 10.0 + (*str - '0');
+			divisor *= 10.0;
+			str++;
+		}
 	}
-	return (res * sign);
+	if (has_fraction)
+		result += fraction / divisor;
+	return (sign * result);
 }
 
 void	exit_error(char *s)

@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:49:40 by jules             #+#    #+#             */
-/*   Updated: 2024/05/27 17:52:42 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/28 14:44:01 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "vector.h"
 # include "libft.h"
 # include <fcntl.h>
+# include <stdbool.h>
 
 # ifndef M_PI
 #  define M_PI 3.14159265359f
@@ -150,5 +151,8 @@ int			close_file(int fd);
 int			open_file(char *filename);
 char		**read_file(int fd, int nb_lines);
 int			check_extension(char *filename);
+void		check_ambientlight(char *s);
+double		ft_atof(const char *str);
+void		init_ambiantlight(char *s, t_minirt *minirt);
 
 #endif

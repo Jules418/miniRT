@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 22:54:08 by jules             #+#    #+#             */
-/*   Updated: 2024/05/27 18:14:03 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/28 15:04:19 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,14 @@ int	main(int argc, char **argv)
 	mlx_loop(minirt.mlx);
 	return (0);
 }
+	// char **tmp = NULL;
 
 	// if (argc == 2)
 	// {
-	// 	char **tmp;
 	// 	tmp = parsing(argv);
 	// 	for (int i = 0; tmp[i]; ++i) {
-	// 		printf("%s", tmp[i]);
-	// 		f_free(tmp[i]);
+	// 		printf("%s" ,tmp[i]);
 	// 		printf("\n");
 	// 	}
-	// 	f_free(tmp);
 	// }
+	// init_ambiantlight(tmp[0], &minirt);
