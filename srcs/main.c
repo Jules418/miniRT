@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 22:54:08 by jules             #+#    #+#             */
-/*   Updated: 2024/05/29 03:31:47 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/29 16:40:42 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,21 +43,9 @@ int	main(int argc, char **argv)
 	char **tmp = NULL;
 
 	if (argc == 2)
-	{
 		tmp = parsing(argv);
-		for (int i = 0; tmp[i]; ++i) {
-			ft_printf("%s" ,tmp[i]);
-		}
-			printf("\n");
-	}
 	minirt = init_minirt(argc, argv);
-	minirt.scene = test_scene();
-	check_ambientlight(tmp[0]) ,init_ambiantlight(tmp[0], &minirt);
-	check_camera(tmp[1]), init_camera(tmp[1], &minirt);
-	check_light(tmp[2]), init_light(tmp[2], &minirt);
-	check_sphere(tmp[3]), init_sphere(tmp[3], &minirt);
-	check_plane(tmp[4]), init_plane(tmp[4], &minirt);
-	check_cylinder(tmp[5]), init_cylinder(tmp[5], &minirt);
+	init_scene(tmp, &minirt);
 	if (!minirt.scene)
 	{
 		close_minirt(&minirt);

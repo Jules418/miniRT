@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 14:53:22 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/05/28 19:33:18 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/29 13:35:16 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,32 +45,3 @@ char	**parsing(char **av)
 	check_chars(res);
 	return (res);
 }
-// int check_line(char **s)
-// {
-// 	int i;
-
-// 	i = 0;
-// 	while (s[i])
-// 	{
-// 		if (ft_strncmp(s[i], "A", 1))
-// 			check_ambientlight(s[i]);
-// 		else if (ft_strncmp(s[i], "C", 1))
-// 			check_camera(s[i]);
-// 		else if (ft_strncmp(s[i], "L", 1))
-// 			check_light(s[i]);
-// 		else if (ft_strncmp(s[i], "sp", 2))
-// 			check_sphere(s[i]);
-// 		else if (ft_strncmp(s[i], "pl", 2))
-// 			check_plane(s[i]);
-// 		else if (ft_strncmp(s[i], "cy", 2))
-// 			check_cylinder(s[i]);
-// 		else if (ft_strncmp(s[i], "sp", 2))
-// 			check_sphere(s[i]);
-// 		else if (ft_strncmp(s[i], "co", 2))
-// 			check_co(s[i]);
-// 		else
-// 			exit_error();
-// 		i++;
-// 	}
-// }
-

@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:18:03 by jbanacze          #+#    #+#             */
-/*   Updated: 2024/05/29 03:33:36 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/29 16:40:33 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,4 +118,92 @@ t_scene	test_scene(void)
 	t->d_to_screen = 1.f / (2.f * tanf(t->cam.fov / 2.f));
 	t->ambient_light = scale((t_vec3){1.f, 1.f, 1.f}, 0.2f);
 	return (t);
+}
+
+void check_everything(char **map)
+{
+	int i;
+
+	i = 0;
+	while (map[i])
+	{
+		if (check_name(map[i], "A"))
+			printf("map[i] = %s\n", map[i]),check_ambientlight(map[i]);
+		else if (check_name(map[i], "C"))
+			check_camera(map[i]);
+		else if (check_name(map[i], "L"))
+			check_light(map[i]);
+		else if (check_name(map[i], "sp"))
+			check_sphere(map[i]);
+		else if (check_name(map[i], "pl"))
+			check_plane(map[i]);
+		else if (check_name(map[i], "cy"))
+			check_cylinder(map[i]);
+		else if (check_name(map[i], "sp"))
+			check_sphere(map[i]);
+		// else if (ft_strncmp(map[i], "co", 2))
+		// 	check_co(map[i]);
+		else
+			exit_error("Error\nInvalid object name\nExiting...\n");
+		i++;
+	}
+}
+
+bool check_name(char *line, char* name)
+{
+	int i;
+
+	i = 0;
+	while (line[i] && name[i])
+	{
+		if (line[i] != name[i])
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
+
+void init_everything(char **map, t_minirt* minirt)
+{
+	int i;
+
+	i = 0;
+	while (map[i])
+	{
+		if (check_name(map[i], "A "))
+			init_ambiantlight(map[i], minirt);
+		else if (check_name(map[i], "C "))
+			init_camera(map[i], minirt);
+		else if (check_name(map[i], "L "))
+			init_light(map[i], minirt);
+		else if (check_name(map[i], "sp "))
+			init_sphere(map[i], minirt);
+		else if (check_name(map[i], "pl "))
+			init_plane(map[i], minirt);
+		else if (check_name(map[i], "cy "))
+			init_cylinder(map[i], minirt);
+		else if (check_name(map[i], "sp "))
+			init_sphere(map[i], minirt);
+		// else if (ft_strncmp(map[i], "co", 2))
+		// 	init_co(map[i], minirt);
+		i++;
+	}
+}
+
+void init_scene(char **map, t_minirt *minirt)
+{
+	t_scene t;
+	
+	check_everything(map);
+	t = malloc(sizeof(struct s_scene));
+	if (!t)
+		exit_error("Error\nMalloc failed in test_scene.c:184\nExiting...\n");
+	t->should_render = 1;
+	t->height = TEMP_HEIGHT;
+	t->width = TEMP_WIDTH;
+	minirt->scene = t;
+	minirt->scene->nb_objects = 3;
+	init_everything(map,minirt);
+	
 }

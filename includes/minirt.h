@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:49:40 by jules             #+#    #+#             */
-/*   Updated: 2024/05/29 03:30:49 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/29 16:45:54 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,22 +151,26 @@ int			pre_read(int fd);
 int			close_file(int fd);
 int			open_file(char *filename);
 char		**read_file(int fd, int nb_lines);
+double		ft_atof(const char *str);
+void		setup_direction(t_minirt *minirt, char **tmp2);
+bool 		check_name(char *line, char* name);
 int			check_extension(char *filename);
 void		check_ambientlight(char *s);
-double		ft_atof(const char *str);
-void		init_ambiantlight(char *s, t_minirt *minirt);
 void		check_chars(char **s);
 void		check_camera(char *s);
-void 		init_camera(char *s, t_minirt* minirt);
-void		setup_direction(t_minirt *minirt, char **tmp2);
 void		check_light(char *s);
 void 		check_sphere(char *s);
 void 		check_plane(char *s);
+void 		check_cylinder(char *s);
+void 		check_everything(char **map);
+void		init_ambiantlight(char *s, t_minirt *minirt);
+void 		init_camera(char *s, t_minirt* minirt);
 void		init_light(char *s, t_minirt *minirt);
 void	 	init_sphere(char *s, t_minirt *minirt);
-t_objects 	create_obj(t_type type, void *obj, t_vec3 color);
 void	 	init_plane(char *s, t_minirt *minirt);
 void 		init_cylinder(char *s, t_minirt *minirt);
-void 		check_cylinder(char *s);
+void 		init_everything(char **map, t_minirt* minirt);
+void 		init_scene(char **map, t_minirt *minirt);
+t_objects 	create_obj(t_type type, void *obj, t_vec3 color);
 
 #endif
