@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:18:03 by jbanacze          #+#    #+#             */
-/*   Updated: 2024/05/28 15:07:18 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/29 03:33:36 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_light	test_light(void)
 
 	l.color = (t_vec3){1.f, 1.f, 1.f};
 	l.brightness = 1.0f;
-	l.pos = (t_vec3){0.f, 150.f, 100.f};
+	l.pos = (t_vec3){0.f, 100.f, 100.f};
 	return (l);
 }
 
@@ -110,10 +110,10 @@ t_scene	test_scene(void)
 	t->cam = test_cam();
 	t->height = TEMP_HEIGHT;
 	t->width = TEMP_WIDTH;
-	t->nb_objects = 2;
+	t->nb_objects = 3;
 	t->light = test_light();
-	t->objects[0] = test_object4();
-	t->objects[1] = test_object2();
+	// t->objects[0] = test_object4();
+	// t->objects[1] = test_object2();
 	// t->objects[2] = test_object4();
 	t->d_to_screen = 1.f / (2.f * tanf(t->cam.fov / 2.f));
 	t->ambient_light = scale((t_vec3){1.f, 1.f, 1.f}, 0.2f);

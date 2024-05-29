@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:49:40 by jules             #+#    #+#             */
-/*   Updated: 2024/05/28 16:24:26 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/29 03:30:49 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "libft.h"
 # include <fcntl.h>
 # include <stdbool.h>
+# include <limits.h>
 
 # ifndef M_PI
 #  define M_PI 3.14159265359f
@@ -155,5 +156,17 @@ void		check_ambientlight(char *s);
 double		ft_atof(const char *str);
 void		init_ambiantlight(char *s, t_minirt *minirt);
 void		check_chars(char **s);
+void		check_camera(char *s);
+void 		init_camera(char *s, t_minirt* minirt);
+void		setup_direction(t_minirt *minirt, char **tmp2);
+void		check_light(char *s);
+void 		check_sphere(char *s);
+void 		check_plane(char *s);
+void		init_light(char *s, t_minirt *minirt);
+void	 	init_sphere(char *s, t_minirt *minirt);
+t_objects 	create_obj(t_type type, void *obj, t_vec3 color);
+void	 	init_plane(char *s, t_minirt *minirt);
+void 		init_cylinder(char *s, t_minirt *minirt);
+void 		check_cylinder(char *s);
 
 #endif

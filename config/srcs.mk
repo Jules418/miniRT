@@ -18,7 +18,13 @@ PARSING_SRCS = /parsing/parsing.c \
 				/parsing/utils.c \
 				/parsing/close.c \
 				/parsing/open.c \
-				/parsing/read.c 
+				/parsing/read.c \
+				/parsing/checks_init/ambiant_light.c \
+				/parsing/checks_init/camera.c \
+				/parsing/checks_init/light.c \
+				/parsing/checks_init/sphere.c \
+				/parsing/checks_init/plane.c \
+				/parsing/checks_init/cylinder.c \
 
 GARBAGE_COLLECTION_SRCS = garbage_collector/alloc.c \
 							garbage_collector/free.c \

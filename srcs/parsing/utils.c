@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 14:44:42 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/05/28 16:37:49 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/29 01:17:51 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ double	ft_atof(const char *str)
 	divisor = 1.0;
 	sign = 1;
 	has_fraction = false;
+	if (*str == '.')
+		exit_error("Error\nParameters can't start by a dot\n");
 	while (is_space(*str))
 		str++;
 	if (*str == '-' || *str == '+')
@@ -62,7 +64,7 @@ double	ft_atof(const char *str)
 	if (*str == '.')
 	{
 		if (!ft_isdigit(*(str + 1)))
-			exit_error("Error\nInvalid character in file (ft_atof)\n");
+			exit_error("Error\nInvalid character in file (ft_atof1)\n");
 		str++;
 		has_fraction = true;
 		while (ft_isdigit(*str))
@@ -73,7 +75,7 @@ double	ft_atof(const char *str)
 		}
 	}
 	else if (*str && *str != '\n')
-		exit_error("Error\nInvalid character in file (ft_atof)\n");
+		exit_error("Error\nInvalid character in file (ft_atof2)\n");
 	if (has_fraction)
 		result += fraction / divisor;
 	return (sign * result);

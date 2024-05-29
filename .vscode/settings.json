@@ -6,6 +6,8 @@
 		"minirt.h": "c",
 		"vector.h": "c",
 		"utils.h": "c",
-		"ray.h": "c"
+		"ray.h": "c",
+		"random": "c",
+		"plane.h": "c"
 	}
 }
