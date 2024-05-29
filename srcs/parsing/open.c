@@ -1,41 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   norme.c                                            :+:      :+:    :+:   */
+/*   open.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/20 23:57:46 by jules             #+#    #+#             */
-/*   Updated: 2024/05/26 20:03:20 by lcamerly         ###   ########.fr       */
+/*   Created: 2024/05/17 14:37:26 by lcamerly          #+#    #+#             */
+/*   Updated: 2024/05/27 17:42:37 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.h"
-#include <math.h>
+#include "minirt.h"
 
-float	mag2(t_vec3 v)
+int	open_file(char *filename)
 {
-	return (dot(v, v));
-}
+	int	fd;
 
-float	mag(t_vec3 v)
-{
-	return (sqrtf(mag2(v)));
-}
-
-t_vec3	normalized(t_vec3 v)
-{
-	float	norm;
-
-	norm = mag(v);
-	return (scale(v, 1. / norm));
-}
-
-t_vec3	normalize(t_vec3 *v)
-{
-	t_vec3	tmp;
-
-	tmp = normalized(*v);
-	*v = tmp;
-	return (tmp);
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+		exit_error("Error\nCould not open file");
+	return (fd);
 }

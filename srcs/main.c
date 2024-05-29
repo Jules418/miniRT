@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 22:54:08 by jules             #+#    #+#             */
-/*   Updated: 2024/05/12 00:10:26 by jules            ###   ########.fr       */
+/*   Updated: 2024/05/29 22:18:05 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,27 +31,33 @@ int	input(int key, t_minirt *minirt)
 int	draw_loop(t_minirt *minirt)
 {
 	render_scene(minirt);
-	mlx_put_image_to_window(minirt->mlx, minirt->mlx_win, \
-			minirt->img.img, 0, 0);
+	mlx_put_image_to_window(minirt->mlx, minirt->mlx_win, minirt->img.img, 0, \
+		0);
 	return (0);
 }
 
 int	main(int argc, char **argv)
 {
 	t_minirt	minirt;
+	char		**map;
 
-	minirt = init_minirt(argc, argv);
-	minirt.scene = test_scene();
-	if (!minirt.scene)
+	map = NULL;
+	if (argc == 2)
 	{
-		close_minirt(&minirt);
-		return (1);
+		map = parsing(argv);
+		minirt = init_minirt(argc, argv);
+		init_scene(map, &minirt);
+		if (!minirt.scene)
+		{
+			close_minirt(&minirt);
+			return (1);
+		}
+		mlx_hook(minirt.mlx_win, 17, 1L << 0, close_minirt, &minirt);
+		mlx_hook(minirt.mlx_win, DestroyNotify, StructureNotifyMask, \
+			close_minirt, &minirt);
+		mlx_hook(minirt.mlx_win, KeyPress, KeyPressMask, input, &minirt);
+		mlx_loop_hook(minirt.mlx, draw_loop, &minirt);
+		mlx_loop(minirt.mlx);
 	}
-	mlx_hook(minirt.mlx_win, 17, 1L << 0, close_minirt, &minirt);
-	mlx_hook(minirt.mlx_win, DestroyNotify, StructureNotifyMask, \
-		close_minirt, &minirt);
-	mlx_hook(minirt.mlx_win, KeyPress, KeyPressMask, input, &minirt);
-	mlx_loop_hook(minirt.mlx, draw_loop, &minirt);
-	mlx_loop(minirt.mlx);
 	return (0);
 }

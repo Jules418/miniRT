@@ -1,41 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   norme.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/20 23:57:46 by jules             #+#    #+#             */
-/*   Updated: 2024/05/26 20:03:20 by lcamerly         ###   ########.fr       */
+/*   Created: 2024/05/17 14:44:42 by lcamerly          #+#    #+#             */
+/*   Updated: 2024/05/29 21:45:56 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.h"
-#include <math.h>
+#include "minirt.h"
 
-float	mag2(t_vec3 v)
+int	check_extension(char *filename)
 {
-	return (dot(v, v));
-}
+	size_t	i;
 
-float	mag(t_vec3 v)
-{
-	return (sqrtf(mag2(v)));
-}
-
-t_vec3	normalized(t_vec3 v)
-{
-	float	norm;
-
-	norm = mag(v);
-	return (scale(v, 1. / norm));
-}
-
-t_vec3	normalize(t_vec3 *v)
-{
-	t_vec3	tmp;
-
-	tmp = normalized(*v);
-	*v = tmp;
-	return (tmp);
+	i = 0;
+	while (filename[i])
+		i++;
+	if ((filename[i - 1] != 't' || filename[i - 2] != 'r' || filename[i
+				- 3] != '.') && filename[i - 4])
+	{
+		exit_error("Error\nWrong file extension\n");
+	}
+	return (1);
 }

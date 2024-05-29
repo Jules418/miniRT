@@ -1,41 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   norme.c                                            :+:      :+:    :+:   */
+/*   alloc.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/20 23:57:46 by jules             #+#    #+#             */
-/*   Updated: 2024/05/26 20:03:20 by lcamerly         ###   ########.fr       */
+/*   Created: 2024/05/27 16:58:29 by lcamerly          #+#    #+#             */
+/*   Updated: 2024/05/27 18:12:16 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.h"
-#include <math.h>
+#include "minirt.h"
 
-float	mag2(t_vec3 v)
+t_alloc	*new_alloc(void *alloc)
 {
-	return (dot(v, v));
+	t_alloc	*temp;
+
+	temp = malloc(sizeof(t_alloc));
+	if (!temp)
+		return (NULL);
+	temp->alloc = alloc;
+	temp->next = NULL;
+	return (temp);
 }
 
-float	mag(t_vec3 v)
+void	*f_malloc(size_t len)
 {
-	return (sqrtf(mag2(v)));
-}
+	void	*alloc;
 
-t_vec3	normalized(t_vec3 v)
-{
-	float	norm;
-
-	norm = mag(v);
-	return (scale(v, 1. / norm));
-}
-
-t_vec3	normalize(t_vec3 *v)
-{
-	t_vec3	tmp;
-
-	tmp = normalized(*v);
-	*v = tmp;
-	return (tmp);
+	alloc = malloc(len);
+	alloc_handler(alloc, NONE);
+	return (alloc);
 }

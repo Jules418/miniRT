@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:09:59 by jbanacze          #+#    #+#             */
-/*   Updated: 2024/05/11 23:50:07 by jules            ###   ########.fr       */
+/*   Updated: 2024/05/29 20:21:10 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ t_ray	get_ray(t_scene scene, int x, int y)
 	right = scene->cam.right;
 	ray.origin = scene->cam.pos;
 	ray.dir = scale(forward, scene->d_to_screen);
-	ray.dir = add(ray.dir, scale(right, \
-		((float)x * 2.f - scene->width) / scene->width));
-	ray.dir = add(ray.dir, scale(up, \
-		((float)y * -2.f + scene->height) / scene->width));
+	ray.dir = add(ray.dir, scale(right, ((float)x * 2.f - scene->width)
+				/ scene->width));
+	ray.dir = add(ray.dir, scale(up, ((float)y * -2.f + scene->height)
+				/ scene->width));
 	ray.dir = normalized(ray.dir);
 	return (ray);
 }

@@ -3,119 +3,96 @@
 /*                                                        :::      ::::::::   */
 /*   test_scene.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:18:03 by jbanacze          #+#    #+#             */
-/*   Updated: 2024/05/27 16:56:48 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/05/29 23:01:02 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include <math.h>
-#include <stdio.h>
 
-t_camera	test_cam(void)
+void	check_everything(char **map)
 {
-	t_camera	cam;
-	float		fov;
+	int	i;
 
-	fov = 90.f;
-	cam.pos = (t_vec3){0.f, 0.f, 0.f};
-	cam.forward = (t_vec3){1.f, 0.f, 0.f};
-	cam.up = (t_vec3){0.f, 1.f, 0.f};
-	cam.right = (t_vec3){0.f, 0.f, 1.f};
-	cam.fov = fov * 2.f * M_PI / 360.f;
-	return (cam);
+	i = 0;
+	while (map[i])
+	{
+		if (check_name(map[i], "A"))
+			check_ambientlight(map[i]);
+		else if (check_name(map[i], "C"))
+			check_camera(map[i]);
+		else if (check_name(map[i], "L"))
+			check_light(map[i]);
+		else if (check_name(map[i], "sp"))
+			check_sphere(map[i]);
+		else if (check_name(map[i], "pl"))
+			check_plane(map[i]);
+		else if (check_name(map[i], "cy"))
+			check_cylinder(map[i]);
+		else if (check_name(map[i], "sp"))
+			check_sphere(map[i]);
+		else if (check_name(map[i], "\n"))
+			;
+		else
+			exit_error("Error\nInvalid object name\nExiting...\n");
+		i++;
+	}
 }
 
-t_light	test_light(void)
+bool	check_name(char *line, char *name)
 {
-	t_light	l;
+	int	i;
 
-	l.color = (t_vec3){1.f, 1.f, 1.f};
-	l.brightness = 1.0f;
-	l.pos = (t_vec3){0.f, 150.f, 100.f};
-	return (l);
+	i = 0;
+	while (line[i] && name[i])
+	{
+		if (line[i] != name[i])
+			return (false);
+		i++;
+	}
+	return (true);
 }
 
-t_objects	test_object1(void)
+void	init_everything(char **map, t_minirt *minirt)
 {
-	t_objects	o;
-	t_sphere	*s;
+	int	i;
 
-	o.obj_type = (t_type) sphere;
-	o.color = (t_vec3){1.f, 0.f, 0.f};
-	s = malloc(sizeof(t_sphere));
-	s->pos = (t_vec3){53.f, 0.f, 0.f};
-	s->radius = 5.f;
-	o.obj = s;
-	return (o);
+	i = 0;
+	while (map[i])
+	{
+		if (check_name(map[i], "A"))
+			init_ambiantlight(map[i], minirt);
+		else if (check_name(map[i], "C"))
+			init_camera(map[i], minirt);
+		else if (check_name(map[i], "L"))
+			init_light(map[i], minirt);
+		else if (check_name(map[i], "sp"))
+			init_sphere(map[i], minirt);
+		else if (check_name(map[i], "pl"))
+			init_plane(map[i], minirt);
+		else if (check_name(map[i], "cy"))
+			init_cylinder(map[i], minirt);
+		else if (check_name(map[i], "sp"))
+			init_sphere(map[i], minirt);
+		i++;
+	}
 }
 
-t_objects	test_object2(void)
-{
-	t_objects	o;
-	t_plane		*s;
-
-	o.obj_type = (t_type) plane;
-	o.color = (t_vec3){1.f, 1.f, 1.f};
-	s = malloc(sizeof(t_plane));
-	s->pos = (t_vec3){0.f, -20.f, 0.f};
-	s->normal_vector = (t_vec3){0.f, 1.f, 0.f};
-	o.obj = s;
-	return (o);
-}
-
-t_objects	test_object3(void)
-{
-	t_objects	o;
-	t_cylinder	*s;
-
-	o.obj_type = (t_type) cylinder;
-	o.color = (t_vec3){1.f, 0.f, 0.f};
-	s = malloc(sizeof(t_cylinder));
-	s->pos = (t_vec3){20.f, 0.f, -10.f};
-	s->width = 4.f;
-	s->height = 10.f;
-	s->dir = normalized((t_vec3){1.f, 1.f, 1.f});
-	o.obj = s;
-	return (o);
-}
-
-t_objects	test_object4(void)
-{
-	t_objects	o;
-	t_cone		*co;
-
-	o.obj_type = (t_type) cone;
-	o.color = (t_vec3){0.f, 0.f, 1.f};
-	co = malloc(sizeof(t_cone));
-	co->pos = (t_vec3){50.f, 0.f, 0.f};
-	co->dir = normalized((t_vec3){0.f, -1.f, 0.f});
-	co->angle = M_PI / 6.f;
-	co->cos2 = powf(cos(co->angle), 2.f);
-	co->height = 16.f;
-	o.obj = co;
-	return (o);
-}
-
-t_scene	test_scene(void)
+void	init_scene(char **map, t_minirt *minirt)
 {
 	t_scene	t;
 
+	check_everything(map);
 	t = malloc(sizeof(struct s_scene));
 	if (!t)
-		return (NULL);
+		exit_error("Error\nMalloc failed in test_scene.c:184\nExiting...\n");
 	t->should_render = 1;
-	t->cam = test_cam();
 	t->height = TEMP_HEIGHT;
 	t->width = TEMP_WIDTH;
-	t->nb_objects = 2;
-	t->light = test_light();
-	t->objects[0] = test_object4();
-	t->objects[1] = test_object2();
-	// t->objects[2] = test_object4();
-	t->d_to_screen = 1.f / tanf(t->cam.fov / 2.f);
-	t->ambient_light = scale((t_vec3){1.f, 1.f, 1.f}, 0.2f);
-	return (t);
+	minirt->scene = t;
+	minirt->scene->nb_objects = 3;
+	minirt->scene->objects = NULL;
+	init_everything(map, minirt);
 }

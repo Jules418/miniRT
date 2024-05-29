@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 10:55:54 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/01/18 14:41:01 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/29 22:54:43 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <../includes/garbage_collector.h>
 
 char	*ft_strdup_gnl(const char *s);
 void	*ft_malloc_zero(size_t nmemb, size_t size);

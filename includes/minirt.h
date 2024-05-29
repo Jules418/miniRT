@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:49:40 by jules             #+#    #+#             */
-/*   Updated: 2024/05/24 12:13:05 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/05/29 22:50:17 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,17 @@
 # include <math.h>
 # include "geometry.h"
 # include "vector.h"
+# include "libft.h"
+# include <fcntl.h>
+# include <stdbool.h>
+# include <limits.h>
 
 # ifndef M_PI
 #  define M_PI 3.14159265359f
 # endif
 
-# define TEMP_WIDTH 1920
-# define TEMP_HEIGHT 1080
+# define TEMP_WIDTH 1024
+# define TEMP_HEIGHT 640
 
 typedef struct s_data
 {
@@ -69,7 +73,7 @@ typedef struct s_light
 
 typedef struct s_scene
 {
-	t_objects	objects[10];
+	t_list		*objects;
 	int			nb_objects;
 	t_camera	cam;
 	t_light		light;
@@ -97,10 +101,11 @@ typedef struct s_minirt
 }	t_minirt;
 
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
-
 t_minirt	init_minirt(int argc, char **argv);
 void		free_scene(t_scene scene);
 int			close_minirt(t_minirt *minirt);
+
+void		exit_error(char *s);
 
 t_scene		test_scene(void);
 
@@ -114,5 +119,34 @@ t_vec3		specular_light(t_scene sc, t_ray ray, t_hitpoint hit);
 
 void		render_scene(t_minirt *minirt);
 int			input(int key, t_minirt *minirt);
+
+char		**parsing(char **av);
+int			pre_read(int fd);
+int			close_file(int fd);
+int			open_file(char *filename);
+char		**read_file(int fd, int nb_lines);
+double		ft_atof(const char *str);
+void		setup_direction(t_minirt *minirt, char **tmp2);
+bool 		check_name(char *line, char* name);
+int			check_extension(char *filename);
+void		check_ambientlight(char *s);
+void		check_chars(char **s);
+void		check_camera(char *s);
+void		check_light(char *s);
+void 		check_sphere(char *s);
+void 		check_plane(char *s);
+void 		check_cylinder(char *s);
+void 		check_everything(char **map);
+void		init_ambiantlight(char *s, t_minirt *minirt);
+void 		init_camera(char *s, t_minirt* minirt);
+void		init_light(char *s, t_minirt *minirt);
+void	 	init_sphere(char *s, t_minirt *minirt);
+void	 	init_plane(char *s, t_minirt *minirt);
+void 		init_cylinder(char *s, t_minirt *minirt);
+void 		init_everything(char **map, t_minirt* minirt);
+void 		init_scene(char **map, t_minirt *minirt);
+t_objects 	*create_obj(t_type type, void *obj, t_vec3 color);
+void 		create_cylinder_obj(t_cylinder *cy, char** tmp2, t_minirt *minirt);
+void check_rgb_cylinder(char **tmp2);
 
 #endif
