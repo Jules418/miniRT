@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:49:40 by jules             #+#    #+#             */
-/*   Updated: 2024/05/29 16:45:54 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/29 22:13:18 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 #  define M_PI 3.14159265359f
 # endif
 
-# define TEMP_WIDTH 1920
-# define TEMP_HEIGHT 1080
+# define TEMP_WIDTH 1024
+# define TEMP_HEIGHT 640
 
 typedef enum s_alloc_enum
 {
@@ -81,7 +81,7 @@ typedef struct s_light
 
 typedef struct s_scene
 {
-	t_objects	objects[10];
+	t_list		*objects;
 	int			nb_objects;
 	t_camera	cam;
 	t_light		light;
@@ -171,6 +171,8 @@ void	 	init_plane(char *s, t_minirt *minirt);
 void 		init_cylinder(char *s, t_minirt *minirt);
 void 		init_everything(char **map, t_minirt* minirt);
 void 		init_scene(char **map, t_minirt *minirt);
-t_objects 	create_obj(t_type type, void *obj, t_vec3 color);
+t_objects 	*create_obj(t_type type, void *obj, t_vec3 color);
+void 		create_cylinder_obj(t_cylinder *cy, char** tmp2, t_minirt *minirt);
+void check_rgb_cylinder(char **tmp2);
 
 #endif

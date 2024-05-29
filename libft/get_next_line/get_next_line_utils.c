@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:04:34 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/01/18 14:40:56 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/29 20:41:11 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	*ft_malloc_zero(size_t nmemb, size_t size)
 	size_t			total;
 
 	total = nmemb * size;
-	r = malloc(total);
+	r = f_malloc(total);
 	if (!r)
 		return (NULL);
 	ptr = (unsigned char *)r;
@@ -58,17 +58,17 @@ void	free_strs(char **str1, char **str2, char **str3)
 {
 	if (str1 && *str1)
 	{
-		free(*str1);
+		f_free(*str1);
 		*str1 = NULL;
 	}
 	if (str2 && *str2)
 	{
-		free(*str2);
+		f_free(*str2);
 		*str2 = NULL;
 	}
 	if (str3 && *str3)
 	{
-		free(*str3);
+		f_free(*str3);
 		*str3 = NULL;
 	}
 }

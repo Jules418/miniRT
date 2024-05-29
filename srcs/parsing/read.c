@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 14:48:54 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/05/28 14:05:57 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/29 20:48:11 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	pre_read(int fd)
 		line = get_next_line(fd);
 		if (line)
 			i++;
-		free(line);
+		f_free(line);
 	}
 	close_file(fd);
 	return (++i);

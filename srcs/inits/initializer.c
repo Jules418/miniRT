@@ -6,13 +6,12 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:32:22 by jules             #+#    #+#             */
-/*   Updated: 2024/05/29 03:12:25 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/29 22:16:26 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-// get the scene;
 t_minirt	init_minirt(int argc, char **argv)
 {
 	t_minirt	minirt;
@@ -27,21 +26,31 @@ t_minirt	init_minirt(int argc, char **argv)
 	minirt.img.addr = mlx_get_data_addr(minirt.img.img,
 			&minirt.img.bits_per_pixel, &minirt.img.line_length,
 			&minirt.img.endian);
-	minirt.scene = NULL;
 	return (minirt);
 }
 
 void	free_scene(t_scene scene)
 {
-	int	i;
+	t_list		*tmp;
+	t_list		*tmp2;
+	t_objects	*tmp_obj;
 
-	if (!scene)
-		return ;
-	i = 0;
-	while (i < scene->nb_objects)
+	tmp = scene->objects;
+	while (tmp)
 	{
-		free(scene->objects[i].obj);
-		i++;
+		tmp2 = tmp->next;
+		tmp_obj = tmp->content;
+		if (tmp_obj->obj_type == (t_type)sphere)
+			free(tmp_obj->obj);
+		else if (tmp_obj->obj_type == (t_type)plane)
+			free(tmp_obj->obj);
+		else if (tmp_obj->obj_type == (t_type)cylinder)
+			free(tmp_obj->obj);
+		else if (tmp_obj->obj_type == (t_type)cone)
+			free(tmp_obj->obj);
+		free(tmp->content);
+		free(tmp);
+		tmp = tmp2;
 	}
 	free(scene);
 }

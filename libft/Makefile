@@ -1,9 +1,10 @@
 #		Sources & output variables	#
 LIBFT 			= 	libft.a
-DIR_INCS		= 	.
+DIR_INCS		= 	. 
 DIR_LIBFT 		= 	./libft
 DIR_PRINTF 		= 	./ft_printf
 DIR_GNL 		= 	./get_next_line
+DIR_GC			=	
 
 
 LIBFT_SRC 		=	ft_memset.c					\
@@ -105,7 +106,7 @@ $(DIR_PRINTF)/%.o : $(DIR_PRINTF)/%.c $(INC_PRINTF)
 -include $(OBJS:.o=.d)
 $(DIR_GNL)/%.o : $(DIR_GNL)/%.c $(INC_GNL)
 	@printf "$(COLOR_YELLOW)[GNL] Compiling $<$(COLOUR_END)\n"
-	@$(CC) $(CFLAGS) -I$(DIR_INCS) -MMD -MP -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(DIR_INCS) -I../includes -I../mlx -I../geometry -I../vector -MMD -MP -c $< -o $@
 
 
 # start :

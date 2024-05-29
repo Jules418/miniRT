@@ -6,16 +6,16 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 14:53:22 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/05/29 13:35:16 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/29 22:16:37 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void check_chars(char **s)
+void	check_chars(char **s)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (s[i])
@@ -23,7 +23,8 @@ void check_chars(char **s)
 		j = 2;
 		while (s[i][j])
 		{
-			if (s[i][j] != ' ' && s[i][j] != ',' && s[i][j] != '.' && s[i][j] != '-' && s[i][j] != '\n' && !ft_isdigit(s[i][j]))
+			if (s[i][j] != ' ' && s[i][j] != ',' && s[i][j] != '.'
+				&& s[i][j] != '-' && s[i][j] != '\n' && !ft_isdigit(s[i][j]))
 				exit_error("Error\nInvalid character in file\n");
 			j++;
 		}
@@ -45,3 +46,6 @@ char	**parsing(char **av)
 	check_chars(res);
 	return (res);
 }
+
+	//TODO Ajouter un compteur d'arguments pour chaques lignes
+	//TODO Check si plusieurs A (C et L seront ajoutés dans les bonus)

@@ -25,6 +25,7 @@ PARSING_SRCS = /parsing/parsing.c \
 				/parsing/checks_init/sphere.c \
 				/parsing/checks_init/plane.c \
 				/parsing/checks_init/cylinder.c \
+				/parsing/ft_atof.c
 
 GARBAGE_COLLECTION_SRCS = garbage_collector/alloc.c \
 							garbage_collector/free.c \

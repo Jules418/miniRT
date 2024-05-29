@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_cast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 02:23:51 by jules             #+#    #+#             */
-/*   Updated: 2024/05/29 03:12:40 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/29 17:35:52 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,21 @@ t_hitpoint	get_hitpoint(t_scene scene, t_ray ray)
 {
 	t_hitpoint	hit;
 	float		d;
-	int			i;
+	t_list		*tmp;
 
-	i = -1;
 	hit.obj = NULL;
 	hit.d = -1.f;
-	while (++i < scene->nb_objects)
+	tmp = scene->objects;
+	while (tmp)
 	{
-		d = cast_ray(ray, scene->objects + i);
-		if ((d > 0.f) && ((d < hit.d) || (hit.d == -1.f)))
+		d = cast_ray(ray, tmp->content);
+		if (d > 0 && (d < hit.d || hit.d < 0))
 		{
 			hit.d = d;
-			hit.obj = scene->objects + i;
+			hit.obj = tmp->content;
 			hit.hitpos = move_ray(ray, d);
 		}
+		tmp = tmp->next;
 	}
 	hit.normal_vect = find_normal(hit.obj, hit.hitpos);
 	if (dot(hit.normal_vect, ray.dir) > 0)

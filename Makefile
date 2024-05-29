@@ -7,8 +7,8 @@ OBJS				=	$(patsubst %.c, $(DIR_BUILD)%.o, $(SRCS))
 OBJS_TEST			=	$(patsubst %.c, $(DIR_BUILD)%.o, $(TEST))
 DEPS				=	$(patsubst %.c, $(DIR_BUILD)%.d, $(SRCS))
 DEPS_FLAGS			=	-MMD -MP
-BASE_CFLAGS			=	-Wall -Werror -Wextra -O2
-BASE_DEBUG_CFLAGS	=	-g
+BASE_CFLAGS			=	-Wall -Werror -Wextra -O2 -g3
+BASE_DEBUG_CFLAGS	=	-g3
 DEBUG_CLFAGS		=	$(BASE_DEBUG_CFLAGS) -fsanitize=address
 # DEBUG_CLFAGS		=	$(BASE_DEBUG_CFLAGS) -fsanitize=memory -fsanitize-memory-track-origins
 FLAGS				=	$(BASE_CFLAGS)
