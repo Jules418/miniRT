@@ -9,7 +9,7 @@ DEPS				=	$(patsubst %.c, $(DIR_BUILD)%.d, $(SRCS))
 DEPS_FLAGS			=	-MMD -MP
 BASE_CFLAGS			=	-Wall -Werror -Wextra -O2 -g3
 BASE_DEBUG_CFLAGS	=	-g3
-DEBUG_CLFAGS		=	$(BASE_DEBUG_CFLAGS) -fsanitize=address
+DEBUG_CLFAGS		=	$(BASE_DEBUG_CFLAGS) -fsanitize=address #-fsanitize=thread
 # DEBUG_CLFAGS		=	$(BASE_DEBUG_CFLAGS) -fsanitize=memory -fsanitize-memory-track-origins
 FLAGS				=	$(BASE_CFLAGS)
 RM					=	rm -rf
@@ -60,7 +60,8 @@ LIBS = 						\
 	$(LIBFT_L) 				\
 	-lm 					\
 	-lXext					\
-	-lX11
+	-lX11					\
+	-lpthread
 
 DEPENDENCIES =				\
 	$(MINILIBX_A) 			\

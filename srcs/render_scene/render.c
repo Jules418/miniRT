@@ -3,27 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:09:59 by jbanacze          #+#    #+#             */
-/*   Updated: 2024/05/29 20:21:10 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/30 00:26:36 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 #include <stdio.h>
-
-int	vec_to_rgb(t_vec3 u)
-{
-	int	r;
-	int	g;
-	int	b;
-
-	r = (int)(fminf(u.x * 255.f, 255.f));
-	g = (int)(fminf(u.y * 255.f, 255.f));
-	b = (int)(fminf(u.z * 255.f, 255.f));
-	return ((r << 16) | (g << 8) | b);
-}
 
 t_ray	get_ray(t_scene scene, int x, int y)
 {
@@ -64,28 +52,78 @@ t_vec3	compute_pixel(t_scene scene, int x, int y)
 	return (color);
 }
 
-void	render_scene(t_minirt *minirt)
+void	*render_partial_scene(void *arg)
 {
-	t_scene	scene;
-	int		x;
-	int		y;
-	int		color;
+	t_threadarg	*args;
+	t_scene		scene;
+	int			x;
+	int			y;
+	int			color;
 
-	scene = minirt->scene;
-	if (!scene || !(scene->should_render))
-		return ;
-	scene->should_render = 0;
-	x = 0;
-	while (x < scene->width)
+	args = (t_threadarg *) arg;
+	scene = args->minirt->scene;
+	y = args->start;
+	while (y < args->end)
 	{
-		y = 0;
-		while (y < scene->height)
+		x = 0;
+		while (x < scene->width)
 		{
 			color = vec_to_rgb(compute_pixel(scene, x, y));
-			my_mlx_pixel_put(&minirt->img, x, y, color);
-			y++;
+			my_mlx_pixel_put(&args->minirt->img, x, y, color);
+			x++;
 		}
-		x++;
+		y++;
 	}
-	return ;
+	return (NULL);
+}
+
+void	init_thread_args(t_minirt *minirt, t_threadarg args[NB_THREADS])
+{
+	int	i;
+	int	step;
+	int	current_height;
+
+	i = 0;
+	current_height = 0;
+	step = minirt->scene->height / NB_THREADS;
+	while (i < NB_THREADS - 1)
+	{
+		args[i].start = current_height;
+		args[i].end = current_height + step;
+		current_height += step;
+		args[i].minirt = minirt;
+		i++;
+	}
+	args[i].start = current_height;
+	args[i].end = minirt->scene->height;
+	args[i].minirt = minirt;
+}
+
+int	render_scene(t_minirt *minirt)
+{
+	t_scene		scene;
+	t_threadarg	args[NB_THREADS];
+	pthread_t	threads[NB_THREADS];
+	int			i;
+	int			error;
+
+	error = 0;
+	scene = minirt->scene;
+	if (!scene || !(scene->should_render))
+		return (error);
+	scene->should_render = 0;
+	init_thread_args(minirt, args);
+	i = -1;
+	while (++i < NB_THREADS)
+	{
+		if (pthread_create(threads + i, NULL, render_partial_scene, args + i))
+		{
+			perror("Error during the creation of a thread");
+			error = 1;
+			break ;
+		}
+	}
+	while (--i >= 0)
+		pthread_join(threads[i], NULL);
+	return (error);
 }

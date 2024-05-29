@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 22:54:08 by jules             #+#    #+#             */
-/*   Updated: 2024/05/29 22:18:05 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/29 23:52:20 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int	input(int key, t_minirt *minirt)
 
 int	draw_loop(t_minirt *minirt)
 {
-	render_scene(minirt);
+	if (render_scene(minirt))
+		close_minirt(minirt);
 	mlx_put_image_to_window(minirt->mlx, minirt->mlx_win, minirt->img.img, 0, \
 		0);
 	return (0);

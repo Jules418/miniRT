@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   light_calc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 02:20:43 by jules             #+#    #+#             */
-/*   Updated: 2024/05/26 20:00:29 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/30 00:26:40 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minirt.h>
+
+int	vec_to_rgb(t_vec3 u)
+{
+	int	r;
+	int	g;
+	int	b;
+
+	r = (int)(fminf(u.x * 255.f, 255.f));
+	g = (int)(fminf(u.y * 255.f, 255.f));
+	b = (int)(fminf(u.z * 255.f, 255.f));
+	return ((r << 16) | (g << 8) | b);
+}
 
 t_vec3	find_normal(t_objects *obj, t_vec3 hit_pos)
 {

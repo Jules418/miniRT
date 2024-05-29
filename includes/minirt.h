@@ -6,7 +6,7 @@
 /*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:49:40 by jules             #+#    #+#             */
-/*   Updated: 2024/05/29 22:50:17 by jules            ###   ########.fr       */
+/*   Updated: 2024/05/30 00:27:35 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <fcntl.h>
 # include <stdbool.h>
 # include <limits.h>
+# include <pthread.h>
 
 # ifndef M_PI
 #  define M_PI 3.14159265359f
@@ -30,6 +31,10 @@
 
 # define TEMP_WIDTH 1024
 # define TEMP_HEIGHT 640
+
+# ifndef NB_THREADS
+#  define NB_THREADS 8
+# endif
 
 typedef struct s_data
 {
@@ -100,6 +105,13 @@ typedef struct s_minirt
 	t_scene	scene;
 }	t_minirt;
 
+typedef struct s_threadarg
+{
+	t_minirt	*minirt;
+	int			start;
+	int			end;
+}	t_threadarg;
+
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 t_minirt	init_minirt(int argc, char **argv);
 void		free_scene(t_scene scene);
@@ -112,12 +124,13 @@ t_scene		test_scene(void);
 float		cast_ray(t_ray ray, t_objects *obj);
 t_hitpoint	get_hitpoint(t_scene scene, t_ray ray);
 
+int			vec_to_rgb(t_vec3 u);
 t_vec3		find_normal(t_objects *obj, t_vec3 hit_pos);
 t_vec3		diffuse_light(t_scene scene, t_hitpoint hit);
 int			in_light(t_scene scene, t_hitpoint hit);
 t_vec3		specular_light(t_scene sc, t_ray ray, t_hitpoint hit);
 
-void		render_scene(t_minirt *minirt);
+int			render_scene(t_minirt *minirt);
 int			input(int key, t_minirt *minirt);
 
 char		**parsing(char **av);
@@ -127,26 +140,26 @@ int			open_file(char *filename);
 char		**read_file(int fd, int nb_lines);
 double		ft_atof(const char *str);
 void		setup_direction(t_minirt *minirt, char **tmp2);
-bool 		check_name(char *line, char* name);
+bool		check_name(char *line, char *name);
 int			check_extension(char *filename);
 void		check_ambientlight(char *s);
 void		check_chars(char **s);
 void		check_camera(char *s);
 void		check_light(char *s);
-void 		check_sphere(char *s);
-void 		check_plane(char *s);
-void 		check_cylinder(char *s);
-void 		check_everything(char **map);
+void		check_sphere(char *s);
+void		check_plane(char *s);
+void		check_cylinder(char *s);
+void		check_everything(char **map);
 void		init_ambiantlight(char *s, t_minirt *minirt);
-void 		init_camera(char *s, t_minirt* minirt);
+void		init_camera(char *s, t_minirt *minirt);
 void		init_light(char *s, t_minirt *minirt);
-void	 	init_sphere(char *s, t_minirt *minirt);
-void	 	init_plane(char *s, t_minirt *minirt);
-void 		init_cylinder(char *s, t_minirt *minirt);
-void 		init_everything(char **map, t_minirt* minirt);
-void 		init_scene(char **map, t_minirt *minirt);
-t_objects 	*create_obj(t_type type, void *obj, t_vec3 color);
-void 		create_cylinder_obj(t_cylinder *cy, char** tmp2, t_minirt *minirt);
-void check_rgb_cylinder(char **tmp2);
+void		init_sphere(char *s, t_minirt *minirt);
+void		init_plane(char *s, t_minirt *minirt);
+void		init_cylinder(char *s, t_minirt *minirt);
+void		init_everything(char **map, t_minirt *minirt);
+void		init_scene(char **map, t_minirt *minirt);
+t_objects	*create_obj(t_type type, void *obj, t_vec3 color);
+void		create_cylinder_obj(t_cylinder *cy, char **tmp2, t_minirt *minirt);
+void		check_rgb_cylinder(char **tmp2);
 
 #endif
