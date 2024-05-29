@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:49:40 by jules             #+#    #+#             */
-/*   Updated: 2024/05/29 22:13:18 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/29 22:50:17 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,6 @@
 
 # define TEMP_WIDTH 1024
 # define TEMP_HEIGHT 640
-
-typedef enum s_alloc_enum
-{
-	NEW,
-	FREE_ONE,
-	FULL_FREE,
-	NONE
-}	t_alloc_enum;
 
 typedef struct s_data
 {
@@ -108,25 +100,7 @@ typedef struct s_minirt
 	t_scene	scene;
 }	t_minirt;
 
-typedef struct s_alloc
-{
-	void			*alloc;
-	struct s_alloc	*next;
-}	t_alloc;
-
-
-//			GARBAGE COLLECTOR			//
-void		alloc_handler(void *alloc, t_alloc_enum opcode);
-void		*f_malloc(size_t len);
-void		free_exit(int code);
-void		single_free(void *alloc, t_alloc *actual);
-void		full_free(t_alloc *first);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
-t_alloc		*new_alloc(void *alloc);
-void		f_free(void *alloc);
-char		**gc_split(char const *s, char c);
-char		*gc_strdup(const char *s);
-
 t_minirt	init_minirt(int argc, char **argv);
 void		free_scene(t_scene scene);
 int			close_minirt(t_minirt *minirt);

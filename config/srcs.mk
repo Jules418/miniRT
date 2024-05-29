@@ -1,5 +1,4 @@
 SRCS=			main.c \
-				$(GEOMETRY_SRCS_PATH)$(GEOMETRY_SRCS) \
 				$(TEST_SRCS) \
 				$(INITS_SRCS) \
 				$(RENDER_SRCS) \
