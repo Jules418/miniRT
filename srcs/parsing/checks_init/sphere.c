@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 00:45:56 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/05/29 22:14:24 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/30 00:30:25 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void	init_sphere(char *s, t_minirt *minirt)
 	o = create_obj(sphere, sp, (t_vec3){ft_atof(*tmp2) / 255, ft_atof(*(tmp2
 					+ 1)) / 255, ft_atof(*(tmp2 + 2)) / 255});
 	ft_lstadd_back(&minirt->scene->objects, ft_lstnew(o));
-	minirt->scene->nb_objects++;
 }
 
 t_objects	*create_obj(t_type type, void *obj, t_vec3 color)

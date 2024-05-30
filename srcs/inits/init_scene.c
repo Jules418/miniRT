@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_scene.c                                       :+:      :+:    :+:   */
+/*   init_scene.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:18:03 by jbanacze          #+#    #+#             */
-/*   Updated: 2024/05/29 23:01:02 by jules            ###   ########.fr       */
+/*   Updated: 2024/05/30 01:33:06 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,8 @@ void	init_scene(char **map, t_minirt *minirt)
 	t->should_render = 1;
 	t->height = TEMP_HEIGHT;
 	t->width = TEMP_WIDTH;
+	t->lights = NULL;
 	minirt->scene = t;
-	minirt->scene->nb_objects = 3;
 	minirt->scene->objects = NULL;
 	init_everything(map, minirt);
 }

@@ -6,7 +6,7 @@
 /*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:09:59 by jbanacze          #+#    #+#             */
-/*   Updated: 2024/05/30 00:26:36 by jules            ###   ########.fr       */
+/*   Updated: 2024/05/30 01:42:21 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,22 @@ t_vec3	compute_pixel(t_scene scene, int x, int y)
 	t_ray		ray;
 	t_hitpoint	hit;
 	t_vec3		color;
+	t_list		*light;
 
 	ray = get_ray(scene, x, y);
 	hit = get_hitpoint(scene, ray);
 	if ((hit.d == -1.f) || (hit.obj == NULL))
 		return ((t_vec3){0.f, 0.f, 0.f});
 	color = mult(hit.obj->color, scene->ambient_light);
-	if (in_light(scene, hit))
+	light = scene->lights;
+	while (light)
 	{
-		color = add(color, diffuse_light(scene, hit));
-		color = add(color, specular_light(scene, ray, hit));
+		if (in_light(scene, hit, light->content))
+		{
+			color = add(color, diffuse_light(hit, light->content));
+			color = add(color, specular_light(ray, hit, light->content));
+		}
+		light = light->next;
 	}
 	return (color);
 }

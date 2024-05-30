@@ -6,7 +6,7 @@
 /*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 02:20:43 by jules             #+#    #+#             */
-/*   Updated: 2024/05/30 00:26:40 by jules            ###   ########.fr       */
+/*   Updated: 2024/05/30 01:41:30 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,25 +39,25 @@ t_vec3	find_normal(t_objects *obj, t_vec3 hit_pos)
 	return ((t_vec3){1.f, 0.f, 0.f});
 }
 
-t_vec3	diffuse_light(t_scene scene, t_hitpoint hit)
+t_vec3	diffuse_light(t_hitpoint hit, t_light *light)
 {
 	t_vec3	to_light;
 	t_vec3	tmp_col;
 
-	to_light = normalized(sub(scene->light.pos, hit.hitpos));
-	tmp_col = scale(scene->light.color, scene->light.brightness * fmaxf(0.f,
+	to_light = normalized(sub(light->pos, hit.hitpos));
+	tmp_col = scale(light->color, light->brightness * fmaxf(0.f,
 				dot(to_light, hit.normal_vect)));
 	return (mult(hit.obj->color, tmp_col));
 }
 
-int	in_light(t_scene scene, t_hitpoint hit)
+int	in_light(t_scene scene, t_hitpoint hit, t_light *light)
 {
 	t_vec3		to_light;
 	float		dist_to_light;
 	t_ray		ray;
 	t_hitpoint	new_hit;
 
-	to_light = sub(scene->light.pos, hit.hitpos);
+	to_light = sub(light->pos, hit.hitpos);
 	dist_to_light = mag(to_light);
 	to_light = scale(to_light, 1.f / dist_to_light);
 	ray.origin = add(hit.hitpos, scale(hit.normal_vect, EPSILON));
@@ -68,7 +68,7 @@ int	in_light(t_scene scene, t_hitpoint hit)
 	return (0);
 }
 
-t_vec3	specular_light(t_scene sc, t_ray ray, t_hitpoint hit)
+t_vec3	specular_light(t_ray ray, t_hitpoint hit, t_light *light)
 {
 	t_vec3	to_light;
 	t_vec3	reflected_ray;
@@ -76,8 +76,8 @@ t_vec3	specular_light(t_scene sc, t_ray ray, t_hitpoint hit)
 	float	spec_light_intensity;
 
 	reflected_ray = reflect(ray.dir, hit.normal_vect);
-	to_light = normalized(sub(sc->light.pos, hit.hitpos));
-	color = sc->light.color;
+	to_light = normalized(sub(light->pos, hit.hitpos));
+	color = light->color;
 	spec_light_intensity = dot(reflected_ray, to_light);
 	if (spec_light_intensity <= EPSILON)
 		return ((t_vec3){0.f, 0.f, 0.f});

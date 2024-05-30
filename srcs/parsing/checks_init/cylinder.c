@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 03:27:16 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/05/29 22:13:05 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/30 00:30:19 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,4 @@ void	create_cylinder_obj(t_cylinder *cy, char **tmp2,
 		ft_atof(tmp2[2]) / 255.f};
 	o = create_obj(cylinder, cy, color);
 	ft_lstadd_back(&minirt->scene->objects, ft_lstnew(o));
-	minirt->scene->nb_objects++;
 }

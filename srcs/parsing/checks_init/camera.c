@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 20:05:42 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/05/29 22:05:23 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/30 01:59:00 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,21 +56,27 @@ void	init_camera(char *s, t_minirt *minirt)
 	tmp2 = gc_split(tmp[2], ',');
 	if (!tmp2)
 		exit_error("Error\nMalloc failed in camera.c:53\nExiting...\n");
+	minirt->scene->cam.forward = (t_vec3){ft_atof(*tmp2), ft_atof(*(tmp2 + 1)),
+		ft_atof(*(tmp2 + 2))};
+	if (fabs(mag2(minirt->scene->cam.forward) - 1.f) > EPSILON)
+		exit_error("Error\nCamera orientation should be normalized\n\
+Exiting...\n");
 	minirt->scene->d_to_screen = 1.f / tanf(minirt->scene->cam.fov / 2.f);
-	setup_direction(minirt, tmp2);
+	setup_direction(minirt);
 }
 
-void	setup_direction(t_minirt *minirt, char **tmp2)
+void	setup_direction(t_minirt *minirt)
 {
 	t_vec3	dir;
 
 	dir = (t_vec3){0.f, 1.f, 0.f};
-	minirt->scene->cam.forward = (t_vec3){ft_atof(*tmp2), ft_atof(*(tmp2 + 1)),
-		ft_atof(*(tmp2 + 2))};
 	minirt->scene->cam.right = cross(minirt->scene->cam.forward, dir);
 	if (mag2(minirt->scene->cam.right) < EPSILON)
 		minirt->scene->cam.right = cross(minirt->scene->cam.forward,
 				(t_vec3){0.f, 0.f, 1.f});
 	minirt->scene->cam.up = cross(minirt->scene->cam.right,
 			minirt->scene->cam.forward);
+	normalize(&minirt->scene->cam.forward);
+	normalize(&minirt->scene->cam.up);
+	normalize(&minirt->scene->cam.right);
 }

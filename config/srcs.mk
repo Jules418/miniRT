@@ -5,13 +5,12 @@ SRCS=			main.c \
 				$(PARSING_SRCS) \
 				$(GARBAGE_COLLECTION_SRCS)
 
-INITS_SRCS = inits/initializer.c
+INITS_SRCS = inits/initializer.c \
+				inits/init_scene.c
 
 RENDER_SRCS = render_scene/render.c \
 				render_scene/light_calc.c \
 				render_scene/ray_cast.c
-
-TEST_SRCS = test_scene.c
 
 PARSING_SRCS = /parsing/parsing.c \
 				/parsing/utils.c \

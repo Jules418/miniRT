@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 01:35:13 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/05/29 22:07:14 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/30 02:11:24 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	check_plane(char *s)
 	tmp2 = gc_split(tmp[2], ',');
 	while (*tmp2)
 		if (ft_atof(*tmp2) < -1 || ft_atof(*tmp2++) > 1)
-			exit_error("Plane normal vector must be normalized !\
-			\nExiting...\n");
+			exit_error("Plane normal vector components must be in [-1, 1] range\
+!\nExiting...\n");
 	tmp2 = gc_split(tmp[3], ',');
 	while (*tmp2)
 		if (ft_atof(*tmp2) < 0 || ft_atof(*tmp2++) > 255)
@@ -71,6 +71,5 @@ void	init_plane(char *s, t_minirt *minirt)
 		exit_error("Error\nMalloc failed in plane.c:67\nExiting...\n");
 	o = create_obj(plane, pl, (t_vec3){ft_atof(tmp2[0]) / 255, ft_atof(tmp2[1])
 			/ 255, ft_atof(tmp2[2]) / 255});
-	minirt->scene->nb_objects++;
 	ft_lstadd_back(&minirt->scene->objects, ft_lstnew(o));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 00:06:05 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/05/29 22:15:21 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/05/30 01:36:20 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,24 @@ void	init_light(char *s, t_minirt *minirt)
 {
 	char	**tmp;
 	char	**tmp2;
+	t_light	*light;
 
 	tmp = gc_split(s, ' ');
 	if (!tmp)
-		exit_error("Error\nMalloc failed in camera.c:55\nExiting...\n");
+		exit_error("Error\nMalloc failed in camera.c:56\nExiting...\n");
 	tmp2 = gc_split(tmp[1], ',');
 	if (!tmp2)
-		exit_error("Error\nMalloc failed in camera.c:58\nExiting...\n");
-	minirt->scene->light.pos = (t_vec3){ft_atof(*tmp2), ft_atof(*(tmp2 + 1)),
+		exit_error("Error\nMalloc failed in camera.c:59\nExiting...\n");
+	light = malloc(sizeof(t_light));
+	if (!light)
+		exit_error("Error\nMalloc failed in camera.c:62\nExiting...\n");
+	light->pos = (t_vec3){ft_atof(*tmp2), ft_atof(*(tmp2 + 1)),
 		ft_atof(*(tmp2 + 2))};
-	minirt->scene->light.brightness = ft_atof(tmp[2]);
+	light->brightness = ft_atof(tmp[2]);
 	tmp2 = gc_split(tmp[3], ',');
 	if (!tmp2)
 		exit_error("Error\nMalloc failed in camera.c:63\nExiting...\n");
-	minirt->scene->light.color = (t_vec3){ft_atof(*tmp2) / 255, ft_atof(*(tmp2
+	light->color = (t_vec3){ft_atof(*tmp2) / 255, ft_atof(*(tmp2
 				+ 1)) / 255, ft_atof(*(tmp2 + 2)) / 255};
+	ft_lstadd_front(&minirt->scene->lights, ft_lstnew(light));
 }

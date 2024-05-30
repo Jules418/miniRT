@@ -6,7 +6,7 @@
 /*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:49:40 by jules             #+#    #+#             */
-/*   Updated: 2024/05/30 00:27:35 by jules            ###   ########.fr       */
+/*   Updated: 2024/05/30 01:56:27 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,8 @@ typedef struct s_light
 typedef struct s_scene
 {
 	t_list		*objects;
-	int			nb_objects;
 	t_camera	cam;
-	t_light		light;
+	t_list		*lights;
 	t_vec3		ambient_light; // color * brightness
 	int			height;
 	int			width;
@@ -126,9 +125,9 @@ t_hitpoint	get_hitpoint(t_scene scene, t_ray ray);
 
 int			vec_to_rgb(t_vec3 u);
 t_vec3		find_normal(t_objects *obj, t_vec3 hit_pos);
-t_vec3		diffuse_light(t_scene scene, t_hitpoint hit);
-int			in_light(t_scene scene, t_hitpoint hit);
-t_vec3		specular_light(t_scene sc, t_ray ray, t_hitpoint hit);
+t_vec3		diffuse_light(t_hitpoint hit, t_light *light);
+int			in_light(t_scene scene, t_hitpoint hit, t_light *light);
+t_vec3		specular_light(t_ray ray, t_hitpoint hit, t_light *light);
 
 int			render_scene(t_minirt *minirt);
 int			input(int key, t_minirt *minirt);
@@ -139,7 +138,7 @@ int			close_file(int fd);
 int			open_file(char *filename);
 char		**read_file(int fd, int nb_lines);
 double		ft_atof(const char *str);
-void		setup_direction(t_minirt *minirt, char **tmp2);
+void		setup_direction(t_minirt *minirt);
 bool		check_name(char *line, char *name);
 int			check_extension(char *filename);
 void		check_ambientlight(char *s);
