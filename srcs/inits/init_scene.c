@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_scene.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:18:03 by jbanacze          #+#    #+#             */
-/*   Updated: 2024/05/30 01:33:06 by jules            ###   ########.fr       */
+/*   Updated: 2024/05/31 07:03:45 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,6 @@ void	init_scene(char **map, t_minirt *minirt)
 	t->lights = NULL;
 	minirt->scene = t;
 	minirt->scene->objects = NULL;
+	minirt->scene->ambient_light = (t_vec3){-1.f, -1.f, -1.f};
 	init_everything(map, minirt);
 }

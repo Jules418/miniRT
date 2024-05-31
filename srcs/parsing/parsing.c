@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 14:53:22 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/05/30 00:00:44 by jules            ###   ########.fr       */
+/*   Updated: 2024/05/31 07:12:11 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,4 @@ char	**parsing(char **av)
 	check_chars(res);
 	return (res);
 }
-
 	//TODO Ajouter un compteur d'arguments pour chaques lignes
-	//TODO Check si plusieurs A (C et L seront ajoutés dans les bonus)
