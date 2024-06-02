@@ -9,5 +9,12 @@
 		"ray.h": "c",
 		"random": "c",
 		"plane.h": "c"
-	}
+	},
+	"makefile.launchConfigurations": [
+		{
+			"cwd": "/home/Nephtys/miniRT",
+			"binaryPath": "/home/Nephtys/miniRT/miniRT",
+			"binaryArgs": ["/home/Nephtys/miniRT/map/map1.rt"]
+		}
+	]
 }
