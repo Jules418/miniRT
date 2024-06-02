@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 00:45:56 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/05/30 00:30:25 by jules            ###   ########.fr       */
+/*   Updated: 2024/06/02 09:01:07 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,18 @@ void	check_sphere(char *s)
 	char	**tmp2;
 
 	tmp = gc_split(s, ' ');
-	if (!tmp)
+	if (!tmp || len_split(tmp) < 4)
 		exit_error("Error\nMalloc failed in sphere.c:27\nExiting...\n");
 	tmp2 = gc_split(tmp[1], ',');
-	if (!tmp2)
+	if (!tmp2 || len_split(tmp2) != 3)
 		exit_error("Error\nMalloc failed in sphere.c:30\nExiting...\n");
 	while (*tmp2)
 		ft_atof(*tmp2++);
 	if (ft_atof(tmp[2]) < 0)
 		exit_error("Sphere diameter must be positive !\nExiting...\n");
 	tmp2 = gc_split(tmp[3], ',');
+	if (!tmp2 || len_split(tmp2) != 3)
+		exit_error("Error\nMalloc failed in sphere.c:30\nExiting...\n");
 	while (*tmp2)
 	{
 		if (ft_atof(*tmp2) < 0 || ft_atof(*tmp2) > 255)

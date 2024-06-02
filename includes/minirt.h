@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:49:40 by jules             #+#    #+#             */
-/*   Updated: 2024/05/30 01:56:27 by jules            ###   ########.fr       */
+/*   Updated: 2024/06/02 09:11:51 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,13 +112,12 @@ typedef struct s_threadarg
 }	t_threadarg;
 
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
-t_minirt	init_minirt(int argc, char **argv);
+void		init_minirt(t_minirt *minirt);
 void		free_scene(t_scene scene);
 int			close_minirt(t_minirt *minirt);
 
 void		exit_error(char *s);
 
-t_scene		test_scene(void);
 
 float		cast_ray(t_ray ray, t_objects *obj);
 t_hitpoint	get_hitpoint(t_scene scene, t_ray ray);
@@ -160,5 +159,7 @@ void		init_scene(char **map, t_minirt *minirt);
 t_objects	*create_obj(t_type type, void *obj, t_vec3 color);
 void		create_cylinder_obj(t_cylinder *cy, char **tmp2, t_minirt *minirt);
 void		check_rgb_cylinder(char **tmp2);
+size_t		len_split(char **s);
+
 
 #endif

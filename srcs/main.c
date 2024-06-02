@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 22:54:08 by jules             #+#    #+#             */
-/*   Updated: 2024/05/29 23:52:20 by jules            ###   ########.fr       */
+/*   Updated: 2024/06/02 09:16:50 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		map = parsing(argv);
-		minirt = init_minirt(argc, argv);
 		init_scene(map, &minirt);
+		init_minirt(&minirt);
 		if (!minirt.scene)
 		{
 			close_minirt(&minirt);

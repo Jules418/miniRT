@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 00:06:05 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/05/30 01:36:20 by jules            ###   ########.fr       */
+/*   Updated: 2024/06/01 22:08:39 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	check_light(char *s)
 	char	**tmp2;
 
 	tmp = gc_split(s, ' ');
-	if (!tmp)
+	if (!tmp || len_split(tmp) < 4)
 		exit_error("Error\nMalloc failed in camera.c:19\nExiting...\n");
 	tmp2 = gc_split(tmp[1], ',');
-	if (!tmp2)
+	if (!tmp2 || len_split(tmp2) < 3)
 		exit_error("Error\nMalloc failed in camera.c:19\nExiting...\n");
 	while (*tmp2)
 		ft_atof(*tmp2++);
@@ -37,11 +37,13 @@ void	check_light(char *s)
 		exit_error("Light brightness ratio must in range [0.0,1.0] !\
         \nExiting...\n");
 	tmp2 = gc_split(tmp[3], ',');
+	if (!tmp2 || len_split(tmp2) != 3)
+		exit_error("Error\nMalloc failed in light.c:19\nExiting...\n");
 	while (*tmp2)
 	{
 		if (ft_atof(*tmp2) < 0 || ft_atof(*tmp2) > 255)
 			exit_error("Light color (RGB) must be between [0,255] !\
-            \nExiting...\n");
+			\nExiting...\n");
 		tmp2++;
 	}
 	printf("✅ Light OK !\n");

@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 14:53:22 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/05/31 07:12:11 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/02 09:24:58 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,28 @@ void	check_chars(char **s)
 			if (s[i][j] != ' ' && s[i][j] != ',' && s[i][j] != '.'
 				&& s[i][j] != '-' && s[i][j] != '\n' && !ft_isdigit(s[i][j]))
 				exit_error("Error\nInvalid character in file\n");
+			if (s[i][j] == '\n')
+				s[i][j] = '\0';
 			j++;
 		}
 		i++;
 	}
+}
+
+size_t	len_split(char **s)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (s[i])
+	{
+		j = 0;
+		while (s[i][j])
+			j++;
+		i++;
+	}
+	return (i);
 }
 
 char	**parsing(char **av)
@@ -40,6 +58,7 @@ char	**parsing(char **av)
 	int		count;
 	char	**res;
 
+	check_extension(av[1]);
 	fd = open_file(av[1]);
 	count = pre_read(fd);
 	fd = open_file(av[1]);
@@ -48,4 +67,3 @@ char	**parsing(char **av)
 	check_chars(res);
 	return (res);
 }
-	//TODO Ajouter un compteur d'arguments pour chaques lignes

@@ -3,31 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 20:05:42 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/05/30 01:59:00 by jules            ###   ########.fr       */
+/*   Updated: 2024/06/01 15:28:52 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
+/*
+Camera:
+C -50.0,0,20 0,0,1 70
+- identifier: C
+- x,y,z coordinates of the view point: -50.0,0,20
+- 3d normalized orientation vector. In range [-1,1] for each x,y,z axis:
+0.0,0.0,1.0
+- FOV : Horizontal field of view in degrees in range [0,180]: 70
+*/
 void	check_camera(char *s)
 {
 	char	**tmp;
 	char	**tmp2;
 
 	tmp = gc_split(s, ' ');
-	if (!tmp)
+	if (!tmp || len_split(tmp) < 4)
 		exit_error("Error\nMalloc failed in camera.c:19\nExiting...\n");
 	tmp2 = gc_split(tmp[1], ',');
-	if (!tmp2)
-		exit_error("Error\nMalloc failed in camera.c:19\nExiting...\n");
+	if (!tmp2 || len_split(tmp2) != 3)
+		exit_error("Error\nMalloc failed in camera.c:20\nExiting...\n");
 	while (*tmp2)
 		ft_atof(*tmp2++);
 	tmp2 = gc_split(tmp[2], ',');
-	if (!tmp2)
-		exit_error("Error\nMalloc failed in camera.c:19\nExiting...\n");
+	if (!tmp2 || len_split(tmp2) != 3)
+		exit_error("Error\nMalloc failed in camera.c:21\nExiting...\n");
 	if ((ft_atof(*tmp2) > 1.f || ft_atof(*tmp2) < 0.f) || (ft_atof(*(tmp2
 					+ 1)) > 1.f || ft_atof(*(tmp2 + 1)) < 0.f)
 		|| (ft_atof(*(tmp2 + 2)) > 1.f || ft_atof(*(tmp2 + 2)) < 0.f))

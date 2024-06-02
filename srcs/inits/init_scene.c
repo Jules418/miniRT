@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:18:03 by jbanacze          #+#    #+#             */
-/*   Updated: 2024/05/31 07:03:45 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/02 09:07:09 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	check_everything(char **map)
 			check_cylinder(map[i]);
 		else if (check_name(map[i], "sp"))
 			check_sphere(map[i]);
-		else if (check_name(map[i], "\n"))
+		else if (check_name(map[i], "\0"))
 			;
 		else
 			exit_error("Error\nInvalid object name\nExiting...\n");

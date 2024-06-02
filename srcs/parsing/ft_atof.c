@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 21:03:11 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/05/29 21:51:01 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/02 09:23:54 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,12 @@ static double	get_fractional_part(const char **str)
 	return (fraction / divisor);
 }
 
+/*
+**@brief Alphanumeric to float ; Take a string and return it's
+value as a float while skipping white space.
+**@returns double - the number
+**@param char* - str The string we want to convert
+*/
 double	ft_atof(const char *str)
 {
 	double	integer_part;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 01:35:13 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/05/30 02:11:24 by jules            ###   ########.fr       */
+/*   Updated: 2024/06/02 09:00:26 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,23 @@ void	check_plane(char *s)
 	char	**tmp2;
 
 	tmp = gc_split(s, ' ');
-	if (!tmp)
+	if (!tmp || len_split(tmp) < 4)
 		exit_error("Error\nMalloc failed in plane.c:29\nExiting...\n");
 	tmp2 = gc_split(tmp[1], ',');
-	if (!tmp2)
+	if (!tmp2 || len_split(tmp2) != 3)
 		exit_error("Error\nMalloc failed in plane.c:32\nExiting...\n");
 	while (*tmp2)
 		ft_atof(*tmp2++);
 	tmp2 = gc_split(tmp[2], ',');
+	if (!tmp2 || len_split(tmp2) != 3)
+		exit_error("Error\nMalloc failed in plane.c:32\nExiting...\n");
 	while (*tmp2)
 		if (ft_atof(*tmp2) < -1 || ft_atof(*tmp2++) > 1)
 			exit_error("Plane normal vector components must be in [-1, 1] range\
 !\nExiting...\n");
 	tmp2 = gc_split(tmp[3], ',');
+	if (!tmp2 || len_split(tmp2) != 3)
+		exit_error("Error\nMalloc failed in place.c:44\n");
 	while (*tmp2)
 		if (ft_atof(*tmp2) < 0 || ft_atof(*tmp2++) > 255)
 			exit_error("Plane color (RGB) must be between [0,255] !\

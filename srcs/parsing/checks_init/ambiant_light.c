@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 19:33:50 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/05/31 07:10:10 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/02 09:23:24 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void	check_ambientlight(char *s)
 
 	i = 0;
 	tmp = gc_split(s, ' ');
-	if (!tmp)
+	if (!tmp || len_split(tmp) < 2)
 		exit_error("Error in a malloc (parsing.c:64)");
 	if (ft_atof(tmp[1]) < 0.0 || ft_atof(tmp[1]) > 1.0)
 		exit_error("Ambiant light ratio must in range [0.0,1.0] !\
 		\nExiting...\n");
 	tmp = gc_split(tmp[2], ',');
-	if (!tmp)
+	if (!tmp || len_split(tmp) <= 2)
 		exit_error("Error in a malloc (parsing.c:69)");
 	while (tmp[i])
 	{
@@ -53,10 +53,11 @@ void	init_ambiantlight(char *s, t_minirt *minirt)
 	tmp2 = gc_split(tmp[2], ',');
 	if (!tmp2)
 		exit_error("Error in a malloc (parsing.c:93)");
-	if (minirt->scene->ambient_light.x == -1 
-		&& minirt->scene->ambient_light.y == -1 
+	if (minirt->scene->ambient_light.x == -1
+		&& minirt->scene->ambient_light.y == -1
 		&& minirt->scene->ambient_light.z == -1)
-		minirt->scene->ambient_light = scale((t_vec3){(float)ft_atof(tmp2[0]) / 255,
+		minirt->scene->ambient_light = scale((t_vec3)
+			{(float)ft_atof(tmp2[0]) / 255,
 				(float)ft_atof(tmp2[1]) / 255, (float)ft_atof(tmp2[2]) / 255},
 				ft_atof(tmp[1]));
 	else
