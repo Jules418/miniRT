@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cone.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 17:57:40 by jules             #+#    #+#             */
-/*   Updated: 2024/05/12 00:11:44 by jules            ###   ########.fr       */
+/*   Updated: 2024/06/03 14:23:42 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ t_vec3	cone_normal(t_cone co, t_vec3 hit)
 	t_vec3	n;
 
 	ch = sub(hit, co.pos);
-	if (mag2(ch) < EPSILON)
-		return (co.dir);
+	// if (mag2(ch) < EPSILON)
+	// 	return (co.dir);
 	t = dot(ch, co.dir);
 	if (t + EPSILON >= co.height)
 		return (co.dir);

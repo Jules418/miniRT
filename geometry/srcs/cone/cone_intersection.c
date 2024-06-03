@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cone_intersection.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 16:42:58 by jules             #+#    #+#             */
-/*   Updated: 2024/05/12 00:12:07 by jules            ###   ########.fr       */
+/*   Updated: 2024/06/03 14:55:47 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ float	cone_side_intersection(t_ray ray, t_cone co)
 	coefs[1] *= 2.f;
 	coefs[2] = powf(dot(oc, co.dir), 2.f) - mag2(oc) * co.cos2;
 	solve_quadratic(coefs);
-	if (coefs[3] < EPSILON)
+	if (coefs[3] < 0.f)
 		return (-1.f);
 	return (filter_side_hits(ray, co, coefs));
 }
