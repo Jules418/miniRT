@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:35:26 by jbanacze          #+#    #+#             */
-/*   Updated: 2024/06/03 14:00:42 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/06/03 17:23:55 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,37 +25,35 @@ bool	is_movement_key(int key)
 	return (false);
 }
 
-void	move(int key, t_minirt *minirt)
+void	move(int key, t_dlist *cameras)
 {
-	if (key == XK_w || key == XK_s || key == XK_a || key == XK_d || \
-		key == XK_Control_L || key == XK_space)
-		minirt->scene->should_render = 1;
 	if (key == XK_w)
-		minirt->scene->cam.pos = add(minirt->scene->cam.pos, \
-		scale(minirt->scene->cam.forward, 10.f));
+		cameras->content->pos = add(cameras->content->pos,
+				scale(cameras->content->forward, 10.f));
 	if (key == XK_s)
-		minirt->scene->cam.pos = sub(minirt->scene->cam.pos, \
-		scale(minirt->scene->cam.forward, 10.f));
+		cameras->content->pos = sub(cameras->content->pos,
+				scale(cameras->content->forward, 10.f));
 	if (key == XK_a)
-		minirt->scene->cam.pos = sub(minirt->scene->cam.pos, \
-		scale(minirt->scene->cam.right, 10.f));
+		cameras->content->pos = sub(cameras->content->pos,
+				scale(cameras->content->right, 10.f));
 	if (key == XK_d)
-		minirt->scene->cam.pos = add(minirt->scene->cam.pos, \
-		scale(minirt->scene->cam.right, 10.f));
+		cameras->content->pos = add(cameras->content->pos,
+				scale(cameras->content->right, 10.f));
 	if (key == XK_Control_L)
-		minirt->scene->cam.pos = sub(minirt->scene->cam.pos, \
-		scale(minirt->scene->cam.up, 10.f));
+		cameras->content->pos = sub(cameras->content->pos,
+				scale(cameras->content->up, 10.f));
 	if (key == XK_space)
-		minirt->scene->cam.pos = add(minirt->scene->cam.pos, \
-		scale(minirt->scene->cam.up, 10.f));
+		cameras->content->pos = add(cameras->content->pos,
+				scale(cameras->content->up, 10.f));
 }
 
 void	move_camera(int key, t_minirt *minirt)
 {
 	if (!is_movement_key(key))
 		return ;
-	move(key, minirt);
-	yaw(key, minirt);
-	pitch(key, minirt);
-	roll(key, minirt);
+	move(key, minirt->scene->cameras);
+	yaw(key, minirt->scene->cameras);
+	pitch(key, minirt->scene->cameras);
+	roll(key, minirt->scene->cameras);
+	minirt->scene->should_render = true;
 }

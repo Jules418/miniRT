@@ -3,77 +3,65 @@
 /*                                                        :::      ::::::::   */
 /*   rotations.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:44:24 by jbanacze          #+#    #+#             */
-/*   Updated: 2024/06/03 14:06:46 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/06/03 17:21:33 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	yaw(int key, t_minirt *minirt)
+void	yaw(int key, t_dlist *cameras)
 {
-	if (key == XK_Left || key == XK_Right)
-		minirt->scene->should_render = 1;
-	else
-		return ;
 	if (key == XK_Left)
 	{
-		minirt->scene->cam.forward = rotate_axis(minirt->scene->cam.forward, \
-											minirt->scene->cam.up, 0.2f);
-		minirt->scene->cam.right = rotate_axis(minirt->scene->cam.right, \
-											minirt->scene->cam.up, 0.2f);
+		cameras->content->forward = rotate_axis(cameras->content->forward,
+				cameras->content->up, 0.2f);
+		cameras->content->right = rotate_axis(cameras->content->right,
+				cameras->content->up, 0.2f);
 	}
 	if (key == XK_Right)
 	{
-		minirt->scene->cam.forward = rotate_axis(minirt->scene->cam.forward, \
-											minirt->scene->cam.up, -0.2f);
-		minirt->scene->cam.right = rotate_axis(minirt->scene->cam.right, \
-											minirt->scene->cam.up, -0.2f);
+		cameras->content->forward = rotate_axis(cameras->content->forward,
+				cameras->content->up, -0.2f);
+		cameras->content->right = rotate_axis(cameras->content->right,
+				cameras->content->up, -0.2f);
 	}
 }
 
-void	pitch(int key, t_minirt *minirt)
+void	pitch(int key, t_dlist *cameras)
 {
-	if (key == XK_Up || key == XK_Down)
-		minirt->scene->should_render = 1;
-	else
-		return ;
 	if (key == XK_Up)
 	{
-		minirt->scene->cam.forward = rotate_axis(minirt->scene->cam.forward, \
-											minirt->scene->cam.right, 0.2f);
-		minirt->scene->cam.up = rotate_axis(minirt->scene->cam.up, \
-											minirt->scene->cam.right, 0.2f);
+		cameras->content->forward = rotate_axis(cameras->content->forward,
+				cameras->content->right, 0.2f);
+		cameras->content->up = rotate_axis(cameras->content->up,
+				cameras->content->right, 0.2f);
 	}
 	if (key == XK_Down)
 	{
-		minirt->scene->cam.forward = rotate_axis(minirt->scene->cam.forward, \
-											minirt->scene->cam.right, -0.2f);
-		minirt->scene->cam.up = rotate_axis(minirt->scene->cam.up, \
-											minirt->scene->cam.right, -0.2f);
+		cameras->content->forward = rotate_axis(cameras->content->forward,
+				cameras->content->right, -0.2f);
+		cameras->content->up = rotate_axis(cameras->content->up,
+				cameras->content->right, -0.2f);
 	}
 }
 
-void	roll(int key, t_minirt *minirt)
+void	roll(int key, t_dlist *cameras)
 {
-	if (key == XK_q || key == XK_e)
-		minirt->scene->should_render = 1;
-	else
-		return ;
 	if (key == XK_q)
 	{
-		minirt->scene->cam.up = rotate_axis(minirt->scene->cam.up, \
-										minirt->scene->cam.forward, -0.2f);
-		minirt->scene->cam.right = rotate_axis(minirt->scene->cam.right, \
-										minirt->scene->cam.forward, -0.2f);
+		cameras->content->up = rotate_axis(cameras->content->up,
+				cameras->content->forward, -0.2f);
+		cameras->content->right = rotate_axis(cameras->content->right,
+				cameras->content->forward, -0.2f);
 	}
 	if (key == XK_e)
 	{
-		minirt->scene->cam.up = rotate_axis(minirt->scene->cam.up, \
-										minirt->scene->cam.forward, 0.2f);
-		minirt->scene->cam.right = rotate_axis(minirt->scene->cam.right, \
-										minirt->scene->cam.forward, 0.2f);
+		cameras->content->up = rotate_axis(cameras->content->up,
+				cameras->content->forward, 0.2f);
+		cameras->content->right = rotate_axis(cameras->content->right,
+				cameras->content->forward, 0.2f);
 	}
 }

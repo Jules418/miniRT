@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:18:03 by jbanacze          #+#    #+#             */
-/*   Updated: 2024/06/03 14:13:41 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/03 15:33:01 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void	init_scene(char **map, t_minirt *minirt)
 	t->lights = NULL;
 	minirt->scene = t;
 	minirt->scene->objects = NULL;
+	minirt->scene->cameras = NULL;
 	minirt->scene->ambient_light = (t_vec3){-1.f, -1.f, -1.f};
 	init_everything(map, minirt);
 }

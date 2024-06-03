@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 22:54:08 by jules             #+#    #+#             */
-/*   Updated: 2024/06/03 13:51:41 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/06/03 17:22:20 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	input(int key, t_minirt *minirt)
 	if (key == XK_Escape)
 		close_minirt(minirt);
 	move_camera(key, minirt);
+	multicam(key, minirt);
 	return (0);
 }
 

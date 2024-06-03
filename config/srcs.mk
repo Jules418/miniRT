@@ -34,4 +34,5 @@ GARBAGE_COLLECTION_SRCS = garbage_collector/alloc.c \
 							garbage_collector/gc_functions/gc_strdup.c 
 
 MOVEMENT_SRCS = movements/movement.c \
-					movements/rotations.c
+					movements/rotations.c \
+					movements/multicam.c

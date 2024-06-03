@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:32:22 by jules             #+#    #+#             */
-/*   Updated: 2024/06/03 11:53:12 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/03 17:28:21 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,21 @@ void	free_light(t_list *light)
 	}
 }
 
+void	free_camera(t_dlist *camera)
+{
+	t_dlist	*tmp;
+	t_dlist	*tmp2;
+
+	tmp = ft_dlistfirst(camera);
+	while (tmp)
+	{
+		tmp2 = tmp->next;
+		free(tmp->content);
+		free(tmp);
+		tmp = tmp2;
+	}
+}
+
 void	free_scene(t_scene scene)
 {
 	t_list		*tmp;
@@ -48,6 +63,7 @@ void	free_scene(t_scene scene)
 
 	tmp = scene->objects;
 	free_light(scene->lights);
+	free_camera(scene->cameras);
 	while (tmp)
 	{
 		tmp2 = tmp->next;

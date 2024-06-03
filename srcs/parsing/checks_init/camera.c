@@ -6,11 +6,12 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 20:05:42 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/06/03 13:46:22 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/03 17:29:02 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
 /*
 Camera:
 C -50.0,0,20 0,0,1 70
@@ -49,42 +50,45 @@ void	check_camera(char *s)
 
 void	init_camera(char *s, t_minirt *minirt)
 {
-	char	**tmp;
-	char	**tmp2;
+	char		**tmp;
+	char		**tmp2;
+	t_camera	*cam;
 
+	cam = malloc(sizeof(t_camera));
 	tmp = gc_split(s, ' ');
 	if (!tmp)
 		exit_error("Error\nMalloc failed in camera.c:47\nExiting...\n");
 	tmp2 = gc_split(tmp[1], ',');
 	if (!tmp2)
 		exit_error("Error\nMalloc failed in camera.c:47\nExiting...\n");
-	minirt->scene->cam.pos = (t_vec3){ft_atof(*tmp2), ft_atof(*(tmp2 + 1)),
+	cam->pos = (t_vec3){ft_atof(*tmp2), ft_atof(*(tmp2 + 1)),
 		ft_atof(*(tmp2 + 2))};
-	minirt->scene->cam.fov = ft_atof(*(tmp + 3)) * 2.f * M_PI / 360.f;
+	cam->fov = ft_atof(*(tmp + 3)) * 2.f * M_PI / 360.f;
 	tmp2 = gc_split(tmp[2], ',');
 	if (!tmp2)
 		exit_error("Error\nMalloc failed in camera.c:53\nExiting...\n");
-	minirt->scene->cam.forward = (t_vec3){ft_atof(*tmp2), ft_atof(*(tmp2 + 1)),
+	cam->forward = (t_vec3){ft_atof(*tmp2), ft_atof(*(tmp2 + 1)),
 		ft_atof(*(tmp2 + 2))};
-	if (fabs(mag2(minirt->scene->cam.forward) - 1.f) > EPSILON)
+	if (fabs(mag2(cam->forward) - 1.f) > EPSILON)
 		exit_error("Error\nCamera orientation should be normalized\n\
 Exiting...\n");
-	minirt->scene->d_to_screen = 1.f / tanf(minirt->scene->cam.fov / 2.f);
-	setup_direction(minirt);
+	cam->d_to_screen = 1.f / tanf(cam->fov / 2.f);
+	setup_direction(cam, minirt);
 }
 
-void	setup_direction(t_minirt *minirt)
+void	setup_direction(t_camera *cam, t_minirt *minirt)
 {
 	t_vec3	dir;
 
 	dir = (t_vec3){0.f, 1.f, 0.f};
-	minirt->scene->cam.right = cross(minirt->scene->cam.forward, dir);
-	if (mag2(minirt->scene->cam.right) < EPSILON)
-		minirt->scene->cam.right = cross(minirt->scene->cam.forward,
+	cam->right = cross(cam->forward, dir);
+	if (mag2(cam->right) < EPSILON)
+		cam->right = cross(cam->forward,
 				(t_vec3){0.f, 0.f, 1.f});
-	minirt->scene->cam.up = cross(minirt->scene->cam.right,
-			minirt->scene->cam.forward);
-	normalize(&minirt->scene->cam.forward);
-	normalize(&minirt->scene->cam.up);
-	normalize(&minirt->scene->cam.right);
+	cam->up = cross(cam->right,
+			cam->forward);
+	normalize(&cam->forward);
+	normalize(&cam->up);
+	normalize(&cam->right);
+	ft_dlstadd_back(&minirt->scene->cameras, ft_dlstnew(cam));
 }

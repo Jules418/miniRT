@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:49:40 by jules             #+#    #+#             */
-/*   Updated: 2024/06/03 14:17:42 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/03 17:24:01 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,23 @@
 #  define NB_THREADS 8
 # endif
 
+typedef struct s_camera
+{
+	t_vec3	pos;
+	t_vec3	forward;
+	t_vec3	up;
+	t_vec3	right;
+	float	fov;
+	float	d_to_screen;
+}	t_camera;
+
+typedef struct s_double_list
+{
+	t_camera				*content;
+	struct s_double_list	*next;
+	struct s_double_list	*prev;
+}	t_dlist;
+
 typedef struct s_data
 {
 	void		*img;
@@ -60,14 +77,6 @@ typedef struct s_object
 	t_vec3	color;
 }	t_objects;
 
-typedef struct s_camera
-{
-	t_vec3	pos;
-	t_vec3	forward;
-	t_vec3	up;
-	t_vec3	right;
-	float	fov;
-}	t_camera;
 
 typedef struct s_light
 {
@@ -79,13 +88,12 @@ typedef struct s_light
 typedef struct s_scene
 {
 	t_list		*objects;
-	t_camera	cam;
+	t_dlist		*cameras;
 	t_list		*lights;
 	t_vec3		ambient_light; // color * brightness
 	int			height;
 	int			width;
 	int			should_render;
-	float		d_to_screen;
 }	*t_scene;
 
 typedef struct s_hitpoint
@@ -111,6 +119,8 @@ typedef struct s_threadarg
 	int			end;
 }	t_threadarg;
 
+
+
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void		init_minirt(t_minirt *minirt);
 void		free_scene(t_scene scene);
@@ -127,9 +137,9 @@ t_vec3		diffuse_light(t_hitpoint hit, t_light *light);
 int			in_light(t_scene scene, t_hitpoint hit, t_light *light);
 t_vec3		specular_light(t_ray ray, t_hitpoint hit, t_light *light);
 
-void		yaw(int key, t_minirt *minirt);
-void		pitch(int key, t_minirt *minirt);
-void		roll(int key, t_minirt *minirt);
+void		yaw(int key, t_dlist *minirt);
+void		pitch(int key, t_dlist *minirt);
+void		roll(int key, t_dlist *minirt);
 void		move_camera(int key, t_minirt *minirt);
 
 int			render_scene(t_minirt *minirt);
@@ -141,7 +151,7 @@ int			close_file(int fd);
 int			open_file(char *filename);
 char		**read_file(int fd, int nb_lines);
 double		ft_atof(const char *str);
-void		setup_direction(t_minirt *minirt);
+void		setup_direction(t_camera *cam, t_minirt *minirt);
 bool		check_name(char *line, char *name);
 int			check_extension(char *filename);
 void		check_ambientlight(char *s);
@@ -167,5 +177,9 @@ size_t		len_split(char **s);
 void        init_cone(char *s, t_minirt *minirt);
 void        check_cone(char *s);
 void		create_cone_obj(t_minirt *minirt, t_cone *c, char *s);
-
+t_dlist		*ft_dlstlast(t_dlist *lst);
+t_dlist		*ft_dlstnew(void *content);
+void		ft_dlstadd_back(t_dlist **alst, t_dlist *new);
+void		multicam(int key, t_minirt* minirt);
+t_dlist		*ft_dlistfirst(t_dlist *lst);
 #endif

@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:09:59 by jbanacze          #+#    #+#             */
-/*   Updated: 2024/06/02 13:37:47 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/03 17:16:56 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ t_ray	get_ray(t_scene scene, int x, int y)
 	t_vec3	up;
 	t_vec3	right;
 
-	forward = scene->cam.forward;
-	up = scene->cam.up;
-	right = scene->cam.right;
-	ray.origin = scene->cam.pos;
-	ray.dir = scale(forward, scene->d_to_screen);
+	forward = scene->cameras->content->forward;
+	up = scene->cameras->content->up;
+	right = scene->cameras->content->right;
+	ray.origin = scene->cameras->content->pos;
+	ray.dir = scale(forward, scene->cameras->content->d_to_screen);
 	ray.dir = add(ray.dir, scale(right, ((float)x * 2.f - scene->width)
 				/ scene->width));
 	ray.dir = add(ray.dir, scale(up, ((float)y * -2.f + scene->height)
