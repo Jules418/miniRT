@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotations.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 01:46:16 by jules             #+#    #+#             */
-/*   Updated: 2024/04/15 21:41:05 by jules            ###   ########.fr       */
+/*   Updated: 2024/06/03 13:54:13 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,15 @@ t_vec3	rotate_z(t_vec3 v, float angle)
 	res.y = v.x * sinf(angle) + v.y * cosf(angle);
 	res.z = v.z;
 	return (res);
+}
+
+t_vec3	rotate_axis(t_vec3 v, t_vec3 axis, float angle)
+{
+	t_vec3	v_rot;
+	t_vec3	tmp;
+
+	v_rot = scale(v, cosf(angle));
+	v_rot = add(v_rot, scale(cross(axis, v), sinf(angle)));
+	tmp = scale(axis, dot(axis, v) * (1.f - cosf(angle)));
+	return (add(v_rot, tmp));
 }

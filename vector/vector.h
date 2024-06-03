@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 23:34:16 by jules             #+#    #+#             */
-/*   Updated: 2024/05/26 20:04:28 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/03 12:22:02 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,6 @@ t_vec3	reflect(t_vec3 u, t_vec3 n);
 t_vec3	rotate_x(t_vec3 v, float angle);
 t_vec3	rotate_y(t_vec3 v, float angle);
 t_vec3	rotate_z(t_vec3 v, float angle);
+t_vec3	rotate_axis(t_vec3 v, t_vec3 axis, float angle);
 
 #endif

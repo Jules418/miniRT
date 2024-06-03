@@ -3,7 +3,8 @@ SRCS=			main.c \
 				$(INITS_SRCS) \
 				$(RENDER_SRCS) \
 				$(PARSING_SRCS) \
-				$(GARBAGE_COLLECTION_SRCS)
+				$(GARBAGE_COLLECTION_SRCS) \
+				$(MOVEMENT_SRCS)
 
 INITS_SRCS = inits/initializer.c \
 				inits/init_scene.c
@@ -30,3 +31,6 @@ GARBAGE_COLLECTION_SRCS = garbage_collector/alloc.c \
 							garbage_collector/handler.c \
 							garbage_collector/gc_functions/gc_split.c \
 							garbage_collector/gc_functions/gc_strdup.c 
+
+MOVEMENT_SRCS = movements/movement.c \
+					movements/rotations.c

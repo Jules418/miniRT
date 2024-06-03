@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:49:40 by jules             #+#    #+#             */
-/*   Updated: 2024/06/02 13:28:02 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/03 14:06:31 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,6 @@ int			close_minirt(t_minirt *minirt);
 
 void		exit_error(char *s);
 
-
 float		cast_ray(t_ray ray, t_objects *obj);
 t_hitpoint	get_hitpoint(t_scene scene, t_ray ray);
 
@@ -127,6 +126,11 @@ t_vec3		find_normal(t_objects *obj, t_vec3 hit_pos);
 t_vec3		diffuse_light(t_hitpoint hit, t_light *light);
 int			in_light(t_scene scene, t_hitpoint hit, t_light *light);
 t_vec3		specular_light(t_ray ray, t_hitpoint hit, t_light *light);
+
+void		yaw(int key, t_minirt *minirt);
+void		pitch(int key, t_minirt *minirt);
+void		roll(int key, t_minirt *minirt);
+void		move_camera(int key, t_minirt *minirt);
 
 int			render_scene(t_minirt *minirt);
 int			input(int key, t_minirt *minirt);
@@ -160,6 +164,5 @@ t_objects	*create_obj(t_type type, void *obj, t_vec3 color);
 void		create_cylinder_obj(t_cylinder *cy, char **tmp2, t_minirt *minirt);
 void		check_rgb_cylinder(char **tmp2);
 size_t		len_split(char **s);
-
 
 #endif

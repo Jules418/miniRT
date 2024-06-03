@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 22:54:08 by jules             #+#    #+#             */
-/*   Updated: 2024/06/03 12:04:03 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/03 13:51:41 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,36 +30,11 @@ int	draw_loop(t_minirt *minirt)
 	return (0);
 }
 
-void	moves(int key, t_minirt *minirt)
-{
-	if (key == XK_w || key == XK_s || key == XK_q || key == XK_d || \
-		key == XK_Control_L || key == XK_space)
-		minirt->scene->should_render = 1;
-	if (key == XK_w)
-		minirt->scene->cam.pos = add(minirt->scene->cam.pos, \
-		scale(minirt->scene->cam.forward, 10.f));
-	if (key == XK_s)
-		minirt->scene->cam.pos = sub(minirt->scene->cam.pos, \
-		scale(minirt->scene->cam.forward, 10.f));
-	if (key == XK_q)
-		minirt->scene->cam.pos = sub(minirt->scene->cam.pos, \
-		scale(minirt->scene->cam.right, 10.f));
-	if (key == XK_d)
-		minirt->scene->cam.pos = add(minirt->scene->cam.pos, \
-		scale(minirt->scene->cam.right, 10.f));
-	if (key == XK_Control_L)
-		minirt->scene->cam.pos = sub(minirt->scene->cam.pos, \
-		scale(minirt->scene->cam.up, 10.f));
-	if (key == XK_space)
-		minirt->scene->cam.pos = add(minirt->scene->cam.pos, \
-		scale(minirt->scene->cam.up, 10.f));
-}
-
 int	input(int key, t_minirt *minirt)
 {
 	if (key == XK_Escape)
 		close_minirt(minirt);
-	moves(key, minirt);
+	move_camera(key, minirt);
 	return (0);
 }
 
