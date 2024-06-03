@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 03:27:16 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/06/02 09:21:35 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/03 11:53:53 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ cy 50.0,0.0,20.6 0.0,0.0,1.0 14.2 21.42 10,0,255
 - the cylinder height: 21.42
 - R,G,B colors in range [0,255]: 10, 0, 255
 */
-
 void	check_cylinder(char *s)
 {
 	char	**tmp;

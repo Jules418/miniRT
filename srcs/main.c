@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 22:54:08 by jules             #+#    #+#             */
-/*   Updated: 2024/06/03 10:53:16 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/03 12:04:03 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@ int	draw_loop(t_minirt *minirt)
 	return (0);
 }
 
-int	input(int key, t_minirt *minirt)
+void	moves(int key, t_minirt *minirt)
 {
-	if (key == XK_Escape)
-		close_minirt(minirt);
-	if (key == XK_z)
+	if (key == XK_w || key == XK_s || key == XK_q || key == XK_d || \
+		key == XK_Control_L || key == XK_space)
+		minirt->scene->should_render = 1;
+	if (key == XK_w)
 		minirt->scene->cam.pos = add(minirt->scene->cam.pos, \
 		scale(minirt->scene->cam.forward, 10.f));
 	if (key == XK_s)
@@ -52,7 +53,13 @@ int	input(int key, t_minirt *minirt)
 	if (key == XK_space)
 		minirt->scene->cam.pos = add(minirt->scene->cam.pos, \
 		scale(minirt->scene->cam.up, 10.f));
-	minirt->scene->should_render = 1;
+}
+
+int	input(int key, t_minirt *minirt)
+{
+	if (key == XK_Escape)
+		close_minirt(minirt);
+	moves(key, minirt);
 	return (0);
 }
 

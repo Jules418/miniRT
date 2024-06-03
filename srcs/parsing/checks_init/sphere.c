@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 00:45:56 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/06/02 09:01:07 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/03 11:53:59 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ sp 0.0,0.0,20.6 12.6 10,0,255
 - the sphere diameter: 12.6
 - R,G,B colors in range [0-255]: 10, 0, 255
 */
-
 void	check_sphere(char *s)
 {
 	char	**tmp;
