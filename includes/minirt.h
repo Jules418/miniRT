@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:49:40 by jules             #+#    #+#             */
-/*   Updated: 2024/06/03 14:06:31 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/06/03 14:09:52 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,5 +164,6 @@ t_objects	*create_obj(t_type type, void *obj, t_vec3 color);
 void		create_cylinder_obj(t_cylinder *cy, char **tmp2, t_minirt *minirt);
 void		check_rgb_cylinder(char **tmp2);
 size_t		len_split(char **s);
-
+void        init_cone(char *s, t_minirt *minirt);
+void        check_cone(char *s);
 #endif

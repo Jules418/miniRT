@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:18:03 by jbanacze          #+#    #+#             */
-/*   Updated: 2024/06/02 09:07:09 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/03 13:54:34 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	check_everything(char **map)
 			check_cylinder(map[i]);
 		else if (check_name(map[i], "sp"))
 			check_sphere(map[i]);
+		else if (check_name(map[i], "co"))
+			check_cone(map[i]);
 		else if (check_name(map[i], "\0"))
 			;
 		else
@@ -76,6 +78,8 @@ void	init_everything(char **map, t_minirt *minirt)
 			init_cylinder(map[i], minirt);
 		else if (check_name(map[i], "sp"))
 			init_sphere(map[i], minirt);
+		else if (check_name(map[i], "co"))
+			init_cone(map[i], minirt);
 		i++;
 	}
 }

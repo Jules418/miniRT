@@ -23,6 +23,7 @@ PARSING_SRCS = /parsing/parsing.c \
 				/parsing/checks_init/light.c \
 				/parsing/checks_init/sphere.c \
 				/parsing/checks_init/plane.c \
+				/parsing/checks_init/cone.c \
 				/parsing/checks_init/cylinder.c \
 				/parsing/ft_atof.c
 

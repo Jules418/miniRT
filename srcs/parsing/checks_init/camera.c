@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 20:05:42 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/06/01 15:28:52 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/03 13:46:22 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ void	check_camera(char *s)
 	tmp2 = gc_split(tmp[2], ',');
 	if (!tmp2 || len_split(tmp2) != 3)
 		exit_error("Error\nMalloc failed in camera.c:21\nExiting...\n");
-	if ((ft_atof(*tmp2) > 1.f || ft_atof(*tmp2) < 0.f) || (ft_atof(*(tmp2
-					+ 1)) > 1.f || ft_atof(*(tmp2 + 1)) < 0.f)
-		|| (ft_atof(*(tmp2 + 2)) > 1.f || ft_atof(*(tmp2 + 2)) < 0.f))
-		exit_error("Error\nCamera orientation must be in range[0.0, \
+	if ((ft_atof(*tmp2) > 1.f || ft_atof(*tmp2) < -1.f) || (ft_atof(*(tmp2
+					+ 1)) > 1.f || ft_atof(*(tmp2 + 1)) < -1.f)
+		|| (ft_atof(*(tmp2 + 2)) > 1.f || ft_atof(*(tmp2 + 2)) < -1.f))
+		exit_error("Error\nCamera orientation must be in range[-1.0, \
 			1.0]\nExiting...\n");
 	if (ft_atof(*(tmp + 3)) < 0.f || ft_atof(*(tmp + 3)) > 180.f)
 		exit_error("Error\nCamera FOV must be in range[0.0, \
