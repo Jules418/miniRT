@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:18:03 by jbanacze          #+#    #+#             */
-/*   Updated: 2024/06/03 13:54:34 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/03 14:13:41 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ void	check_everything(char **map)
 			check_camera(map[i]);
 		else if (check_name(map[i], "L"))
 			check_light(map[i]);
-		else if (check_name(map[i], "sp"))
-			check_sphere(map[i]);
 		else if (check_name(map[i], "pl"))
 			check_plane(map[i]);
 		else if (check_name(map[i], "cy"))
