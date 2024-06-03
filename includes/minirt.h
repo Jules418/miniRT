@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:49:40 by jules             #+#    #+#             */
-/*   Updated: 2024/06/03 14:09:52 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/03 14:17:42 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,4 +166,6 @@ void		check_rgb_cylinder(char **tmp2);
 size_t		len_split(char **s);
 void        init_cone(char *s, t_minirt *minirt);
 void        check_cone(char *s);
+void		create_cone_obj(t_minirt *minirt, t_cone *c, char *s);
+
 #endif
