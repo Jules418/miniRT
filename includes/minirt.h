@@ -6,7 +6,7 @@
 /*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:49:40 by jules             #+#    #+#             */
-/*   Updated: 2024/06/03 17:52:14 by jules            ###   ########.fr       */
+/*   Updated: 2024/06/03 18:42:26 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ typedef struct s_object
 	t_vec3	color;
 }	t_objects;
 
-
 typedef struct s_light
 {
 	t_vec3	pos;
@@ -118,8 +117,6 @@ typedef struct s_threadarg
 	int			start;
 	int			end;
 }	t_threadarg;
-
-
 
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void		init_minirt(t_minirt *minirt);
@@ -187,6 +184,6 @@ t_dlist		*ft_dlstnew(void *content);
 void		ft_dlstadd_back(t_dlist **alst, t_dlist *new);
 t_dlist		*ft_dlistfirst(t_dlist *lst);
 
-void		multicam(int key, t_minirt* minirt);
+void		multicam(int key, t_minirt *minirt);
 
 #endif
