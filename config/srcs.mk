@@ -13,19 +13,19 @@ RENDER_SRCS = render_scene/render.c \
 				render_scene/light_calc.c \
 				render_scene/ray_cast.c
 
-PARSING_SRCS = /parsing/parsing.c \
-				/parsing/utils.c \
-				/parsing/close.c \
-				/parsing/open.c \
-				/parsing/read.c \
-				/parsing/checks_init/ambiant_light.c \
-				/parsing/checks_init/camera.c \
-				/parsing/checks_init/light.c \
-				/parsing/checks_init/sphere.c \
-				/parsing/checks_init/plane.c \
-				/parsing/checks_init/cone.c \
-				/parsing/checks_init/cylinder.c \
-				/parsing/ft_atof.c
+PARSING_SRCS = parsing/parsing.c \
+				parsing/utils.c \
+				parsing/close.c \
+				parsing/open.c \
+				parsing/read.c \
+				parsing/checks_init/ambiant_light.c \
+				parsing/checks_init/camera.c \
+				parsing/checks_init/light.c \
+				parsing/checks_init/sphere.c \
+				parsing/checks_init/plane.c \
+				parsing/checks_init/cone.c \
+				parsing/checks_init/cylinder.c \
+				parsing/ft_atof.c
 
 GARBAGE_COLLECTION_SRCS = garbage_collector/alloc.c \
 							garbage_collector/free.c \
