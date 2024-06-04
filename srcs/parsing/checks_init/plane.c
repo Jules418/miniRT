@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 01:35:13 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/06/02 09:00:26 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/04 22:13:46 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	check_plane(char *s)
 	char	**tmp2;
 
 	tmp = gc_split(s, ' ');
-	if (!tmp || len_split(tmp) < 4)
+	if (!tmp || len_split(tmp) != 4)
 		exit_error("Error\nMalloc failed in plane.c:29\nExiting...\n");
 	tmp2 = gc_split(tmp[1], ',');
 	if (!tmp2 || len_split(tmp2) != 3)

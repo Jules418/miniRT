@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 00:06:05 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/06/01 22:08:39 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/04 22:13:38 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	check_light(char *s)
 	char	**tmp2;
 
 	tmp = gc_split(s, ' ');
-	if (!tmp || len_split(tmp) < 4)
+	if (!tmp || len_split(tmp) != 4)
 		exit_error("Error\nMalloc failed in camera.c:19\nExiting...\n");
 	tmp2 = gc_split(tmp[1], ',');
 	if (!tmp2 || len_split(tmp2) < 3)

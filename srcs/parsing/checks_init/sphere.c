@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 00:45:56 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/06/03 11:53:59 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/04 22:13:43 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	check_sphere(char *s)
 	char	**tmp2;
 
 	tmp = gc_split(s, ' ');
-	if (!tmp || len_split(tmp) < 4)
+	if (!tmp || len_split(tmp) != 4)
 		exit_error("Error\nMalloc failed in sphere.c:27\nExiting...\n");
 	tmp2 = gc_split(tmp[1], ',');
 	if (!tmp2 || len_split(tmp2) != 3)

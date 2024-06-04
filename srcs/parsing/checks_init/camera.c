@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 20:05:42 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/06/04 14:47:58 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/06/04 22:13:24 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	check_camera(char *s)
 	char	**tmp2;
 
 	tmp = gc_split(s, ' ');
-	if (!tmp || len_split(tmp) < 4)
+	if (!tmp || len_split(tmp) != 4)
 		exit_error("Error\nMalloc failed in camera.c:19\nExiting...\n");
 	tmp2 = gc_split(tmp[1], ',');
 	if (!tmp2 || len_split(tmp2) != 3)

@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 19:33:50 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/06/02 09:23:24 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/04 22:14:53 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	check_ambientlight(char *s)
 
 	i = 0;
 	tmp = gc_split(s, ' ');
-	if (!tmp || len_split(tmp) < 2)
+	if (!tmp || len_split(tmp) != 3)
 		exit_error("Error in a malloc (parsing.c:64)");
 	if (ft_atof(tmp[1]) < 0.0 || ft_atof(tmp[1]) > 1.0)
 		exit_error("Ambiant light ratio must in range [0.0,1.0] !\

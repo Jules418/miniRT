@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 03:27:16 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/06/03 11:53:53 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/04 22:13:35 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	check_cylinder(char *s)
 	char	**tmp2;
 
 	tmp = gc_split(s, ' ');
-	if (!tmp || len_split(tmp) < 6)
+	if (!tmp || len_split(tmp) != 6)
 		exit_error("Error\nMalloc failed in cylinder.c:29\nExiting...\n");
 	tmp2 = gc_split(tmp[1], ',');
 	if (!tmp2 || len_split(tmp2) != 3)
