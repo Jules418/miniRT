@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 14:53:22 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/06/04 22:18:48 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/04 23:21:58 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,32 @@ size_t	len_split(char **s)
 	return (i);
 }
 
+void	check_comma(char **s)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (s[i])
+	{
+		j = 0;
+		while (s[i][j])
+		{
+			if (s[i][j] == ',')
+				if (s[i][j + 1] == ',' || s[i][j - 1] == ',')
+					exit_error("Error\nInvalid comma in file\n");
+			if (s[i][j] == ',')
+				if (s[i][j + 1] == '\0')
+					exit_error("Error\nInvalid comma in file\n");
+			if (s[i][j] == ' ')
+				if (s[i][j + 1] == ',' || s[i][j - 1] == ',')
+					exit_error("Error\nInvalid comma in file\n");
+			j++;
+		}
+		i++;
+	}
+}
+
 char	**parsing(char **av)
 {
 	int		fd;
@@ -65,5 +91,6 @@ char	**parsing(char **av)
 	res = read_file(fd, count);
 	close(fd);
 	check_chars(res);
+	check_comma(res);
 	return (res);
 }

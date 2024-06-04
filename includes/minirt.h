@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:49:40 by jules             #+#    #+#             */
-/*   Updated: 2024/06/04 15:38:37 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/06/04 23:13:18 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,4 +186,6 @@ t_dlist		*ft_dlistfirst(t_dlist *lst);
 
 void		multicam(int key, t_minirt *minirt);
 
+
+void check_comma(char **s);
 #endif
