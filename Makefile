@@ -110,6 +110,10 @@ re:		fclean
 rre:	ffclean
 			$(MAKE) all
 
+.PHONY: norm
+norm:
+	norminette srcs vectort geometry includes libft
+
 -include $(DEPS)
 $(DIR_BUILD)%.o : $(SRC_PATH)%.c
 			@mkdir -p $(shell dirname $@)

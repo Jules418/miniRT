@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cone.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/10 17:57:40 by jules             #+#    #+#             */
-/*   Updated: 2024/06/03 18:43:10 by jules            ###   ########.fr       */
+/*   Updated: 2024/06/04 11:09:53 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,3 +42,20 @@ t_vec3	cone_normal(t_cone co, t_vec3 hit)
 	n = sub(scale(np, cosf(co.angle)), scale(co.dir, sinf(co.angle)));
 	return (n);
 }
+
+/*
+t_vec3	cone_normal(t_cone co, t_vec3 hit)
+{
+	float	d;
+	t_vec3	a;
+	t_vec3	ch;
+	float	dist;
+
+	ch = sub(hit, co.pos);
+	dist = mag(ch);
+	d = dist * sqrtf(1 + co.angle * co.angle);
+	a = add(co.pos, scale(co.dir, d));
+	return (normalized(sub(hit, a)));
+			
+}
+*/

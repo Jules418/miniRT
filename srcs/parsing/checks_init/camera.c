@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 20:05:42 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/06/03 17:29:02 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/04 14:47:58 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	check_camera(char *s)
 					+ 1)) > 1.f || ft_atof(*(tmp2 + 1)) < -1.f)
 		|| (ft_atof(*(tmp2 + 2)) > 1.f || ft_atof(*(tmp2 + 2)) < -1.f))
 		exit_error("Error\nCamera orientation must be in range[-1.0, \
-			1.0]\nExiting...\n");
+1.0]\nExiting...\n");
 	if (ft_atof(*(tmp + 3)) < 0.f || ft_atof(*(tmp + 3)) > 180.f)
 		exit_error("Error\nCamera FOV must be in range[0.0, \
 			180.0]\nExiting...\n");
@@ -84,7 +84,7 @@ void	setup_direction(t_camera *cam, t_minirt *minirt)
 	cam->right = cross(cam->forward, dir);
 	if (mag2(cam->right) < EPSILON)
 		cam->right = cross(cam->forward,
-				(t_vec3){0.f, 0.f, 1.f});
+				(t_vec3){-1.f, 0.f, 0.f});
 	cam->up = cross(cam->right,
 			cam->forward);
 	normalize(&cam->forward);

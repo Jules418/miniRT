@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:49:40 by jules             #+#    #+#             */
-/*   Updated: 2024/06/03 18:42:26 by jules            ###   ########.fr       */
+/*   Updated: 2024/06/04 15:38:37 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@
 #  define M_PI 3.14159265359f
 # endif
 
-# define TEMP_WIDTH 1024
-# define TEMP_HEIGHT 640
+# define TEMP_WIDTH 1920
+# define TEMP_HEIGHT 1080
 
 # ifndef NB_THREADS
-#  define NB_THREADS 8
+#  define NB_THREADS 16
 # endif
 
 typedef struct s_camera

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:35:26 by jbanacze          #+#    #+#             */
-/*   Updated: 2024/06/03 17:23:55 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/04 15:27:28 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,22 @@ void	move(int key, t_dlist *cameras)
 {
 	if (key == XK_w)
 		cameras->content->pos = add(cameras->content->pos,
-				scale(cameras->content->forward, 10.f));
+				scale(cameras->content->forward, 1.f));
 	if (key == XK_s)
 		cameras->content->pos = sub(cameras->content->pos,
-				scale(cameras->content->forward, 10.f));
+				scale(cameras->content->forward, 1.f));
 	if (key == XK_a)
 		cameras->content->pos = sub(cameras->content->pos,
-				scale(cameras->content->right, 10.f));
+				scale(cameras->content->right, 1.f));
 	if (key == XK_d)
 		cameras->content->pos = add(cameras->content->pos,
-				scale(cameras->content->right, 10.f));
+				scale(cameras->content->right, 1.f));
 	if (key == XK_Control_L)
 		cameras->content->pos = sub(cameras->content->pos,
-				scale(cameras->content->up, 10.f));
+				scale(cameras->content->up, 1.f));
 	if (key == XK_space)
 		cameras->content->pos = add(cameras->content->pos,
-				scale(cameras->content->up, 10.f));
+				scale(cameras->content->up, 1.f));
 }
 
 void	move_camera(int key, t_minirt *minirt)
