@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 14:44:42 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/05/31 07:18:32 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/05 13:24:54 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ int	check_extension(char *filename)
 	i = 0;
 	while (filename[i])
 		i++;
-	if ((filename[i - 1] != 't' || filename[i - 2] != 'r' || filename[i
-				- 3] != '.') && filename[i - 4])
+	if (i < 4)
+		exit_error("Error\nWrong file extension\n");
+	if (filename[i - 1] != 't' || filename[i - 2] != 'r' || \
+											filename[i - 3] != '.')
 	{
 		exit_error("Error\nWrong file extension\n");
 	}

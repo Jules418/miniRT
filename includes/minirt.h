@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:49:40 by jules             #+#    #+#             */
-/*   Updated: 2024/06/04 23:13:18 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/05 17:20:44 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,7 @@ int			open_file(char *filename);
 char		**read_file(int fd, int nb_lines);
 double		ft_atof(const char *str);
 
+void		check_comma(char **s);
 bool		check_name(char *line, char *name);
 int			check_extension(char *filename);
 void		check_ambientlight(char *s);
@@ -186,6 +187,4 @@ t_dlist		*ft_dlistfirst(t_dlist *lst);
 
 void		multicam(int key, t_minirt *minirt);
 
-
-void check_comma(char **s);
 #endif

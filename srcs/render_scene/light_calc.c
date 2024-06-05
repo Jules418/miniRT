@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light_calc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 02:20:43 by jules             #+#    #+#             */
-/*   Updated: 2024/05/30 01:41:30 by jules            ###   ########.fr       */
+/*   Updated: 2024/06/05 13:37:45 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	vec_to_rgb(t_vec3 u)
 	int	g;
 	int	b;
 
-	r = (int)(fminf(u.x * 255.f, 255.f));
-	g = (int)(fminf(u.y * 255.f, 255.f));
-	b = (int)(fminf(u.z * 255.f, 255.f));
+	r = (int)(fmaxf(fminf(u.x * 255.f, 255.f), 0.f));
+	g = (int)(fmaxf(fminf(u.y * 255.f, 255.f), 0.f));
+	b = (int)(fmaxf(fminf(u.z * 255.f, 255.f), 0.f));
 	return ((r << 16) | (g << 8) | b);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_scene.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:18:03 by jbanacze          #+#    #+#             */
-/*   Updated: 2024/06/03 15:33:01 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/05 17:25:41 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	check_everything(char **map)
 			check_sphere(map[i]);
 		else if (check_name(map[i], "co"))
 			check_cone(map[i]);
-		else if (check_name(map[i], "\0"))
+		else if (check_name(map[i], "\n"))
 			;
 		else
 			exit_error("Error\nInvalid object name\nExiting...\n");
@@ -53,6 +53,33 @@ bool	check_name(char *line, char *name)
 		i++;
 	}
 	return (true);
+}
+
+void	check_alc(char **map)
+{
+	int		i;
+	int		alc[3];
+
+	i = 0;
+	ft_bzero(alc, 3 * sizeof(int));
+	while (map[i])
+	{
+		if (check_name(map[i], "A"))
+			alc[2]++;
+		if (check_name(map[i], "L"))
+			alc[1]++;
+		if (check_name(map[i], "C"))
+			alc[0]++;
+		i++;
+	}
+	if (alc[2] > 1)
+		exit_error("Error\nNot enough ambiant light\nExiting...\n");
+	if (alc[2] < 1)
+		exit_error("Error\nToo many ambiant light\nExiting...\n");
+	if (alc[1] == 0)
+		exit_error("Error\nNo light defined\nExiting...\n");
+	if (alc[0] == 0)
+		exit_error("Error\nNo camera defined\nExiting...\n");
 }
 
 void	init_everything(char **map, t_minirt *minirt)
@@ -87,6 +114,7 @@ void	init_scene(char **map, t_minirt *minirt)
 	t_scene	t;
 
 	check_everything(map);
+	check_alc(map);
 	t = malloc(sizeof(struct s_scene));
 	if (!t)
 		exit_error("Error\nMalloc failed in test_scene.c:184\nExiting...\n");
@@ -97,6 +125,5 @@ void	init_scene(char **map, t_minirt *minirt)
 	minirt->scene = t;
 	minirt->scene->objects = NULL;
 	minirt->scene->cameras = NULL;
-	minirt->scene->ambient_light = (t_vec3){-1.f, -1.f, -1.f};
 	init_everything(map, minirt);
 }

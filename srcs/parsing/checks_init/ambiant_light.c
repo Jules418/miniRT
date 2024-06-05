@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ambiant_light.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 19:33:50 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/06/04 22:14:53 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/05 14:51:22 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,8 @@ void	init_ambiantlight(char *s, t_minirt *minirt)
 	tmp2 = gc_split(tmp[2], ',');
 	if (!tmp2)
 		exit_error("Error in a malloc (parsing.c:93)");
-	if (minirt->scene->ambient_light.x == -1
-		&& minirt->scene->ambient_light.y == -1
-		&& minirt->scene->ambient_light.z == -1)
-		minirt->scene->ambient_light = scale((t_vec3)
-			{(float)ft_atof(tmp2[0]) / 255,
-				(float)ft_atof(tmp2[1]) / 255, (float)ft_atof(tmp2[2]) / 255},
-				ft_atof(tmp[1]));
-	else
-		exit_error("You can't have more than one ambiant light in the map");
+	minirt->scene->ambient_light = scale((t_vec3)
+		{(float)ft_atof(tmp2[0]) / 255,
+			(float)ft_atof(tmp2[1]) / 255, (float)ft_atof(tmp2[2]) / 255},
+			ft_atof(tmp[1]));
 }
