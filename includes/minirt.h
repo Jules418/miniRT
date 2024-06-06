@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:49:40 by jules             #+#    #+#             */
-/*   Updated: 2024/06/05 17:20:44 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/06/06 09:50:38 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@
 # ifndef NB_THREADS
 #  define NB_THREADS 16
 # endif
+
+ # define GC_SPLIT_ERROR "Error\ngc_split() returned value is wrong. Could be ether a map error or a malloc error\nExiting...\n"
 
 typedef struct s_camera
 {

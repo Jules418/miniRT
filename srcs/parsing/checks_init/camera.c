@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 20:05:42 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/06/04 22:13:24 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/06 10:20:40 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,20 @@ void	check_camera(char *s)
 
 	tmp = gc_split(s, ' ');
 	if (!tmp || len_split(tmp) != 4)
-		exit_error("Error\nMalloc failed in camera.c:19\nExiting...\n");
+		exit_error(GC_SPLIT_ERROR);
 	tmp2 = gc_split(tmp[1], ',');
 	if (!tmp2 || len_split(tmp2) != 3)
-		exit_error("Error\nMalloc failed in camera.c:20\nExiting...\n");
+		exit_error(GC_SPLIT_ERROR);
 	while (*tmp2)
 		ft_atof(*tmp2++);
 	tmp2 = gc_split(tmp[2], ',');
 	if (!tmp2 || len_split(tmp2) != 3)
-		exit_error("Error\nMalloc failed in camera.c:21\nExiting...\n");
-	if ((ft_atof(*tmp2) > 1.f || ft_atof(*tmp2) < -1.f) || (ft_atof(*(tmp2
-					+ 1)) > 1.f || ft_atof(*(tmp2 + 1)) < -1.f)
-		|| (ft_atof(*(tmp2 + 2)) > 1.f || ft_atof(*(tmp2 + 2)) < -1.f))
-		exit_error("Error\nCamera orientation must be in range[-1.0, \
-1.0]\nExiting...\n");
+		exit_error(GC_SPLIT_ERROR);
+	if (ft_atof(tmp2[0]) < -1 || ft_atof(tmp2[0]) > 1 || ft_atof(tmp2[1]) < -1
+		|| ft_atof(tmp2[1]) > 1 || ft_atof(tmp2[2]) < -1 || ft_atof(tmp2[2]) > 1
+		|| mag2((t_vec3){ft_atof(tmp2[0]), ft_atof(tmp2[1]), ft_atof(tmp2[2])}))
+		exit_error("Cylinder axis vector must be normalized ! \
+		\nExiting...\n");
 	if (ft_atof(*(tmp + 3)) < 0.f || ft_atof(*(tmp + 3)) > 180.f)
 		exit_error("Error\nCamera FOV must be in range[0.0, \
 			180.0]\nExiting...\n");

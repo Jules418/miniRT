@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:37:03 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/06/04 22:13:29 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/06 10:20:54 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	check_rgb_cone(char **tmp2)
 {
 	if (!tmp2 || len_split(tmp2) != 3)
-		exit_error("Error\nMalloc failed in cone.c:32\nExiting...\n");
+		exit_error(GC_SPLIT_ERROR);
 	while (*tmp2)
 	{
 		if (ft_atof(*tmp2) < 0 || ft_atof(*tmp2) > 255)
@@ -42,19 +42,20 @@ void	check_cone(char *s)
 
 	tmp = gc_split(s, ' ');
 	if (!tmp || len_split(tmp) != 6)
-		exit_error("Error\nMalloc failed in cone.c:29\nExiting...\n");
+		exit_error(GC_SPLIT_ERROR);
 	tmp2 = gc_split(tmp[1], ',');
 	if (!tmp2 || len_split(tmp2) != 3)
-		exit_error("Error\nMalloc failed in cone.c:32\nExiting...\n");
+		exit_error(GC_SPLIT_ERROR);
 	while (*tmp2)
 		ft_atof(*tmp2++);
 	tmp2 = gc_split(tmp[2], ',');
 	if (!tmp2 || len_split(tmp2) != 3)
-		exit_error("Error\nMalloc failed in cone.c:32\nExiting...\n");
-	while (*tmp2)
-		if (ft_atof(*tmp2) < -1 || ft_atof(*tmp2++) > 1)
-			exit_error("Cone axis vector must be normalized ! \
-            \nExiting...\n");
+		exit_error(GC_SPLIT_ERROR);
+	if (ft_atof(tmp2[0]) < -1 || ft_atof(tmp2[0]) > 1 || ft_atof(tmp2[1]) < -1
+		|| ft_atof(tmp2[1]) > 1 || ft_atof(tmp2[2]) < -1 || ft_atof(tmp2[2]) > 1
+		|| mag2((t_vec3){ft_atof(tmp2[0]), ft_atof(tmp2[1]), ft_atof(tmp2[2])}))
+		exit_error("Cylinder axis vector must be normalized ! \
+		\nExiting...\n");
 	if (ft_atof(tmp[3]) < 0 || ft_atof(tmp[3]) > 90)
 		exit_error("Cone angle must be positive and inferior to \
 		180 degrees!\nExiting...\n");
@@ -73,20 +74,20 @@ void	init_cone(char *s, t_minirt *minirt)
 
 	tmp = gc_split(s, ' ');
 	if (!tmp)
-		exit_error("Error\nMalloc failed in cone.c:55\nExiting...\n");
+		exit_error("Error\nMalloc failed in cone.c:74\nExiting...\n");
 	tmp2 = gc_split(tmp[1], ',');
 	if (!tmp2)
-		exit_error("Error\nMalloc failed in cone.c:58\nExiting...\n");
+		exit_error("Error\nMalloc failed in cone.c:77\nExiting...\n");
 	c = malloc(sizeof(t_cone));
 	if (!c)
-		exit_error("Error\nMalloc failed in cone.c:61\nExiting...\n");
+		exit_error("Error\nMalloc failed in cone.c:81\nExiting...\n");
 	c->pos = (t_vec3){ft_atof(tmp2[0]), ft_atof(tmp2[1]), ft_atof(tmp2[2])};
 	c->angle = ft_atof(tmp[3]) * (2 * M_PI) / 360.f;
 	c->height = ft_atof(tmp[4]);
 	c->cos2 = cosf(c->angle) * cosf(c->angle);
 	tmp2 = gc_split(tmp[2], ',');
 	if (!tmp2)
-		exit_error("Error\nMalloc failed in cone.c:66\nExiting...\n");
+		exit_error(GC_SPLIT_ERROR);
 	c->dir = (t_vec3){ft_atof(tmp2[0]), ft_atof(tmp2[1]), ft_atof(tmp2[2])};
 	create_cone_obj(minirt, c, tmp[5]);
 }
@@ -98,7 +99,7 @@ void	create_cone_obj(t_minirt *minirt, t_cone *c, char *s)
 
 	tmp2 = gc_split(s, ',');
 	if (!tmp2)
-		exit_error("Error\nMalloc failed in cone.c:71\nExiting...\n");
+		exit_error("Error\nMalloc failed in cone.c:99\nExiting...\n");
 	o = create_obj(cone, c, (t_vec3){ft_atof(tmp2[0]) / 255, ft_atof(tmp2[1])
 			/ 255, ft_atof(tmp2[2]) / 255});
 	ft_lstadd_back(&minirt->scene->objects, ft_lstnew(o));

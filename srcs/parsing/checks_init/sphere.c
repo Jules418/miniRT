@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 00:45:56 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/06/04 22:13:43 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/06 10:18:55 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,17 @@ void	check_sphere(char *s)
 
 	tmp = gc_split(s, ' ');
 	if (!tmp || len_split(tmp) != 4)
-		exit_error("Error\nMalloc failed in sphere.c:27\nExiting...\n");
+		exit_error(GC_SPLIT_ERROR);
 	tmp2 = gc_split(tmp[1], ',');
 	if (!tmp2 || len_split(tmp2) != 3)
-		exit_error("Error\nMalloc failed in sphere.c:30\nExiting...\n");
+		exit_error(GC_SPLIT_ERROR);
 	while (*tmp2)
 		ft_atof(*tmp2++);
 	if (ft_atof(tmp[2]) < 0)
 		exit_error("Sphere diameter must be positive !\nExiting...\n");
 	tmp2 = gc_split(tmp[3], ',');
 	if (!tmp2 || len_split(tmp2) != 3)
-		exit_error("Error\nMalloc failed in sphere.c:30\nExiting...\n");
+		exit_error(GC_SPLIT_ERROR);
 	while (*tmp2)
 	{
 		if (ft_atof(*tmp2) < 0 || ft_atof(*tmp2) > 255)
@@ -57,19 +57,19 @@ void	init_sphere(char *s, t_minirt *minirt)
 
 	tmp = gc_split(s, ' ');
 	if (!tmp)
-		exit_error("Error\nMalloc failed in sphere.c:55\nExiting...\n");
+		exit_error("Error\nMalloc failed in sphere.c:58\nExiting...\n");
 	tmp2 = gc_split(tmp[1], ',');
 	if (!tmp2)
-		exit_error("Error\nMalloc failed in sphere.c:58\nExiting...\n");
+		exit_error("Error\nMalloc failed in sphere.c:61\nExiting...\n");
 	sp = malloc(sizeof(t_sphere));
 	if (!sp)
-		exit_error("Error\nMalloc failed in sphere.c:61\nExiting...\n");
+		exit_error("Error\nMalloc failed in sphere.c:64\nExiting...\n");
 	sp->pos = (t_vec3){ft_atof(*tmp2), ft_atof(*(tmp2 + 1)), ft_atof(*(tmp2
 				+ 2))};
 	sp->radius = ft_atof(tmp[2]);
 	tmp2 = gc_split(tmp[3], ',');
 	if (!tmp2)
-		exit_error("Error\nMalloc failed in sphere.c:66\nExiting...\n");
+		exit_error("Error\nMalloc failed in sphere.c:70\nExiting...\n");
 	o = create_obj(sphere, sp, (t_vec3){ft_atof(*tmp2) / 255, ft_atof(*(tmp2
 					+ 1)) / 255, ft_atof(*(tmp2 + 2)) / 255});
 	ft_lstadd_back(&minirt->scene->objects, ft_lstnew(o));

@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 00:06:05 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/06/04 22:13:38 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/06 10:02:40 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	check_light(char *s)
 
 	tmp = gc_split(s, ' ');
 	if (!tmp || len_split(tmp) != 4)
-		exit_error("Error\nMalloc failed in camera.c:19\nExiting...\n");
+		exit_error(GC_SPLIT_ERROR);
 	tmp2 = gc_split(tmp[1], ',');
 	if (!tmp2 || len_split(tmp2) < 3)
-		exit_error("Error\nMalloc failed in camera.c:19\nExiting...\n");
+		exit_error(GC_SPLIT_ERROR);
 	while (*tmp2)
 		ft_atof(*tmp2++);
 	if (ft_atof(tmp[2]) < 0.0 || ft_atof(tmp[2]) > 1.0)
@@ -38,7 +38,7 @@ void	check_light(char *s)
         \nExiting...\n");
 	tmp2 = gc_split(tmp[3], ',');
 	if (!tmp2 || len_split(tmp2) != 3)
-		exit_error("Error\nMalloc failed in light.c:19\nExiting...\n");
+		exit_error(GC_SPLIT_ERROR);
 	while (*tmp2)
 	{
 		if (ft_atof(*tmp2) < 0 || ft_atof(*tmp2) > 255)
@@ -57,19 +57,19 @@ void	init_light(char *s, t_minirt *minirt)
 
 	tmp = gc_split(s, ' ');
 	if (!tmp)
-		exit_error("Error\nMalloc failed in camera.c:56\nExiting...\n");
+		exit_error("Error\nMalloc failed in camera.c:58\nExiting...\n");
 	tmp2 = gc_split(tmp[1], ',');
 	if (!tmp2)
-		exit_error("Error\nMalloc failed in camera.c:59\nExiting...\n");
+		exit_error("Error\nMalloc failed in camera.c:61\nExiting...\n");
 	light = malloc(sizeof(t_light));
 	if (!light)
-		exit_error("Error\nMalloc failed in camera.c:62\nExiting...\n");
+		exit_error("Error\nMalloc failed in camera.c:64\nExiting...\n");
 	light->pos = (t_vec3){ft_atof(*tmp2), ft_atof(*(tmp2 + 1)),
 		ft_atof(*(tmp2 + 2))};
 	light->brightness = ft_atof(tmp[2]);
 	tmp2 = gc_split(tmp[3], ',');
 	if (!tmp2)
-		exit_error("Error\nMalloc failed in camera.c:63\nExiting...\n");
+		exit_error("Error\nMalloc failed in camera.c:70\nExiting...\n");
 	light->color = (t_vec3){ft_atof(*tmp2) / 255, ft_atof(*(tmp2
 				+ 1)) / 255, ft_atof(*(tmp2 + 2)) / 255};
 	ft_lstadd_front(&minirt->scene->lights, ft_lstnew(light));

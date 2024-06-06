@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 03:27:16 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/06/04 22:13:35 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/06 10:20:13 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,19 @@ void	check_cylinder(char *s)
 
 	tmp = gc_split(s, ' ');
 	if (!tmp || len_split(tmp) != 6)
-		exit_error("Error\nMalloc failed in cylinder.c:29\nExiting...\n");
+		exit_error(GC_SPLIT_ERROR);
 	tmp2 = gc_split(tmp[1], ',');
 	if (!tmp2 || len_split(tmp2) != 3)
-		exit_error("Error\nMalloc failed in cylinder.c:32\nExiting...\n");
+		exit_error(GC_SPLIT_ERROR);
 	while (*tmp2)
 		ft_atof(*tmp2++);
 	tmp2 = gc_split(tmp[2], ',');
 	if (!tmp2 || len_split(tmp2) != 3)
-		exit_error("Error\nMalloc failed in cylinder.c:32\nExiting...\n");
-	while (*tmp2)
-		if (ft_atof(*tmp2) < -1 || ft_atof(*tmp2++) > 1)
-			exit_error("Cylinder axis vector must be normalized ! \
-			\nExiting...\n");
+		exit_error(GC_SPLIT_ERROR);
+	if (ft_atof(tmp2[0]) < -1 || ft_atof(tmp2[0]) > 1 || ft_atof(tmp2[1]) < -1
+		|| ft_atof(tmp2[1]) > 1 || ft_atof(tmp2[2]) < -1 || ft_atof(tmp2[2]) > 1
+		|| mag2((t_vec3){ft_atof(tmp2[0]), ft_atof(tmp2[1]), ft_atof(tmp2[2])}))
+		exit_error("Cylinder axis vector must be normalized !\nExiting...\n");
 	if (ft_atof(tmp[3]) < 0)
 		exit_error("Cylinder diameter must be positive !\nExiting...\n");
 	if (ft_atof(tmp[4]) < 0)
@@ -55,7 +55,7 @@ void	check_cylinder(char *s)
 void	check_rgb_cylinder(char **tmp2)
 {
 	if (!tmp2 || len_split(tmp2) != 3)
-		exit_error("Error\nMalloc failed in cylinder.c:32\nExiting...\n");
+		exit_error(GC_SPLIT_ERROR);
 	while (*tmp2)
 	{
 		if (ft_atof(*tmp2) < 0 || ft_atof(*tmp2) > 255)
@@ -73,24 +73,24 @@ void	init_cylinder(char *s, t_minirt *minirt)
 
 	tmp = gc_split(s, ' ');
 	if (!tmp)
-		exit_error("Error\nMalloc failed in cylinder.c:55\nExiting...\n");
+		exit_error("Error\nMalloc failed in cylinder.c:75\nExiting...\n");
 	tmp2 = gc_split(tmp[1], ',');
 	if (!tmp2)
-		exit_error("Error\nMalloc failed in cylinder.c:58\nExiting...\n");
+		exit_error("Error\nMalloc failed in cylinder.c:78\nExiting...\n");
 	cy = malloc(sizeof(t_cylinder));
 	if (!cy)
-		exit_error("Error\nMalloc failed in cylinder.c:61\nExiting...\n");
+		exit_error("Error\nMalloc failed in cylinder.c:81\nExiting...\n");
 	cy->pos = (t_vec3){ft_atof(tmp2[0]), ft_atof(tmp2[1]), ft_atof(tmp2[2])};
 	cy->height = ft_atof(tmp[4]);
 	cy->width = ft_atof(tmp[3]);
 	tmp2 = gc_split(tmp[2], ',');
 	if (!tmp2)
-		exit_error("Error\nMalloc failed in cylinder.c:66\nExiting...\n");
+		exit_error("Error\nMalloc failed in cylinder.c:87\nExiting...\n");
 	cy->dir = normalized((t_vec3){ft_atof(tmp2[0]), ft_atof(tmp2[1]),
 			ft_atof(tmp2[2])});
 	tmp2 = gc_split(tmp[5], ',');
 	if (!tmp2)
-		exit_error("Error\nMalloc failed in cylinder.c:71\nExiting...\n");
+		exit_error("Error\nMalloc failed in cylinder.c:92\nExiting...\n");
 	create_cylinder_obj(cy, tmp2, minirt);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ambiant_light.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 19:33:50 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/06/05 14:51:22 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/06/06 10:04:34 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ void	check_ambientlight(char *s)
 	i = 0;
 	tmp = gc_split(s, ' ');
 	if (!tmp || len_split(tmp) != 3)
-		exit_error("Error in a malloc (parsing.c:64)");
+		exit_error("GC_SPLIT_ERROR");
 	if (ft_atof(tmp[1]) < 0.0 || ft_atof(tmp[1]) > 1.0)
 		exit_error("Ambiant light ratio must in range [0.0,1.0] !\
 		\nExiting...\n");
 	tmp = gc_split(tmp[2], ',');
 	if (!tmp || len_split(tmp) <= 2)
-		exit_error("Error in a malloc (parsing.c:69)");
+		exit_error(GC_SPLIT_ERROR);
 	while (tmp[i])
 	{
 		if (ft_atof(tmp[i]) < 0 || ft_atof(tmp[i]) > 255)
