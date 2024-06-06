@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   light_calc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 02:20:43 by jules             #+#    #+#             */
-/*   Updated: 2024/06/05 13:37:45 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/06/06 10:24:40 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minirt.h>
+#include "minirt.h"
 
 int	vec_to_rgb(t_vec3 u)
 {

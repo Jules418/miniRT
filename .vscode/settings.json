@@ -8,7 +8,8 @@
 		"utils.h": "c",
 		"ray.h": "c",
 		"random": "c",
-		"plane.h": "c"
+		"plane.h": "c",
+		"stdio.h": "c"
 	},
 	"makefile.launchConfigurations": [
 		{

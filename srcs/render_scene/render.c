@@ -6,12 +6,11 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:09:59 by jbanacze          #+#    #+#             */
-/*   Updated: 2024/06/03 17:16:56 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/06 10:24:24 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-#include <stdio.h>
 
 t_ray	get_ray(t_scene scene, int x, int y)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ray_cast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 02:23:51 by jules             #+#    #+#             */
-/*   Updated: 2024/05/29 17:35:52 by jules            ###   ########.fr       */
+/*   Updated: 2024/06/06 10:24:34 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minirt.h>
+#include "minirt.h"
 
 float	cast_ray(t_ray ray, t_objects *obj)
 {
