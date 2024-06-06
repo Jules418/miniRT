@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:49:40 by jules             #+#    #+#             */
-/*   Updated: 2024/06/06 13:24:16 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:03:46 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 # include <mlx_int.h>
 # include <stdlib.h>
 # include <math.h>
-# include "geometry.h"
-# include "vector.h"
-# include "libft.h"
 # include <fcntl.h>
 # include <stdbool.h>
 # include <limits.h>
 # include <pthread.h>
+# include "geometry.h"
+# include "vector.h"
+# include "libft.h"
 
 # ifndef M_PI
 #  define M_PI 3.14159265359f

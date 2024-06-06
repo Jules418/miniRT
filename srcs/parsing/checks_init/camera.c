@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 20:05:42 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/06/06 10:43:51 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/06 12:33:24 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	check_camera(char *s)
 	if (ft_atof(tmp2[0]) < -1 || ft_atof(tmp2[0]) > 1 || ft_atof(tmp2[1]) < -1
 		|| ft_atof(tmp2[1]) > 1 || ft_atof(tmp2[2]) < -1 || ft_atof(tmp2[2]) > 1
 		||!is_normalized(tmp2[0], tmp2[1], tmp2[2]))
-		exit_error("Cylinder axis vector must be normalized ! \
+		exit_error("Camera axis vector must be normalized ! \
 		\nExiting...\n");
 	if (ft_atof(*(tmp + 3)) < 0.f || ft_atof(*(tmp + 3)) > 180.f)
 		exit_error("Error\nCamera FOV must be in range[0.0, \
