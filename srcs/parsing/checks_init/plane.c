@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 01:35:13 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/06/06 10:22:25 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/06 10:43:43 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	check_plane(char *s)
 		exit_error(GC_SPLIT_ERROR);
 	if (ft_atof(tmp2[0]) < -1 || ft_atof(tmp2[0]) > 1 || ft_atof(tmp2[1]) < -1
 		|| ft_atof(tmp2[1]) > 1 || ft_atof(tmp2[2]) < -1 || ft_atof(tmp2[2]) > 1
-		||!mag2((t_vec3){ft_atof(tmp2[0]), ft_atof(tmp2[1]), ft_atof(tmp2[2])}))
+		||!is_normalized(tmp2[0], tmp2[1], tmp2[2]))
 		exit_error("Cylinder axis vector must be normalized ! \
 		\nExiting...\n");
 	tmp2 = gc_split(tmp[3], ',');

@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 20:05:42 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/06/06 10:22:19 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/06 10:43:51 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	check_camera(char *s)
 		exit_error(GC_SPLIT_ERROR);
 	if (ft_atof(tmp2[0]) < -1 || ft_atof(tmp2[0]) > 1 || ft_atof(tmp2[1]) < -1
 		|| ft_atof(tmp2[1]) > 1 || ft_atof(tmp2[2]) < -1 || ft_atof(tmp2[2]) > 1
-		||!mag2((t_vec3){ft_atof(tmp2[0]), ft_atof(tmp2[1]), ft_atof(tmp2[2])}))
+		||!is_normalized(tmp2[0], tmp2[1], tmp2[2]))
 		exit_error("Cylinder axis vector must be normalized ! \
 		\nExiting...\n");
 	if (ft_atof(*(tmp + 3)) < 0.f || ft_atof(*(tmp + 3)) > 180.f)
