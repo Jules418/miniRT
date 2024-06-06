@@ -6,7 +6,7 @@
 /*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 14:44:42 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/06/05 13:24:54 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/06/06 11:55:45 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ int	check_extension(char *filename)
 		exit_error("Error\nWrong file extension\n");
 	if (filename[i - 1] != 't' || filename[i - 2] != 'r' || \
 											filename[i - 3] != '.')
-	{
 		exit_error("Error\nWrong file extension\n");
-	}
 	return (1);
 }

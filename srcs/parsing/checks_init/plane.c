@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 01:35:13 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/06/06 10:43:43 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/06 12:13:59 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	check_plane(char *s)
 	if (ft_atof(tmp2[0]) < -1 || ft_atof(tmp2[0]) > 1 || ft_atof(tmp2[1]) < -1
 		|| ft_atof(tmp2[1]) > 1 || ft_atof(tmp2[2]) < -1 || ft_atof(tmp2[2]) > 1
 		||!is_normalized(tmp2[0], tmp2[1], tmp2[2]))
-		exit_error("Cylinder axis vector must be normalized ! \
+		exit_error("Plane axis vector must be normalized ! \
 		\nExiting...\n");
 	tmp2 = gc_split(tmp[3], ',');
 	if (!tmp2 || len_split(tmp2) != 3)

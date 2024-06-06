@@ -6,7 +6,7 @@
 /*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:18:03 by jbanacze          #+#    #+#             */
-/*   Updated: 2024/06/05 17:25:41 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/06/06 12:02:46 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,19 @@ void	check_everything(char **map)
 	i = 0;
 	while (map[i])
 	{
-		if (check_name(map[i], "A"))
+		if (check_name(map[i], "A "))
 			check_ambientlight(map[i]);
-		else if (check_name(map[i], "C"))
+		else if (check_name(map[i], "C "))
 			check_camera(map[i]);
-		else if (check_name(map[i], "L"))
+		else if (check_name(map[i], "L "))
 			check_light(map[i]);
-		else if (check_name(map[i], "pl"))
+		else if (check_name(map[i], "pl "))
 			check_plane(map[i]);
-		else if (check_name(map[i], "cy"))
+		else if (check_name(map[i], "cy "))
 			check_cylinder(map[i]);
-		else if (check_name(map[i], "sp"))
+		else if (check_name(map[i], "sp "))
 			check_sphere(map[i]);
-		else if (check_name(map[i], "co"))
+		else if (check_name(map[i], "co "))
 			check_cone(map[i]);
 		else if (check_name(map[i], "\n"))
 			;
@@ -64,11 +64,11 @@ void	check_alc(char **map)
 	ft_bzero(alc, 3 * sizeof(int));
 	while (map[i])
 	{
-		if (check_name(map[i], "A"))
+		if (check_name(map[i], "A "))
 			alc[2]++;
-		if (check_name(map[i], "L"))
+		if (check_name(map[i], "L "))
 			alc[1]++;
-		if (check_name(map[i], "C"))
+		if (check_name(map[i], "C "))
 			alc[0]++;
 		i++;
 	}
@@ -117,7 +117,7 @@ void	init_scene(char **map, t_minirt *minirt)
 	check_alc(map);
 	t = malloc(sizeof(struct s_scene));
 	if (!t)
-		exit_error("Error\nMalloc failed in test_scene.c:184\nExiting...\n");
+		exit_error("Error\nMalloc failed in test_scene.c:118\nExiting...\n");
 	t->should_render = 1;
 	t->height = TEMP_HEIGHT;
 	t->width = TEMP_WIDTH;

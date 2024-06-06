@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder_intersection.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 15:25:59 by jules             #+#    #+#             */
-/*   Updated: 2024/05/26 19:58:47 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/06 13:58:50 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ float	caps_intersection(t_ray ray, t_cylinder cy)
 	if (t2 > 0.f)
 		if (mag2(sub(move_ray(ray, t2), p2.pos)) > (cy.width * cy.width))
 			t2 = -1.f;
+	if (t1 < EPSILON)
+		t1 = -1.f;
+	if (t2 < EPSILON)
+		t2 = -1.f;
 	return (min_cast(t1, t2));
 }
 
@@ -48,7 +52,7 @@ float	filter_hit_points(t_ray ray, t_cylinder cy, float coefs[6])
 	if (t > 0.f)
 	{
 		hit_point = move_ray(ray, t);
-		if (mag2(sub(hit_point, cy.pos)) < (cy.height * cy.height / 4.f \
+		if (mag2(sub(hit_point, cy.pos)) < ((cy.height * cy.height) / 4.f \
 				+ cy.width * cy.width))
 			return (t);
 	}
@@ -56,7 +60,7 @@ float	filter_hit_points(t_ray ray, t_cylinder cy, float coefs[6])
 	if (t > 0.f)
 	{
 		hit_point = move_ray(ray, t);
-		if (mag2(sub(hit_point, cy.pos)) < (cy.height * cy.height / 4.f \
+		if (mag2(sub(hit_point, cy.pos)) < ((cy.height * cy.height) / 4.f \
 				+ cy.width * cy.width))
 			return (t);
 	}
@@ -70,6 +74,8 @@ float	sides_intersection(t_ray ray, t_cylinder cy)
 
 	oc = sub(ray.origin, cy.pos);
 	coefs[0] = mag2(inter_op(ray.dir, cy.dir));
+	if (fabsf(coefs[0]) < EPSILON)
+		return (-1.f);
 	coefs[1] = 2.f * dot(inter_op(ray.dir, cy.dir), inter_op(oc, cy.dir));
 	coefs[2] = mag2(inter_op(oc, cy.dir)) - (cy.width * cy.width);
 	solve_quadratic(coefs);

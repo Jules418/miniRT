@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cone.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:37:03 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/06/06 10:42:56 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/06 12:13:47 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	check_cone(char *s)
 	if (ft_atof(tmp2[0]) < -1 || ft_atof(tmp2[0]) > 1 || ft_atof(tmp2[1]) < -1
 		|| ft_atof(tmp2[1]) > 1 || ft_atof(tmp2[2]) < -1 || ft_atof(tmp2[2]) > 1
 		||!is_normalized(tmp2[0], tmp2[1], tmp2[2]))
-		exit_error("Cylinder axis vector must be normalized ! \
+		exit_error("Cone axis vector must be normalized ! \
 		\nExiting...\n");
 	if (ft_atof(tmp[3]) < 0 || ft_atof(tmp[3]) > 90)
 		exit_error("Cone angle must be positive and inferior to \

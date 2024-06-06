@@ -112,7 +112,7 @@ rre:	ffclean
 
 .PHONY: norm
 norm:
-	norminette srcs vectort geometry includes libft
+	norminette srcs vector geometry includes libft
 
 -include $(DEPS)
 $(DIR_BUILD)%.o : $(SRC_PATH)%.c
