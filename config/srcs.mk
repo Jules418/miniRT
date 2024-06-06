@@ -18,6 +18,7 @@ PARSING_SRCS = parsing/parsing.c \
 				parsing/close.c \
 				parsing/open.c \
 				parsing/read.c \
+				parsing/is_normalized.c \
 				parsing/checks_init/ambiant_light.c \
 				parsing/checks_init/camera.c \
 				parsing/checks_init/light.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jules <jules@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 14:49:40 by jules             #+#    #+#             */
-/*   Updated: 2024/06/06 09:50:38 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/06 10:38:01 by jules            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@
 #  define NB_THREADS 16
 # endif
 
- # define GC_SPLIT_ERROR "Error\ngc_split() returned value is wrong. Could be ether a map error or a malloc error\nExiting...\n"
+# define GC_SPLIT_ERROR "Error\ngc_split() returned value is wrong. \
+Could be ether a map error or a malloc error\nExiting...\n"
 
 typedef struct s_camera
 {
@@ -165,6 +166,7 @@ void		check_cylinder(char *s);
 void		check_everything(char **map);
 void		check_rgb_cylinder(char **tmp2);
 void		check_cone(char *s);
+bool		is_normalized(char *x, char *y, char *z);
 
 void		setup_direction(t_camera *cam, t_minirt *minirt);
 
