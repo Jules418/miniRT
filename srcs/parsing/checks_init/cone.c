@@ -6,7 +6,7 @@
 /*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:37:03 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/06/06 10:20:54 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/06 10:22:15 by lcamerly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	check_cone(char *s)
 		exit_error(GC_SPLIT_ERROR);
 	if (ft_atof(tmp2[0]) < -1 || ft_atof(tmp2[0]) > 1 || ft_atof(tmp2[1]) < -1
 		|| ft_atof(tmp2[1]) > 1 || ft_atof(tmp2[2]) < -1 || ft_atof(tmp2[2]) > 1
-		|| mag2((t_vec3){ft_atof(tmp2[0]), ft_atof(tmp2[1]), ft_atof(tmp2[2])}))
+		||!mag2((t_vec3){ft_atof(tmp2[0]), ft_atof(tmp2[1]), ft_atof(tmp2[2])}))
 		exit_error("Cylinder axis vector must be normalized ! \
 		\nExiting...\n");
 	if (ft_atof(tmp[3]) < 0 || ft_atof(tmp[3]) > 90)
