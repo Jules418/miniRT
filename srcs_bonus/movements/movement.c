@@ -6,11 +6,11 @@
 /*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:35:26 by jbanacze          #+#    #+#             */
-/*   Updated: 2024/06/04 15:27:28 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/06/07 10:26:14 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "minirt_bonus.h"
 
 bool	is_movement_key(int key)
 {

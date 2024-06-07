@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minirt.h                                           :+:      :+:    :+:   */
+/*   minirt_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 14:49:40 by jules             #+#    #+#             */
-/*   Updated: 2024/06/07 10:42:38 by jbanacze         ###   ########.fr       */
+/*   Created: 2024/06/07 10:23:06 by jbanacze          #+#    #+#             */
+/*   Updated: 2024/06/07 10:24:33 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#ifndef MINIRT_BONUS_H
+# define MINIRT_BONUS_H
 
 # include <mlx.h>
 # include <mlx_int.h>
@@ -23,6 +23,7 @@
 # include <fcntl.h>
 # include <stdbool.h>
 # include <limits.h>
+# include <pthread.h>
 
 # ifndef M_PI
 #  define M_PI 3.14159265359f
@@ -30,6 +31,10 @@
 
 # define TEMP_WIDTH 1920
 # define TEMP_HEIGHT 1080
+
+# ifndef NB_THREADS
+#  define NB_THREADS 16
+# endif
 
 # define GC_SPLIT_ERROR "Error\ngc_split() returned value is wrong. \
 Could be ether a map error or a malloc error\nExiting...\n"
@@ -64,7 +69,8 @@ typedef enum e_type
 {
 	sphere,
 	cylinder,
-	plane
+	plane,
+	cone
 }	t_type;
 
 typedef struct s_object
@@ -108,6 +114,13 @@ typedef struct s_minirt
 	t_scene	scene;
 }	t_minirt;
 
+typedef struct s_threadarg
+{
+	t_minirt	*minirt;
+	int			start;
+	int			end;
+}	t_threadarg;
+
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void		init_minirt(t_minirt *minirt);
 void		free_scene(t_scene scene);
@@ -123,13 +136,14 @@ int			vec_to_rgb(t_vec3 u);
 t_vec3		find_normal(t_objects *obj, t_vec3 hit_pos);
 t_vec3		diffuse_light(t_hitpoint hit, t_light *light);
 int			in_light(t_scene scene, t_hitpoint hit, t_light *light);
+t_vec3		specular_light(t_ray ray, t_hitpoint hit, t_light *light);
 
 void		yaw(int key, t_dlist *minirt);
 void		pitch(int key, t_dlist *minirt);
 void		roll(int key, t_dlist *minirt);
 void		move_camera(int key, t_minirt *minirt);
 
-void		render_scene(t_minirt *minirt);
+int			render_scene(t_minirt *minirt);
 int			input(int key, t_minirt *minirt);
 
 char		**parsing(char **av);
@@ -151,6 +165,7 @@ void		check_plane(char *s);
 void		check_cylinder(char *s);
 void		check_everything(char **map);
 void		check_rgb_cylinder(char **tmp2);
+void		check_cone(char *s);
 bool		is_normalized(char *x, char *y, char *z);
 
 void		setup_direction(t_camera *cam, t_minirt *minirt);
@@ -164,6 +179,8 @@ void		init_cylinder(char *s, t_minirt *minirt);
 void		create_cylinder_obj(t_cylinder *cy, char **tmp2, t_minirt *minirt);
 void		init_everything(char **map, t_minirt *minirt);
 void		init_scene(char **map, t_minirt *minirt);
+void		init_cone(char *s, t_minirt *minirt);
+void		create_cone_obj(t_minirt *minirt, t_cone *c, char *s);
 
 t_objects	*create_obj(t_type type, void *obj, t_vec3 color);
 
@@ -171,5 +188,7 @@ t_dlist		*ft_dlstlast(t_dlist *lst);
 t_dlist		*ft_dlstnew(void *content);
 void		ft_dlstadd_back(t_dlist **alst, t_dlist *new);
 t_dlist		*ft_dlistfirst(t_dlist *lst);
+
+void		multicam(int key, t_minirt *minirt);
 
 #endif

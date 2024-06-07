@@ -6,11 +6,11 @@
 /*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 16:32:22 by jules             #+#    #+#             */
-/*   Updated: 2024/06/07 10:40:19 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/06/07 10:26:14 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "minirt_bonus.h"
 
 void	init_minirt(t_minirt *minirt)
 {
@@ -73,6 +73,8 @@ void	free_scene(t_scene scene)
 		else if (tmp_obj->obj_type == (t_type)plane)
 			free(tmp_obj->obj);
 		else if (tmp_obj->obj_type == (t_type)cylinder)
+			free(tmp_obj->obj);
+		else if (tmp_obj->obj_type == (t_type)cone)
 			free(tmp_obj->obj);
 		free(tmp->content);
 		free(tmp);

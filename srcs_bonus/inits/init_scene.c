@@ -6,11 +6,11 @@
 /*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:18:03 by jbanacze          #+#    #+#             */
-/*   Updated: 2024/06/07 11:50:32 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/06/07 10:26:14 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "minirt_bonus.h"
 
 void	check_everything(char **map)
 {
@@ -31,6 +31,8 @@ void	check_everything(char **map)
 			check_cylinder(map[i]);
 		else if (check_name(map[i], "sp "))
 			check_sphere(map[i]);
+		else if (check_name(map[i], "co "))
+			check_cone(map[i]);
 		else if (check_name(map[i], "\n"))
 			;
 		else
@@ -70,12 +72,14 @@ void	check_alc(char **map)
 			alc[0]++;
 		i++;
 	}
-	if (alc[2] != 1)
-		exit_error("Error\nWrong number of ambiant light\nExiting...\n");
-	if (alc[1] != 1)
-		exit_error("Error\nWrong number of light defined\nExiting...\n");
-	if (alc[0] != 1)
-		exit_error("Error\nWrong number of camera defined\nExiting...\n");
+	if (alc[2] > 1)
+		exit_error("Error\nNot enough ambiant light\nExiting...\n");
+	if (alc[2] < 1)
+		exit_error("Error\nToo many ambiant light\nExiting...\n");
+	if (alc[1] == 0)
+		exit_error("Error\nNo light defined\nExiting...\n");
+	if (alc[0] == 0)
+		exit_error("Error\nNo camera defined\nExiting...\n");
 }
 
 void	init_everything(char **map, t_minirt *minirt)
@@ -99,6 +103,8 @@ void	init_everything(char **map, t_minirt *minirt)
 			init_cylinder(map[i], minirt);
 		else if (check_name(map[i], "sp"))
 			init_sphere(map[i], minirt);
+		else if (check_name(map[i], "co"))
+			init_cone(map[i], minirt);
 		i++;
 	}
 }

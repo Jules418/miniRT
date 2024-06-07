@@ -6,11 +6,11 @@
 /*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 02:23:51 by jules             #+#    #+#             */
-/*   Updated: 2024/06/07 10:47:41 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/06/07 10:26:14 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "minirt_bonus.h"
 
 float	cast_ray(t_ray ray, t_objects *obj)
 {
@@ -20,6 +20,8 @@ float	cast_ray(t_ray ray, t_objects *obj)
 		return (plane_intersection(ray, *(t_plane *)obj->obj));
 	if (obj->obj_type == (t_type)cylinder)
 		return (cylinder_intersection(ray, *(t_cylinder *)obj->obj));
+	if (obj->obj_type == (t_type)cone)
+		return (cone_intersection(ray, *(t_cone *)obj->obj));
 	return (-1.f);
 }
 
