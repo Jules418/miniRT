@@ -6,11 +6,11 @@
 /*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 22:54:08 by jules             #+#    #+#             */
-/*   Updated: 2024/06/07 10:48:23 by jbanacze         ###   ########.fr       */
+/*   Updated: 2024/06/07 10:26:14 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "minirt_bonus.h"
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -22,7 +22,8 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 int	draw_loop(t_minirt *minirt)
 {
-	render_scene(minirt);
+	if (render_scene(minirt))
+		close_minirt(minirt);
 	mlx_put_image_to_window(minirt->mlx, minirt->mlx_win, minirt->img.img, 0, \
 		0);
 	return (0);
@@ -32,6 +33,8 @@ int	input(int key, t_minirt *minirt)
 {
 	if (key == XK_Escape)
 		close_minirt(minirt);
+	move_camera(key, minirt);
+	multicam(key, minirt);
 	return (0);
 }
 

@@ -1,9 +1,13 @@
-SRCS=			main.c \
+SRCS =			main.c \
 				$(TEST_SRCS) \
 				$(INITS_SRCS) \
 				$(RENDER_SRCS) \
 				$(PARSING_SRCS) \
 				$(GARBAGE_COLLECTION_SRCS) \
+				$(CAMERA_DLIST_SRCS)
+
+SRCS_BONUS = $(SRCS) \
+				$(PARSING_BONUS) \
 				$(MOVEMENT_SRCS)
 
 INITS_SRCS = inits/initializer.c \
@@ -24,9 +28,12 @@ PARSING_SRCS = parsing/parsing.c \
 				parsing/checks_init/light.c \
 				parsing/checks_init/sphere.c \
 				parsing/checks_init/plane.c \
-				parsing/checks_init/cone.c \
 				parsing/checks_init/cylinder.c \
 				parsing/ft_atof.c
+
+CAMERA_DLIST_SRCS = camera_dlist/camera_dlist.c
+
+PARSING_BONUS = parsing/checks_init/cone.c
 
 GARBAGE_COLLECTION_SRCS = garbage_collector/alloc.c \
 							garbage_collector/free.c \

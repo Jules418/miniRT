@@ -1,11 +1,18 @@
 NAME				=	miniRT
 
 include config/srcs.mk
+
 SRC_PATH			=	srcs/
-DIR_BUILD			=	.build/
+SRC_BONUS_PATH		=	srcs_bonus/
+
 OBJS				=	$(patsubst %.c, $(DIR_BUILD)%.o, $(SRCS))
-OBJS_TEST			=	$(patsubst %.c, $(DIR_BUILD)%.o, $(TEST))
+OBJS_BONUS			=	$(patsubst %.c, $(DIR_BUILD)%.o, $(SRCS_BONUS))
+
 DEPS				=	$(patsubst %.c, $(DIR_BUILD)%.d, $(SRCS))
+DEPS_BONUS			=	$(patsubst %.c, $(DIR_BUILD)%.d, $(SRCS_BONUS))
+
+OBJS_TEST			=	$(patsubst %.c, $(DIR_BUILD)%.o, $(TEST))
+DIR_BUILD			=	.build/
 DEPS_FLAGS			=	-MMD -MP
 BASE_CFLAGS			=	-Wall -Werror -Wextra -O2 -g3
 BASE_DEBUG_CFLAGS	=	-g3
@@ -69,50 +76,60 @@ DEPENDENCIES =				\
 	$(VECTOR_A) 			\
 	$(LIBFT_A)
 
-.PHONY:		all
+
 all:
 	$(MAKE_MINILIBX)
-	$(MAKE_GEOMETRY)
 	$(MAKE_VECTOR)
+	$(MAKE_GEOMETRY)
 	$(MAKE_LIBFT)
 	$(MAKE) $(NAME)
+
+bonus:
+	$(MAKE_MINILIBX)
+	$(MAKE_VECTOR)
+	$(MAKE_GEOMETRY)
+	$(MAKE_LIBFT)
+	$(MAKE) $(NAME) SRC_PATH="$(SRC_BONUS_PATH)" OBJS="$(OBJS_BONUS)" SRCS="$(SRCS_BONUS)" DEPS="$(DEPS_BONUS)"
 
 test:	$(OBJS_TEST)
 	$(CC) $(FLAGS) $(INCLUDES) $(OBJS_TEST) $(LIBS) -o $(NAME)
 
+
 $(NAME):	$(OBJS) $(DEPENDENCIES)
 	$(CC) $(FLAGS) $(OBJS) $(LIBS) -o $(NAME)
 
-.PHONY:	clean
+
 clean:
 			$(RM) $(DIR_BUILD)
 
-.PHONY:	fclean
+
 fclean:	clean
 			$(RM) $(NAME)
 
-.PHONY: ffclean
+
 ffclean: fclean
 			$(MAKE_VECTOR) 		fclean
 			$(MAKE_GEOMETRY) 	ffclean
 			$(MAKE_MINILIBX) 	clean
 			$(MAKE_LIBFT)		fclean
 
-.PHONY:	debug
+
 debug:
 			$(MAKE) -j FLAGS="$(DEBUG_CLFAGS)"
 
-.PHONY:	re
+
 re:		fclean
 			$(MAKE) all
 
-.PHONY: rre
+
 rre:	ffclean
 			$(MAKE) all
 
-.PHONY: norm
+
 norm:
-	norminette srcs vector geometry includes libft
+	norminette srcs vector geometry includes libft srcs_bonus
+
+.PHONY: all bonus test debug clean fclean ffclean re rre norm
 
 -include $(DEPS)
 $(DIR_BUILD)%.o : $(SRC_PATH)%.c

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   multicam.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcamerly <lcamerly@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: jbanacze <jbanacze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 16:58:39 by lcamerly          #+#    #+#             */
-/*   Updated: 2024/06/03 17:28:38 by lcamerly         ###   ########.fr       */
+/*   Updated: 2024/06/07 10:54:14 by jbanacze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "minirt_bonus.h"
 
 void	multicam(int key, t_minirt *minirt)
 {
@@ -30,51 +30,4 @@ void	multicam(int key, t_minirt *minirt)
 		else
 			minirt->scene->cameras = ft_dlstlast(minirt->scene->cameras);
 	}
-}
-
-void	ft_dlstadd_back(t_dlist **alst, t_dlist *new)
-{
-	t_dlist	*last;
-
-	if (!new)
-		return ;
-	if (!*alst)
-	{
-		*alst = new;
-		return ;
-	}
-	last = ft_dlstlast(*alst);
-	last->next = new;
-	new->prev = last;
-}
-
-t_dlist	*ft_dlstlast(t_dlist *lst)
-{
-	if (!lst)
-		return (NULL);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
-}
-
-t_dlist	*ft_dlstnew(void *content)
-{
-	t_dlist	*new;
-
-	new = malloc(sizeof(t_dlist));
-	if (!new)
-		return (NULL);
-	new->content = content;
-	new->next = NULL;
-	new->prev = NULL;
-	return (new);
-}
-
-t_dlist	*ft_dlistfirst(t_dlist *lst)
-{
-	if (!lst)
-		return (NULL);
-	while (lst->prev)
-		lst = lst->prev;
-	return (lst);
 }
